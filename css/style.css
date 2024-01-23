@@ -120,12 +120,12 @@ body {
 }
 
 a,
-a:hover,
+a:active,
 a:focus {
   text-decoration: none;
 }
 
-a:hover,
+a:active,
 a:focus {
   color: initial;
 }
@@ -227,7 +227,7 @@ a:focus {
   margin-top: 35px;
 }
 
-.slider_section .detail-box a:hover {
+.slider_section .detail-box a:active {
   background-color: transparent;
   color: #ffffff;
 }
@@ -295,7 +295,7 @@ a:focus {
   margin-top: 35px;
 }
 
-.do_section .do_container .box:hover .img-box {
+.do_section .do_container .box:active .img-box {
   background-color: #fec016;
 }
 
@@ -350,7 +350,7 @@ a:focus {
   margin-top: 35px;
 }
 
-.who_section .detail-box a:hover {
+.who_section .detail-box a:active {
   background-color: transparent;
   color: #353434;
 }
@@ -480,8 +480,8 @@ a:focus {
   outline: none;
 }
 
-.client_section .owl-carousel .owl-nav .owl-prev:hover,
-.client_section .owl-carousel .owl-nav .owl-next:hover {
+.client_section .owl-carousel .owl-nav .owl-prev:active,
+.client_section .owl-carousel .owl-nav .owl-next:active {
   background-color: rgba(0, 0, 0, 0.8);
 }
 
@@ -672,7 +672,7 @@ a:focus {
   font-size: 15px;
 }
 
-.info_section .info_form form button:hover {
+.info_section .info_form form button:active {
   background-color: transparent;
   color: #fbca47;
 }
@@ -831,214 +831,214 @@ a:focus {
   outline: none;
   z-index: 4;
 }
-.Card:hover,
+.Card:active,
 .Card--active {
   background-color: #f5f5f5;
   cursor: pointer;
 }
-.Card:hover .Card-thumb,
+.Card:active .Card-thumb,
 .Card--active .Card-thumb {
   z-index: 3;
 }
-.Card:hover .Card-title,
+.Card:active .Card-title,
 .Card--active .Card-title {
   opacity: 0;
 }
-.Card:hover .Card-explore,
+.Card:active .Card-explore,
 .Card--active .Card-explore {
   opacity: 1;
   transform: translate(0, 1rem);
   transition: all 0.2s cubic-bezier(0.42, 0, 0.58, 1) 0.1s;
 }
-.Card:hover .Card-image,
+.Card:active .Card-image,
 .Card--active .Card-image {
   transform: scale(1.05) translate(0, -1rem) rotateX(25deg);
 }
-.Card:hover .Card-image::before,
+.Card:active .Card-image::before,
 .Card--active .Card-image::before {
   opacity: 0.4;
 }
-.Card:hover .Card-shadow:nth-child(3),
+.Card:active .Card-shadow:nth-child(3),
 .Card--active .Card-shadow:nth-child(3) {
   transform: scale(1.02) translate(0, 0.8rem) rotateX(15deg);
 }
-.Card:hover .Card-shadow:nth-child(2),
+.Card:active .Card-shadow:nth-child(2),
 .Card--active .Card-shadow:nth-child(2) {
   transform: scale(0.9) translate(0, 3.5rem) rotateX(15deg);
 }
-.Card:hover .Card-shadow:nth-child(1),
+.Card:active .Card-shadow:nth-child(1),
 .Card--active .Card-shadow:nth-child(1) {
   transform: scale(0.82) translate(0, 6.7rem) rotateX(5deg);
 }
-.Card:hover .Card-button,
+.Card:active .Card-button,
 .Card--active .Card-button {
   opacity: 1;
   color: #3f51b5;
   transform: translate(-50%, 0);
 }
-.Card:hover .Card-button:hover,
-.Card--active .Card-button:hover {
+.Card:active .Card-button:active,
+.Card--active .Card-button:active {
   color: #fff;
   background-color: #3f51b5;
 }
 .Card--active,
-.Card--active:hover {
+.Card--active:active {
   background: none;
 }
 .Card--active .Card-explore,
-.Card--active:hover .Card-explore {
+.Card--active:active .Card-explore {
   opacity: 0;
   transform: translate(0, 3rem);
   transition: all 0.5s cubic-bezier(0.42, 0, 0.58, 1);
 }
 .Card--active .Card-image,
-.Card--active:hover .Card-image {
+.Card--active:active .Card-image {
   opacity: 0;
   transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
   transform: scale(1.05) translate(0, -2.5rem) rotateX(50deg);
 }
 .Card--active .Card-image::before,
-.Card--active:hover .Card-image::before {
+.Card--active:active .Card-image::before {
   opacity: 0.4;
 }
 .Card--active .Card-button,
-.Card--active:hover .Card-button {
+.Card--active:active .Card-button {
   opacity: 0;
   transition: all 0.35s cubic-bezier(0.42, 0, 0.58, 1);
   transform: translate(-50%, -2rem) scale(1, 0.4);
 }
 .Grid-row:nth-child(1) .Card:nth-child(1).Card--active .Card-shadow:nth-child(3),
-.Grid-row:nth-child(1) .Card:nth-child(1) .Card--active:hover .Card-shadow:nth-child(3) {
+.Grid-row:nth-child(1) .Card:nth-child(1) .Card--active:active .Card-shadow:nth-child(3) {
   transition: all 0.2s cubic-bezier(0.7, 0, 0.78, 1);
   transform: scale(1) translate(6%, 113%);
 }
 .Grid-row:nth-child(1) .Card:nth-child(1).Card--active .Card-shadow:nth-child(2),
-.Grid-row:nth-child(1) .Card:nth-child(1) .Card--active:hover .Card-shadow:nth-child(2) {
+.Grid-row:nth-child(1) .Card:nth-child(1) .Card--active:active .Card-shadow:nth-child(2) {
   transition: all 0.2s cubic-bezier(0.7, 0, 0.78, 1) 0.1s;
   transform: scale(1) translate(6%, 223%);
 }
 .Grid-row:nth-child(1) .Card:nth-child(1).Card--active .Card-shadow:nth-child(1),
-.Grid-row:nth-child(1) .Card:nth-child(1) .Card--active:hover .Card-shadow:nth-child(1) {
+.Grid-row:nth-child(1) .Card:nth-child(1) .Card--active:active .Card-shadow:nth-child(1) {
   transition: all 0.2s cubic-bezier(0.7, 0, 0.78, 1) 0.2s;
   transform: scale(2.1) translate(81%, 80%);
 }
 .Grid-row:nth-child(1) .Card:nth-child(2).Card--active .Card-shadow:nth-child(3),
-.Grid-row:nth-child(1) .Card:nth-child(2) .Card--active:hover .Card-shadow:nth-child(3) {
+.Grid-row:nth-child(1) .Card:nth-child(2) .Card--active:active .Card-shadow:nth-child(3) {
   transition: all 0.2s cubic-bezier(0.7, 0, 0.78, 1);
   transform: scale(1) translate(-108%, 113%);
 }
 .Grid-row:nth-child(1) .Card:nth-child(2).Card--active .Card-shadow:nth-child(2),
-.Grid-row:nth-child(1) .Card:nth-child(2) .Card--active:hover .Card-shadow:nth-child(2) {
+.Grid-row:nth-child(1) .Card:nth-child(2) .Card--active:active .Card-shadow:nth-child(2) {
   transition: all 0.2s cubic-bezier(0.7, 0, 0.78, 1) 0.1s;
   transform: scale(1) translate(-108%, 223%);
 }
 .Grid-row:nth-child(1) .Card:nth-child(2).Card--active .Card-shadow:nth-child(1),
-.Grid-row:nth-child(1) .Card:nth-child(2) .Card--active:hover .Card-shadow:nth-child(1) {
+.Grid-row:nth-child(1) .Card:nth-child(2) .Card--active:active .Card-shadow:nth-child(1) {
   transition: all 0.2s cubic-bezier(0.7, 0, 0.78, 1) 0.2s;
   transform: scale(2.1) translate(26%, 80%);
 }
 .Grid-row:nth-child(1) .Card:nth-child(3).Card--active .Card-shadow:nth-child(3),
-.Grid-row:nth-child(1) .Card:nth-child(3) .Card--active:hover .Card-shadow:nth-child(3) {
+.Grid-row:nth-child(1) .Card:nth-child(3) .Card--active:active .Card-shadow:nth-child(3) {
   transition: all 0.2s cubic-bezier(0.7, 0, 0.78, 1);
   transform: scale(1) translate(-222%, 113%);
 }
 .Grid-row:nth-child(1) .Card:nth-child(3).Card--active .Card-shadow:nth-child(2),
-.Grid-row:nth-child(1) .Card:nth-child(3) .Card--active:hover .Card-shadow:nth-child(2) {
+.Grid-row:nth-child(1) .Card:nth-child(3) .Card--active:active .Card-shadow:nth-child(2) {
   transition: all 0.2s cubic-bezier(0.7, 0, 0.78, 1) 0.1s;
   transform: scale(1) translate(-222%, 223%);
 }
 .Grid-row:nth-child(1) .Card:nth-child(3).Card--active .Card-shadow:nth-child(1),
-.Grid-row:nth-child(1) .Card:nth-child(3) .Card--active:hover .Card-shadow:nth-child(1) {
+.Grid-row:nth-child(1) .Card:nth-child(3) .Card--active:active .Card-shadow:nth-child(1) {
   transition: all 0.2s cubic-bezier(0.7, 0, 0.78, 1) 0.2s;
   transform: scale(2.1) translate(-29%, 80%);
 }
 .Grid-row:nth-child(2) .Card:nth-child(1).Card--active .Card-shadow:nth-child(3),
-.Grid-row:nth-child(2) .Card:nth-child(1) .Card--active:hover .Card-shadow:nth-child(3) {
+.Grid-row:nth-child(2) .Card:nth-child(1) .Card--active:active .Card-shadow:nth-child(3) {
   transition: all 0.2s cubic-bezier(0.7, 0, 0.78, 1);
   transform: scale(1) translate(6%, -55%);
 }
 .Grid-row:nth-child(2) .Card:nth-child(1).Card--active .Card-shadow:nth-child(2),
-.Grid-row:nth-child(2) .Card:nth-child(1) .Card--active:hover .Card-shadow:nth-child(2) {
+.Grid-row:nth-child(2) .Card:nth-child(1) .Card--active:active .Card-shadow:nth-child(2) {
   transition: all 0.2s cubic-bezier(0.7, 0, 0.78, 1) 0.1s;
   transform: scale(1) translate(6%, 55%);
 }
 .Grid-row:nth-child(2) .Card:nth-child(1).Card--active .Card-shadow:nth-child(1),
-.Grid-row:nth-child(2) .Card:nth-child(1) .Card--active:hover .Card-shadow:nth-child(1) {
+.Grid-row:nth-child(2) .Card:nth-child(1) .Card--active:active .Card-shadow:nth-child(1) {
   transition: all 0.2s cubic-bezier(0.7, 0, 0.78, 1) 0.2s;
   transform: scale(2.1) translate(81%, 0%);
 }
 .Grid-row:nth-child(2) .Card:nth-child(2).Card--active .Card-shadow:nth-child(3),
-.Grid-row:nth-child(2) .Card:nth-child(2) .Card--active:hover .Card-shadow:nth-child(3) {
+.Grid-row:nth-child(2) .Card:nth-child(2) .Card--active:active .Card-shadow:nth-child(3) {
   transition: all 0.2s cubic-bezier(0.7, 0, 0.78, 1);
   transform: scale(1) translate(-108%, -55%);
 }
 .Grid-row:nth-child(2) .Card:nth-child(2).Card--active .Card-shadow:nth-child(2),
-.Grid-row:nth-child(2) .Card:nth-child(2) .Card--active:hover .Card-shadow:nth-child(2) {
+.Grid-row:nth-child(2) .Card:nth-child(2) .Card--active:active .Card-shadow:nth-child(2) {
   transition: all 0.2s cubic-bezier(0.7, 0, 0.78, 1) 0.1s;
   transform: scale(1) translate(-108%, 55%);
 }
 .Grid-row:nth-child(2) .Card:nth-child(2).Card--active .Card-shadow:nth-child(1),
-.Grid-row:nth-child(2) .Card:nth-child(2) .Card--active:hover .Card-shadow:nth-child(1) {
+.Grid-row:nth-child(2) .Card:nth-child(2) .Card--active:active .Card-shadow:nth-child(1) {
   transition: all 0.2s cubic-bezier(0.7, 0, 0.78, 1) 0.2s;
   transform: scale(2.1) translate(26%, 0%);
 }
 .Grid-row:nth-child(2) .Card:nth-child(3).Card--active .Card-shadow:nth-child(3),
-.Grid-row:nth-child(2) .Card:nth-child(3) .Card--active:hover .Card-shadow:nth-child(3) {
+.Grid-row:nth-child(2) .Card:nth-child(3) .Card--active:active .Card-shadow:nth-child(3) {
   transition: all 0.2s cubic-bezier(0.7, 0, 0.78, 1);
   transform: scale(1) translate(-222%, -55%);
 }
 .Grid-row:nth-child(2) .Card:nth-child(3).Card--active .Card-shadow:nth-child(2),
-.Grid-row:nth-child(2) .Card:nth-child(3) .Card--active:hover .Card-shadow:nth-child(2) {
+.Grid-row:nth-child(2) .Card:nth-child(3) .Card--active:active .Card-shadow:nth-child(2) {
   transition: all 0.2s cubic-bezier(0.7, 0, 0.78, 1) 0.1s;
   transform: scale(1) translate(-222%, 55%);
 }
 .Grid-row:nth-child(2) .Card:nth-child(3).Card--active .Card-shadow:nth-child(1),
-.Grid-row:nth-child(2) .Card:nth-child(3) .Card--active:hover .Card-shadow:nth-child(1) {
+.Grid-row:nth-child(2) .Card:nth-child(3) .Card--active:active .Card-shadow:nth-child(1) {
   transition: all 0.2s cubic-bezier(0.7, 0, 0.78, 1) 0.2s;
   transform: scale(2.1) translate(-29%, 0%);
 }
 .Grid-row:nth-child(3) .Card:nth-child(1).Card--active .Card-shadow:nth-child(3),
-.Grid-row:nth-child(3) .Card:nth-child(1) .Card--active:hover .Card-shadow:nth-child(3) {
+.Grid-row:nth-child(3) .Card:nth-child(1) .Card--active:active .Card-shadow:nth-child(3) {
   transition: all 0.2s cubic-bezier(0.7, 0, 0.78, 1);
   transform: scale(1) translate(6%, -223%);
 }
 .Grid-row:nth-child(3) .Card:nth-child(1).Card--active .Card-shadow:nth-child(2),
-.Grid-row:nth-child(3) .Card:nth-child(1) .Card--active:hover .Card-shadow:nth-child(2) {
+.Grid-row:nth-child(3) .Card:nth-child(1) .Card--active:active .Card-shadow:nth-child(2) {
   transition: all 0.2s cubic-bezier(0.7, 0, 0.78, 1) 0.1s;
   transform: scale(1) translate(6%, -113%);
 }
 .Grid-row:nth-child(3) .Card:nth-child(1).Card--active .Card-shadow:nth-child(1),
-.Grid-row:nth-child(3) .Card:nth-child(1) .Card--active:hover .Card-shadow:nth-child(1) {
+.Grid-row:nth-child(3) .Card:nth-child(1) .Card--active:active .Card-shadow:nth-child(1) {
   transition: all 0.2s cubic-bezier(0.7, 0, 0.78, 1) 0.2s;
   transform: scale(2.1) translate(81%, -80%);
 }
 .Grid-row:nth-child(3) .Card:nth-child(2).Card--active .Card-shadow:nth-child(3),
-.Grid-row:nth-child(3) .Card:nth-child(2) .Card--active:hover .Card-shadow:nth-child(3) {
+.Grid-row:nth-child(3) .Card:nth-child(2) .Card--active:active .Card-shadow:nth-child(3) {
   transition: all 0.2s cubic-bezier(0.7, 0, 0.78, 1);
   transform: scale(1) translate(-108%, -223%);
 }
 .Grid-row:nth-child(3) .Card:nth-child(2).Card--active .Card-shadow:nth-child(2),
-.Grid-row:nth-child(3) .Card:nth-child(2) .Card--active:hover .Card-shadow:nth-child(2) {
+.Grid-row:nth-child(3) .Card:nth-child(2) .Card--active:active .Card-shadow:nth-child(2) {
   transition: all 0.2s cubic-bezier(0.7, 0, 0.78, 1) 0.1s;
   transform: scale(1) translate(-108%, -113%);
 }
 .Grid-row:nth-child(3) .Card:nth-child(2).Card--active .Card-shadow:nth-child(1),
-.Grid-row:nth-child(3) .Card:nth-child(2) .Card--active:hover .Card-shadow:nth-child(1) {
+.Grid-row:nth-child(3) .Card:nth-child(2) .Card--active:active .Card-shadow:nth-child(1) {
   transition: all 0.2s cubic-bezier(0.7, 0, 0.78, 1) 0.2s;
   transform: scale(2.1) translate(26%, -80%);
 }
 .Grid-row:nth-child(3) .Card:nth-child(3).Card--active .Card-shadow:nth-child(3),
-.Grid-row:nth-child(3) .Card:nth-child(3) .Card--active:hover .Card-shadow:nth-child(3) {
+.Grid-row:nth-child(3) .Card:nth-child(3) .Card--active:active .Card-shadow:nth-child(3) {
   transition: all 0.2s cubic-bezier(0.7, 0, 0.78, 1);
   transform: scale(1) translate(-222%, -223%);
 }
 .Grid-row:nth-child(3) .Card:nth-child(3).Card--active .Card-shadow:nth-child(2),
-.Grid-row:nth-child(3) .Card:nth-child(3) .Card--active:hover .Card-shadow:nth-child(2) {
+.Grid-row:nth-child(3) .Card:nth-child(3) .Card--active:active .Card-shadow:nth-child(2) {
   transition: all 0.2s cubic-bezier(0.7, 0, 0.78, 1) 0.1s;
   transform: scale(1) translate(-222%, -113%);
 }
 .Grid-row:nth-child(3) .Card:nth-child(3).Card--active .Card-shadow:nth-child(1),
-.Grid-row:nth-child(3) .Card:nth-child(3) .Card--active:hover .Card-shadow:nth-child(1) {
+.Grid-row:nth-child(3) .Card:nth-child(3) .Card--active:active .Card-shadow:nth-child(1) {
   transition: all 0.2s cubic-bezier(0.7, 0, 0.78, 1) 0.2s;
   transform: scale(2.1) translate(-29%, -80%);
 }
@@ -1072,7 +1072,7 @@ a:focus {
   opacity: 0.5;
   cursor: pointer;
 }
-.Gallery-close:hover {
+.Gallery-close:active {
   opacity: 0.8;
 }
 .Gallery-images {
