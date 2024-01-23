@@ -206,6 +206,7 @@ a:focus {
 .slider_section .detail-box h1 {
   font-size: 4rem;
   /* text-transform: uppercase; */
+  font-variant: small-caps;
 }
 
 .slider_section .detail-box h2 {
@@ -722,8 +723,7 @@ a:focus {
   .slider_section .detail-box { 
       margin: 0;
   }
-  .hero_area{
-    background-size: auto calc(100vh - 232px);
+  .hero_area{ 
     background-repeat: no-repeat;
     height: auto;
   }
