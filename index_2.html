@@ -1,457 +1,815 @@
-<link href="https://fonts.googleapis.com/css?family=Amatic+SC|Raleway" rel="stylesheet">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="assets/css/styles.css">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
   <style>
-    /*General Styles*/
-
-* {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
+    body {
+  background: #f5f5f5;
+  font-family: 'Libre Franklin', sans-serif;
 }
-
-html {
-	font-size: 16px;
-	font-family: "Raleway", sans-serif;
-	color: #555;
+.Grid {
+  width: 50rem;
+  margin: 5rem auto;
 }
-
-ul,
-nav {
-	list-style: none;
-}
-
-a {
-	text-decoration: none;
-	opacity: 0.75;
-	color: #fff;
-}
-
-a:hover {
-	opacity: 1;
-}
-
-a.btn {
-	border-radius: 4px;
-	text-transform: uppercase;
-	font-weight: bold;
-	text-align: center;
-	background-color: #e07e7b;
-	opacity: 1;
-	transition: all 400ms;
-}
-
-a.btn:hover {
-	background-color: #ce5856;
-}
-
-section {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	padding: 100px 80px;
-}
-
-section:not(.hero):nth-child(even) {
-	background-color: #f5f5f5;
-}
-
-.grid {
-	width: 100%;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-}
-
-hr {
-	width: 250px;
-	height: 3px;
-	background-color: #e07e7b;
-	border: 0;
-	margin-bottom: 50px;
-}
-
-.image-1 {
-	background-image: url("393468919_990202092063514_7711678276114607909_n.jpg");
-}
-
-.image-2 {
-	background-image: url("393739267_1013923436538926_321136449802762322_n.jpg");
-}
-
-.image-3 {
-	background-image: url("412623983_734161174952716_1324838476626519413_n.jpg");
-}
-
- 
-
-section h3.title {
-	text-transform: capitalize;
-	font: bold 48px "Amatic SC", sans-serif;
-	margin-bottom: 30px;
-	text-align: center;
-}
-
-section p {
-	max-width: 775px;
-	line-height: 2;
-	padding: 0 20px;
-	margin-bottom: 30px;
-	text-align: center;
-}
-
-@media (max-width: 800px) {
-	section {
-		padding: 50px 20px;
-	}
-}
-
-/*Header Styles*/
-
-header {
-	position: absolute;
-	width: 100%;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 35px 100px 0;
-	animation: 1s fadein 0.5s forwards;
-	opacity: 0;
-	color: #fff;
-	z-index: 2;
-}
-
-@keyframes fadein {
-	100% {
-		opacity: 1;
-	}
-}
-
-header h2 {
-	font-family: "Amatic SC", sans-serif;
-}
-
-header nav {
-	display: flex;
-	margin-right: -15px;
-}
-
-header nav li {
-	margin: 0 15px;
-}
-
-@media (max-width: 800px) {
-	header {
-		padding: 20px 50px;
-		flex-direction: column;
-	}
-
-	header h2 {
-		margin-bottom: 15px;
-	}
-}
-
-/*Hero Styles*/
-
-.hero {
-	position: relative;
-	justify-content: center;
-	text-align: center;
-	min-height: 100vh;
-	color: #fff;
-}
-
-.hero .background-image {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background-image: url("emily-bernal-v9vII5gV8Lw-unsplash.jpg");
-	background-size: cover;
-	z-index: -1;
-	background-color: #80a3db;
-}
-
-
-.hero h1 {
-	font: 72px "Amatic SC", sans-serif;
-	text-shadow: 2px 2px rgba(0, 0, 0, 0.3);
-	margin-bottom: 15px;
-    font-weight: 900;
-}
-
-.hero h3 {
-	font: 28px "Raleway", sans-serif;
-	font-weight: 300;
-	text-shadow: 2px 2px rgba(0, 0, 0, 0.3);
-	margin-bottom: 40px;
-}
-
-.hero a.btn {
-	padding: 20px 46px;
-}
-
-.hero-content-area {
-	opacity: 0;
-	margin-top: 100px;
-	animation: 1s slidefade 1s forwards;
-}
-
-@keyframes slidefade {
-	100% {
-		opacity: 1;
-		margin: 0;
-	}
-}
-
-@media (max-width: 800px) {
-	.hero {
-		min-height: 600px;
-	}
-
-	.hero h1 {
-		font-size: 48px;
-	}
-
-	.hero h3 {
-		font-size: 24px;
-	}
-
-	.hero a.btn {
-		padding: 15px 40px;
-	}
-}
-
-/*Destinations Section*/
-
-.destinations .grid li {
-	height: 350px;
-	padding: 20px;
-	background-clip: content-box;
-	background-size: cover;
-	background-position: center;
-}
-
-.destinations .grid li.small {
-	flex-basis: 30%;
-}
-
-.destinations .grid li.large {
-	flex-basis: 70%;
-}
-
-@media (max-width: 1100px) {
-	.destinations .grid li.small,
-	.destinations .grid li.large {
-		flex-basis: 50%;
-	}
-}
-
-@media (max-width: 800px) {
-	.destinations .grid li.small,
-	.destinations .grid li.large {
-		flex-basis: 100%;
-	}
-}
-
-/*Packages Section*/
-
-.packages .grid li {
-	padding: 50px;
-	flex-basis: 50%;
-	text-align: center;
-}
-
-.packages .grid li i {
-	color: #e07e7b;
-}
-
-.packages .grid li h4 {
-	font-size: 30px;
-	margin: 25px 0;
-}
-
-@media (max-width: 800px) {
-	.packages .grid li {
-		flex-basis: 100%;
-		padding: 20px;
-	}
-}
-
-/*Testimonials Section*/
-
-.testimonials .quote {
-	font-size: 22px;
-	font-weight: 300;
-	line-height: 1.5;
-	margin: 40px 0 25px;
-}
-
-@media (max-width: 800px) {
-	.testimonials .quote {
-		font-size: 18px;
-		margin: 15px 0;
-	}
-
-	.testimonials .author {
-		font-size: 14px;
-	}
-}
-
-/*Contact Section*/
-
-.contact form {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-wrap: wrap;
-	width: 60%;
-}
-
-.contact form .btn {
-	padding: 18px 42px;
-}
-
-.contact form input {
-	padding: 15px;
-	margin-right: 30px;
-	font-size: 18px;
-	color: #555;
-	flex: 1;
-}
-
-@media (max-width: 1000px) {
-	.contact form input {
-		flex-basis: 100%;
-		margin: 0 0 20px 0;
-	}
-}
-
-/*Footer Section*/
-
-footer {
-	display: flex;
-	align-items: center;
-	justify-content: space-around;
-	background-color: #555;
-	color: #fff;
-	padding: 20px 0;
-}
-
-footer ul {
-	display: flex;
-}
-
-footer ul li {
-	margin-left: 16px;
-}
-
-footer p {
-	text-transform: uppercase;
-	font-size: 14px;
-	opacity: 0.6;
-	align-self: center;
-}
-
-@media (max-width: 1100px) {
-	footer {
-		flex-direction: column;
-	}
-
-	footer p {
-		text-align: center;
-		margin-bottom: 20px;
-	}
-
-	footer ul li {
-		margin: 0 8px;
-	}
-}
-/* Add this style to the existing <style> section */
-    .address {
+.Grid-row {
   display: flex;
-  justify-content: space-around;
-  background-color: #555;
-  color: #fff;
-  padding: 20px 0;
+  justify-content: space-between;
+  margin-bottom: 2.5rem;
 }
-
-.address-content,
-.contact-info {
+.Card {
+  position: relative;
+  flex: 0 1 15rem;
+  background-color: #fff;
+  padding-bottom: 5rem;
+  transition: background-color 0.2s cubic-bezier(0.5, 0.3, 0.8, 0.06);
+  color: #000;
+}
+.Card-thumb {
+  position: relative;
+  width: 15rem;
+  height: 10rem;
+  perspective-origin: 50% 0%;
+  perspective: 600px;
+  z-index: 1;
+}
+.Card-image,
+.Card-shadow {
+  position: absolute;
+  display: block;
+  width: 15rem;
+  height: 10rem;
+  transition: all 0.2s cubic-bezier(0.42, 0, 0.58, 1);
+}
+.Card-shadow {
+  opacity: 0.8;
+}
+.Card-shadow:nth-child(1) {
+  opacity: 0.6;
+  background-color: #673ab7;
+  transition: all 0.2s cubic-bezier(0.42, 0, 0.58, 1) 0.07s;
+}
+.Card-shadow:nth-child(2) {
+  opacity: 0.7;
+  background-color: #3f51b5;
+  transition: all 0.2s cubic-bezier(0.42, 0, 0.58, 1) 0.05s;
+}
+.Card-shadow:nth-child(3) {
+  background-color: #2196f3;
+  transition: all 0.2s cubic-bezier(0.42, 0, 0.58, 1) 0.03s;
+}
+.Card-image {
+  position: relative;
+  background-size: auto 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #607d8b;
+}
+.Card-image::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #3f51b5;
+  content: '';
+  opacity: 0;
+  transition: opacity 0.1s;
+}
+.Card-title,
+.Card-explore {
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 5rem;
+  text-align: center;
+  transition: all 0.2s cubic-bezier(0.5, 0.3, 0.8, 0.06);
+}
+.Card-title span,
+.Card-explore span {
+  padding: 0.5rem;
+  flex: 1 1 auto;
   text-align: center;
 }
-
-.address h4,
-.contact-info h4 {
-  font-size: 18px;
-  margin-bottom: 10px;
+.Card-explore {
+  opacity: 0;
+  transform: translate(0, -1rem);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #673ab7;
 }
-
-.address p,
-.contact-info p {
-  margin: 5px 0;
+.Card-button {
+  position: absolute;
+  left: 50%;
+  top: 5rem;
+  padding: 0.5rem 1rem;
+  background-color: #fff;
+  border-radius: 2rem;
+  border: 2px solid #3f51b5;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  transform: translate(-50%, 2rem);
+  cursor: pointer;
+  transition: all 0.2s;
+  opacity: 0;
+  outline: none;
+  z-index: 4;
 }
-
-
-
+.Card:hover,
+.Card--active {
+  background-color: #f5f5f5;
+  cursor: pointer;
+}
+.Card:hover .Card-thumb,
+.Card--active .Card-thumb {
+  z-index: 3;
+}
+.Card:hover .Card-title,
+.Card--active .Card-title {
+  opacity: 0;
+}
+.Card:hover .Card-explore,
+.Card--active .Card-explore {
+  opacity: 1;
+  transform: translate(0, 1rem);
+  transition: all 0.2s cubic-bezier(0.42, 0, 0.58, 1) 0.1s;
+}
+.Card:hover .Card-image,
+.Card--active .Card-image {
+  transform: scale(1.05) translate(0, -1rem) rotateX(25deg);
+}
+.Card:hover .Card-image::before,
+.Card--active .Card-image::before {
+  opacity: 0.4;
+}
+.Card:hover .Card-shadow:nth-child(3),
+.Card--active .Card-shadow:nth-child(3) {
+  transform: scale(1.02) translate(0, -0.3rem) rotateX(15deg);
+}
+.Card:hover .Card-shadow:nth-child(2),
+.Card--active .Card-shadow:nth-child(2) {
+  transform: scale(0.9) translate(0, 1rem) rotateX(15deg);
+}
+.Card:hover .Card-shadow:nth-child(1),
+.Card--active .Card-shadow:nth-child(1) {
+  transform: scale(0.82) translate(0, 2.4rem) rotateX(5deg);
+}
+.Card:hover .Card-button,
+.Card--active .Card-button {
+  opacity: 1;
+  color: #3f51b5;
+  transform: translate(-50%, 0);
+}
+.Card:hover .Card-button:hover,
+.Card--active .Card-button:hover {
+  color: #fff;
+  background-color: #3f51b5;
+}
+.Card--active,
+.Card--active:hover {
+  background: none;
+}
+.Card--active .Card-explore,
+.Card--active:hover .Card-explore {
+  opacity: 0;
+  transform: translate(0, 3rem);
+  transition: all 0.5s cubic-bezier(0.42, 0, 0.58, 1);
+}
+.Card--active .Card-image,
+.Card--active:hover .Card-image {
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
+  transform: scale(1.05) translate(0, -2.5rem) rotateX(50deg);
+}
+.Card--active .Card-image::before,
+.Card--active:hover .Card-image::before {
+  opacity: 0.4;
+}
+.Card--active .Card-button,
+.Card--active:hover .Card-button {
+  opacity: 0;
+  transition: all 0.35s cubic-bezier(0.42, 0, 0.58, 1);
+  transform: translate(-50%, -2rem) scale(1, 0.4);
+}
+.Grid-row:nth-child(1) .Card:nth-child(1).Card--active .Card-shadow:nth-child(3),
+.Grid-row:nth-child(1) .Card:nth-child(1) .Card--active:hover .Card-shadow:nth-child(3) {
+  transition: all 0.2s cubic-bezier(0.7, 0, 0.78, 1);
+  transform: scale(1) translate(6%, 113%);
+}
+.Grid-row:nth-child(1) .Card:nth-child(1).Card--active .Card-shadow:nth-child(2),
+.Grid-row:nth-child(1) .Card:nth-child(1) .Card--active:hover .Card-shadow:nth-child(2) {
+  transition: all 0.2s cubic-bezier(0.7, 0, 0.78, 1) 0.1s;
+  transform: scale(1) translate(6%, 223%);
+}
+.Grid-row:nth-child(1) .Card:nth-child(1).Card--active .Card-shadow:nth-child(1),
+.Grid-row:nth-child(1) .Card:nth-child(1) .Card--active:hover .Card-shadow:nth-child(1) {
+  transition: all 0.2s cubic-bezier(0.7, 0, 0.78, 1) 0.2s;
+  transform: scale(2.1) translate(81%, 80%);
+}
+.Grid-row:nth-child(1) .Card:nth-child(2).Card--active .Card-shadow:nth-child(3),
+.Grid-row:nth-child(1) .Card:nth-child(2) .Card--active:hover .Card-shadow:nth-child(3) {
+  transition: all 0.2s cubic-bezier(0.7, 0, 0.78, 1);
+  transform: scale(1) translate(-108%, 113%);
+}
+.Grid-row:nth-child(1) .Card:nth-child(2).Card--active .Card-shadow:nth-child(2),
+.Grid-row:nth-child(1) .Card:nth-child(2) .Card--active:hover .Card-shadow:nth-child(2) {
+  transition: all 0.2s cubic-bezier(0.7, 0, 0.78, 1) 0.1s;
+  transform: scale(1) translate(-108%, 223%);
+}
+.Grid-row:nth-child(1) .Card:nth-child(2).Card--active .Card-shadow:nth-child(1),
+.Grid-row:nth-child(1) .Card:nth-child(2) .Card--active:hover .Card-shadow:nth-child(1) {
+  transition: all 0.2s cubic-bezier(0.7, 0, 0.78, 1) 0.2s;
+  transform: scale(2.1) translate(26%, 80%);
+}
+.Grid-row:nth-child(1) .Card:nth-child(3).Card--active .Card-shadow:nth-child(3),
+.Grid-row:nth-child(1) .Card:nth-child(3) .Card--active:hover .Card-shadow:nth-child(3) {
+  transition: all 0.2s cubic-bezier(0.7, 0, 0.78, 1);
+  transform: scale(1) translate(-222%, 113%);
+}
+.Grid-row:nth-child(1) .Card:nth-child(3).Card--active .Card-shadow:nth-child(2),
+.Grid-row:nth-child(1) .Card:nth-child(3) .Card--active:hover .Card-shadow:nth-child(2) {
+  transition: all 0.2s cubic-bezier(0.7, 0, 0.78, 1) 0.1s;
+  transform: scale(1) translate(-222%, 223%);
+}
+.Grid-row:nth-child(1) .Card:nth-child(3).Card--active .Card-shadow:nth-child(1),
+.Grid-row:nth-child(1) .Card:nth-child(3) .Card--active:hover .Card-shadow:nth-child(1) {
+  transition: all 0.2s cubic-bezier(0.7, 0, 0.78, 1) 0.2s;
+  transform: scale(2.1) translate(-29%, 80%);
+}
+.Grid-row:nth-child(2) .Card:nth-child(1).Card--active .Card-shadow:nth-child(3),
+.Grid-row:nth-child(2) .Card:nth-child(1) .Card--active:hover .Card-shadow:nth-child(3) {
+  transition: all 0.2s cubic-bezier(0.7, 0, 0.78, 1);
+  transform: scale(1) translate(6%, -55%);
+}
+.Grid-row:nth-child(2) .Card:nth-child(1).Card--active .Card-shadow:nth-child(2),
+.Grid-row:nth-child(2) .Card:nth-child(1) .Card--active:hover .Card-shadow:nth-child(2) {
+  transition: all 0.2s cubic-bezier(0.7, 0, 0.78, 1) 0.1s;
+  transform: scale(1) translate(6%, 55%);
+}
+.Grid-row:nth-child(2) .Card:nth-child(1).Card--active .Card-shadow:nth-child(1),
+.Grid-row:nth-child(2) .Card:nth-child(1) .Card--active:hover .Card-shadow:nth-child(1) {
+  transition: all 0.2s cubic-bezier(0.7, 0, 0.78, 1) 0.2s;
+  transform: scale(2.1) translate(81%, 0%);
+}
+.Grid-row:nth-child(2) .Card:nth-child(2).Card--active .Card-shadow:nth-child(3),
+.Grid-row:nth-child(2) .Card:nth-child(2) .Card--active:hover .Card-shadow:nth-child(3) {
+  transition: all 0.2s cubic-bezier(0.7, 0, 0.78, 1);
+  transform: scale(1) translate(-108%, -55%);
+}
+.Grid-row:nth-child(2) .Card:nth-child(2).Card--active .Card-shadow:nth-child(2),
+.Grid-row:nth-child(2) .Card:nth-child(2) .Card--active:hover .Card-shadow:nth-child(2) {
+  transition: all 0.2s cubic-bezier(0.7, 0, 0.78, 1) 0.1s;
+  transform: scale(1) translate(-108%, 55%);
+}
+.Grid-row:nth-child(2) .Card:nth-child(2).Card--active .Card-shadow:nth-child(1),
+.Grid-row:nth-child(2) .Card:nth-child(2) .Card--active:hover .Card-shadow:nth-child(1) {
+  transition: all 0.2s cubic-bezier(0.7, 0, 0.78, 1) 0.2s;
+  transform: scale(2.1) translate(26%, 0%);
+}
+.Grid-row:nth-child(2) .Card:nth-child(3).Card--active .Card-shadow:nth-child(3),
+.Grid-row:nth-child(2) .Card:nth-child(3) .Card--active:hover .Card-shadow:nth-child(3) {
+  transition: all 0.2s cubic-bezier(0.7, 0, 0.78, 1);
+  transform: scale(1) translate(-222%, -55%);
+}
+.Grid-row:nth-child(2) .Card:nth-child(3).Card--active .Card-shadow:nth-child(2),
+.Grid-row:nth-child(2) .Card:nth-child(3) .Card--active:hover .Card-shadow:nth-child(2) {
+  transition: all 0.2s cubic-bezier(0.7, 0, 0.78, 1) 0.1s;
+  transform: scale(1) translate(-222%, 55%);
+}
+.Grid-row:nth-child(2) .Card:nth-child(3).Card--active .Card-shadow:nth-child(1),
+.Grid-row:nth-child(2) .Card:nth-child(3) .Card--active:hover .Card-shadow:nth-child(1) {
+  transition: all 0.2s cubic-bezier(0.7, 0, 0.78, 1) 0.2s;
+  transform: scale(2.1) translate(-29%, 0%);
+}
+.Grid-row:nth-child(3) .Card:nth-child(1).Card--active .Card-shadow:nth-child(3),
+.Grid-row:nth-child(3) .Card:nth-child(1) .Card--active:hover .Card-shadow:nth-child(3) {
+  transition: all 0.2s cubic-bezier(0.7, 0, 0.78, 1);
+  transform: scale(1) translate(6%, -223%);
+}
+.Grid-row:nth-child(3) .Card:nth-child(1).Card--active .Card-shadow:nth-child(2),
+.Grid-row:nth-child(3) .Card:nth-child(1) .Card--active:hover .Card-shadow:nth-child(2) {
+  transition: all 0.2s cubic-bezier(0.7, 0, 0.78, 1) 0.1s;
+  transform: scale(1) translate(6%, -113%);
+}
+.Grid-row:nth-child(3) .Card:nth-child(1).Card--active .Card-shadow:nth-child(1),
+.Grid-row:nth-child(3) .Card:nth-child(1) .Card--active:hover .Card-shadow:nth-child(1) {
+  transition: all 0.2s cubic-bezier(0.7, 0, 0.78, 1) 0.2s;
+  transform: scale(2.1) translate(81%, -80%);
+}
+.Grid-row:nth-child(3) .Card:nth-child(2).Card--active .Card-shadow:nth-child(3),
+.Grid-row:nth-child(3) .Card:nth-child(2) .Card--active:hover .Card-shadow:nth-child(3) {
+  transition: all 0.2s cubic-bezier(0.7, 0, 0.78, 1);
+  transform: scale(1) translate(-108%, -223%);
+}
+.Grid-row:nth-child(3) .Card:nth-child(2).Card--active .Card-shadow:nth-child(2),
+.Grid-row:nth-child(3) .Card:nth-child(2) .Card--active:hover .Card-shadow:nth-child(2) {
+  transition: all 0.2s cubic-bezier(0.7, 0, 0.78, 1) 0.1s;
+  transform: scale(1) translate(-108%, -113%);
+}
+.Grid-row:nth-child(3) .Card:nth-child(2).Card--active .Card-shadow:nth-child(1),
+.Grid-row:nth-child(3) .Card:nth-child(2) .Card--active:hover .Card-shadow:nth-child(1) {
+  transition: all 0.2s cubic-bezier(0.7, 0, 0.78, 1) 0.2s;
+  transform: scale(2.1) translate(26%, -80%);
+}
+.Grid-row:nth-child(3) .Card:nth-child(3).Card--active .Card-shadow:nth-child(3),
+.Grid-row:nth-child(3) .Card:nth-child(3) .Card--active:hover .Card-shadow:nth-child(3) {
+  transition: all 0.2s cubic-bezier(0.7, 0, 0.78, 1);
+  transform: scale(1) translate(-222%, -223%);
+}
+.Grid-row:nth-child(3) .Card:nth-child(3).Card--active .Card-shadow:nth-child(2),
+.Grid-row:nth-child(3) .Card:nth-child(3) .Card--active:hover .Card-shadow:nth-child(2) {
+  transition: all 0.2s cubic-bezier(0.7, 0, 0.78, 1) 0.1s;
+  transform: scale(1) translate(-222%, -113%);
+}
+.Grid-row:nth-child(3) .Card:nth-child(3).Card--active .Card-shadow:nth-child(1),
+.Grid-row:nth-child(3) .Card:nth-child(3) .Card--active:hover .Card-shadow:nth-child(1) {
+  transition: all 0.2s cubic-bezier(0.7, 0, 0.78, 1) 0.2s;
+  transform: scale(2.1) translate(-29%, -80%);
+}
+.Gallery {
+  display: block;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: #f5f5f5;
+  opacity: 0;
+  transform: scale(1.2);
+  transition: none;
+  padding: 18rem 0;
+  overflow-y: scroll;
+}
+.Gallery-header {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  background-color: #eee;
+  padding-bottom: 5rem;
+}
+.Gallery-close {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  font-size: 3rem;
+  opacity: 0.5;
+  cursor: pointer;
+}
+.Gallery-close:hover {
+  opacity: 0.8;
+}
+.Gallery-images {
+  display: flex;
+  width: 47rem;
+  margin: 0 auto;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+.Gallery-images:nth-child(3) {
+  transition: all 0.2s cubic-bezier(0.7, 0, 0.78, 1) 0.33s;
+  opacity: 0;
+  transform: translate(0, 3rem) scale(1.1);
+}
+.Gallery-images:nth-child(4) {
+  transition: all 0.2s cubic-bezier(0.7, 0, 0.78, 1) 0.44s;
+  opacity: 0;
+  transform: translate(0, 3rem) scale(1.1);
+}
+.Gallery-images:nth-child(5) {
+  transition: all 0.2s cubic-bezier(0.7, 0, 0.78, 1) 0.55s;
+  opacity: 0;
+  transform: translate(0, 3rem) scale(1.1);
+}
+.Gallery-images:nth-child(6) {
+  transition: all 0.2s cubic-bezier(0.7, 0, 0.78, 1) 0.66s;
+  opacity: 0;
+  transform: translate(0, 3rem) scale(1.1);
+}
+.Gallery-left {
+  flex: 1 auto;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+.Gallery-image {
+  display: block;
+  width: 15rem;
+  height: 9.5rem;
+  transition: all 0.2s cubic-bezier(0.42, 0, 0.58, 1);
+  background: #aebfc7;
+  background-size: auto 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.Gallery-image--primary {
+  width: 31rem;
+  height: 20rem;
+  background-color: #673ab7;
+}
+.Gallery--active {
+  z-index: 100;
+  background: #fff;
+  transform: scale(1);
+  opacity: 1;
+  transition: all 0.5s cubic-bezier(0.7, 0, 0.78, 1) 0.1s;
+}
+.Gallery--active .Gallery-close {
+  display: block;
+}
+.Gallery--active .Gallery-images {
+  opacity: 1;
+  transform: none;
+}
   </style>
 </head>
 <body>
-  <!-- Forked from a template on Tutorialzine: https://tutorialzine.com/2016/06/freebie-landing-page-template-with-flexbox -->
-  <header>
-    <h2><a href="#">Creative studio</a></h2>
-    <nav>
-      <li><a href="#">Tours</a></li>
-      <li><a href="#">About</a></li>
-      <li><a href="#">Contact</a></li>
-    </nav>
-  </header>
-
-  <section class="hero">
-    <div class="background-image"></div>
-    <div class="hero-content-area">
-      <h1>Creative studio</h1>
-      <h3>
-        "Transforming ideas into visually stunning realities, I craft compelling designs that leave a lasting impression."</h3>
-      <a href="#" class="btn">Contact Us Now</a>
+  
+  <section class="Grid">
+    <div class="Grid-row"><a class="Card" onClick="openGallery(1)" id="card-1">
+        <div class="Card-thumb">
+          <div class="Card-shadow"></div>
+          <div class="Card-shadow"></div>
+          <div class="Card-shadow"></div>
+          <div class="Card-image" style="background-image: url(https://robohash.org/1)"></div>
+        </div>
+        <div class="Card-title"><span>Super interesting card</span></div>
+        <div class="Card-explore"><span>Explore 50 more</span></div>
+        <button class="Card-button">view more</button></a><a class="Card" onClick="openGallery(2)" id="card-2">
+        <div class="Card-thumb">
+          <div class="Card-shadow"></div>
+          <div class="Card-shadow"></div>
+          <div class="Card-shadow"></div>
+          <div class="Card-image" style="background-image: url(https://robohash.org/2)"></div>
+        </div>
+        <div class="Card-title"><span>Super interesting card</span></div>
+        <div class="Card-explore"><span>Explore 50 more</span></div>
+        <button class="Card-button">view more</button></a><a class="Card" onClick="openGallery(3)" id="card-3">
+        <div class="Card-thumb">
+          <div class="Card-shadow"></div>
+          <div class="Card-shadow"></div>
+          <div class="Card-shadow"></div>
+          <div class="Card-image" style="background-image: url(https://robohash.org/3)"></div>
+        </div>
+        <div class="Card-title"><span>Super interesting card</span></div>
+        <div class="Card-explore"><span>Explore 50 more</span></div>
+        <button class="Card-button">view more</button></a>
+    </div>
+    <div class="Grid-row"><a class="Card" onClick="openGallery(4)" id="card-4">
+        <div class="Card-thumb">
+          <div class="Card-shadow"></div>
+          <div class="Card-shadow"></div>
+          <div class="Card-shadow"></div>
+          <div class="Card-image" style="background-image: url(https://robohash.org/4)"></div>
+        </div>
+        <div class="Card-title"><span>Super interesting card</span></div>
+        <div class="Card-explore"><span>Explore 50 more</span></div>
+        <button class="Card-button">view more</button></a><a class="Card" onClick="openGallery(5)" id="card-5">
+        <div class="Card-thumb">
+          <div class="Card-shadow"></div>
+          <div class="Card-shadow"></div>
+          <div class="Card-shadow"></div>
+          <div class="Card-image" style="background-image: url(https://robohash.org/5)"></div>
+        </div>
+        <div class="Card-title"><span>Super interesting card</span></div>
+        <div class="Card-explore"><span>Explore 50 more</span></div>
+        <button class="Card-button">view more</button></a><a class="Card" onClick="openGallery(6)" id="card-6">
+        <div class="Card-thumb">
+          <div class="Card-shadow"></div>
+          <div class="Card-shadow"></div>
+          <div class="Card-shadow"></div>
+          <div class="Card-image" style="background-image: url(https://robohash.org/6)"></div>
+        </div>
+        <div class="Card-title"><span>Super interesting card</span></div>
+        <div class="Card-explore"><span>Explore 50 more</span></div>
+        <button class="Card-button">view more</button></a>
+    </div>
+    <div class="Grid-row"><a class="Card" onClick="openGallery(7)" id="card-7">
+        <div class="Card-thumb">
+          <div class="Card-shadow"></div>
+          <div class="Card-shadow"></div>
+          <div class="Card-shadow"></div>
+          <div class="Card-image" style="background-image: url(https://robohash.org/7)"></div>
+        </div>
+        <div class="Card-title"><span>Super interesting card</span></div>
+        <div class="Card-explore"><span>Explore 50 more</span></div>
+        <button class="Card-button">view more</button></a><a class="Card" onClick="openGallery(8)" id="card-8">
+        <div class="Card-thumb">
+          <div class="Card-shadow"></div>
+          <div class="Card-shadow"></div>
+          <div class="Card-shadow"></div>
+          <div class="Card-image" style="background-image: url(https://robohash.org/8)"></div>
+        </div>
+        <div class="Card-title"><span>Super interesting card</span></div>
+        <div class="Card-explore"><span>Explore 50 more</span></div>
+        <button class="Card-button">view more</button></a><a class="Card" onClick="openGallery(9)" id="card-9">
+        <div class="Card-thumb">
+          <div class="Card-shadow"></div>
+          <div class="Card-shadow"></div>
+          <div class="Card-shadow"></div>
+          <div class="Card-image" style="background-image: url(https://robohash.org/9)"></div>
+        </div>
+        <div class="Card-title"><span>Super interesting card</span></div>
+        <div class="Card-explore"><span>Explore 50 more</span></div>
+        <button class="Card-button">view more</button></a>
+    </div>
+  </section>
+  <section class="Gallery" id="gallery-1">
+    <div class="Gallery-header"><a class="Gallery-close" onclick="closeAll()">×</a></div>
+    <div class="Gallery-images">
+      <div class="Gallery-left">
+        <div class="Gallery-image"></div>
+        <div class="Gallery-image"></div>
+      </div>
+      <div class="Gallery-image Gallery-image--primary" style="background-image: url(https://robohash.org/1)"></div>
+    </div>
+    <div class="Gallery-images">
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+    </div>
+    <div class="Gallery-images">
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+    </div>
+    <div class="Gallery-images">
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+    </div>
+    <div class="Gallery-images">
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+    </div>
+  </section>
+  <section class="Gallery" id="gallery-2">
+    <div class="Gallery-header"><a class="Gallery-close" onclick="closeAll()">×</a></div>
+    <div class="Gallery-images">
+      <div class="Gallery-left">
+        <div class="Gallery-image"></div>
+        <div class="Gallery-image"></div>
+      </div>
+      <div class="Gallery-image Gallery-image--primary" style="background-image: url(https://robohash.org/2)"></div>
+    </div>
+    <div class="Gallery-images">
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+    </div>
+    <div class="Gallery-images">
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+    </div>
+    <div class="Gallery-images">
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+    </div>
+    <div class="Gallery-images">
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+    </div>
+  </section>
+  <section class="Gallery" id="gallery-3">
+    <div class="Gallery-header"><a class="Gallery-close" onclick="closeAll()">×</a></div>
+    <div class="Gallery-images">
+      <div class="Gallery-left">
+        <div class="Gallery-image"></div>
+        <div class="Gallery-image"></div>
+      </div>
+      <div class="Gallery-image Gallery-image--primary" style="background-image: url(https://robohash.org/3)"></div>
+    </div>
+    <div class="Gallery-images">
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+    </div>
+    <div class="Gallery-images">
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+    </div>
+    <div class="Gallery-images">
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+    </div>
+    <div class="Gallery-images">
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+    </div>
+  </section>
+  <section class="Gallery" id="gallery-4">
+    <div class="Gallery-header"><a class="Gallery-close" onclick="closeAll()">×</a></div>
+    <div class="Gallery-images">
+      <div class="Gallery-left">
+        <div class="Gallery-image"></div>
+        <div class="Gallery-image"></div>
+      </div>
+      <div class="Gallery-image Gallery-image--primary" style="background-image: url(https://robohash.org/4)"></div>
+    </div>
+    <div class="Gallery-images">
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+    </div>
+    <div class="Gallery-images">
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+    </div>
+    <div class="Gallery-images">
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+    </div>
+    <div class="Gallery-images">
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+    </div>
+  </section>
+  <section class="Gallery" id="gallery-5">
+    <div class="Gallery-header"><a class="Gallery-close" onclick="closeAll()">×</a></div>
+    <div class="Gallery-images">
+      <div class="Gallery-left">
+        <div class="Gallery-image"></div>
+        <div class="Gallery-image"></div>
+      </div>
+      <div class="Gallery-image Gallery-image--primary" style="background-image: url(https://robohash.org/5)"></div>
+    </div>
+    <div class="Gallery-images">
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+    </div>
+    <div class="Gallery-images">
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+    </div>
+    <div class="Gallery-images">
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+    </div>
+    <div class="Gallery-images">
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+    </div>
+  </section>
+  <section class="Gallery" id="gallery-6">
+    <div class="Gallery-header"><a class="Gallery-close" onclick="closeAll()">×</a></div>
+    <div class="Gallery-images">
+      <div class="Gallery-left">
+        <div class="Gallery-image"></div>
+        <div class="Gallery-image"></div>
+      </div>
+      <div class="Gallery-image Gallery-image--primary" style="background-image: url(https://robohash.org/6)"></div>
+    </div>
+    <div class="Gallery-images">
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+    </div>
+    <div class="Gallery-images">
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+    </div>
+    <div class="Gallery-images">
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+    </div>
+    <div class="Gallery-images">
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+    </div>
+  </section>
+  <section class="Gallery" id="gallery-7">
+    <div class="Gallery-header"><a class="Gallery-close" onclick="closeAll()">×</a></div>
+    <div class="Gallery-images">
+      <div class="Gallery-left">
+        <div class="Gallery-image"></div>
+        <div class="Gallery-image"></div>
+      </div>
+      <div class="Gallery-image Gallery-image--primary" style="background-image: url(https://robohash.org/7)"></div>
+    </div>
+    <div class="Gallery-images">
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+    </div>
+    <div class="Gallery-images">
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+    </div>
+    <div class="Gallery-images">
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+    </div>
+    <div class="Gallery-images">
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+    </div>
+  </section>
+  <section class="Gallery" id="gallery-8">
+    <div class="Gallery-header"><a class="Gallery-close" onclick="closeAll()">×</a></div>
+    <div class="Gallery-images">
+      <div class="Gallery-left">
+        <div class="Gallery-image"></div>
+        <div class="Gallery-image"></div>
+      </div>
+      <div class="Gallery-image Gallery-image--primary" style="background-image: url(https://robohash.org/8)"></div>
+    </div>
+    <div class="Gallery-images">
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+    </div>
+    <div class="Gallery-images">
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+    </div>
+    <div class="Gallery-images">
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+    </div>
+    <div class="Gallery-images">
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+    </div>
+  </section>
+  <section class="Gallery" id="gallery-9">
+    <div class="Gallery-header"><a class="Gallery-close" onclick="closeAll()">×</a></div>
+    <div class="Gallery-images">
+      <div class="Gallery-left">
+        <div class="Gallery-image"></div>
+        <div class="Gallery-image"></div>
+      </div>
+      <div class="Gallery-image Gallery-image--primary" style="background-image: url(https://robohash.org/9)"></div>
+    </div>
+    <div class="Gallery-images">
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+    </div>
+    <div class="Gallery-images">
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+    </div>
+    <div class="Gallery-images">
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+    </div>
+    <div class="Gallery-images">
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
+      <div class="Gallery-image"></div>
     </div>
   </section>
 
-  <section class="destinations">
-    <h3 class="title">Some of Our Designs:
-    </h3>
-    <p>Tired of the mundane designs? Are your visuals too ordinary? Elevate your creative journey with us, and explore a gallery of captivating graphics crafted by our talented designers.</p>
-    <hr>
+  <script>
+    function openGallery(id) {
+  closeAll();
+  const gallery = document.getElementById('gallery-' + id);
+  const card = document.getElementById('card-' + id);
+  gallery.classList.add('Gallery--active');
+  card.classList.add('Card--active');
+}
 
-    <ul class="grid">
-      <li class="small image-1"></li>
-      <li class="small image-2"></li>
-      <li class="small image-3"></li>
-    </ul>
-  </section>
+function closeAll() {
+  const galleryActv = document.querySelector('.Gallery--active');
+  const cardActv = document.querySelector('.Card--active');
+  if (galleryActv) {
+    galleryActv.classList.remove('Gallery--active');
+  }
+  if (cardActv) {
+    cardActv.classList.remove('Card--active');
+  }
+}
 
-  <section class="packages">
-    <h3 class="title">Graphic Design Services</h3>
-    <p>If you need captivating designs for Instagram, Facebook posts, cover images, cards, festival posts, reels, stories, or any other form of creative content, look no further!</p>
-    <hr>
-  
-    <ul class="grid">
-      <li>
-        <i class="fa fa-instagram fa-4x"></i>
-        <h4>Social Media Posts</h4>
-        <p>I will create attractive and engaging social media post designs tailored to your brand or personal style. Best offers available!</p>
-      </li>
-      <li>
-        <i class="fa fa-facebook fa-4x"></i>
-        <h4>Instagram Highlights</h4>
-        <p>Enhance your Instagram presence with 20 social media posts, free festival posts, and 5 Instagram highlights stories. All for just ₹4000 per month.</p>
-      </li> 
-    </ul> 
-  </section>
-  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d324.1477331946587!2d73.23253418500215!3d22.314583209632854!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395fcff155555553%3A0x82033c37965f7ce5!2sSuper%20Bread%20Outlet!5e0!3m2!1sen!2sin!4v1705752974394!5m2!1sen!2sin"  width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> 
-  
- 
+  </script>
 </body>
-
 </html>
