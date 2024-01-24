@@ -120,12 +120,12 @@ body {
 }
 
 a,
-a:hover,
+a:active,
 a:focus {
   text-decoration: none;
 }
 
-a:hover,
+a:active,
 a:focus {
   color: initial;
 }
@@ -227,7 +227,7 @@ a:focus {
   margin-top: 35px;
 }
 
-.slider_section .detail-box a:hover {
+.slider_section .detail-box a:active {
   background-color: transparent;
   color: #ffffff;
 }
@@ -295,7 +295,7 @@ a:focus {
   margin-top: 35px;
 }
 
-.do_section .do_container .box:hover .img-box {
+.do_section .do_container .box:active .img-box {
   background-color: #fec016;
 }
 
@@ -350,7 +350,7 @@ a:focus {
   margin-top: 35px;
 }
 
-.who_section .detail-box a:hover {
+.who_section .detail-box a:active {
   background-color: transparent;
   color: #353434;
 }
@@ -480,8 +480,8 @@ a:focus {
   outline: none;
 }
 
-.client_section .owl-carousel .owl-nav .owl-prev:hover,
-.client_section .owl-carousel .owl-nav .owl-next:hover {
+.client_section .owl-carousel .owl-nav .owl-prev:active,
+.client_section .owl-carousel .owl-nav .owl-next:active {
   background-color: rgba(0, 0, 0, 0.8);
 }
 
@@ -672,7 +672,7 @@ a:focus {
   font-size: 15px;
 }
 
-.info_section .info_form form button:hover {
+.info_section .info_form form button:active {
   background-color: transparent;
   color: #fbca47;
 }
@@ -863,7 +863,7 @@ a:focus {
   transition: transform 0.3s ease-in-out;
 }
 
-.btn:hover::before {
+.btn:active::before {
   transform: scaleX(1);
 }
 
@@ -881,23 +881,23 @@ a:focus {
     transition: transform var(--d) var(--e), opacity var(--d) var(--e);
   }
 
-  .card:hover,
+  .card:active,
 .card:focus-within {
     align-items: center;
   }
-  .card:hover:before,
+  .card:active:before,
 .card:focus-within:before {
     transform: translateY(-4%);
   }
-  .card:hover:after,
+  .card:active:after,
 .card:focus-within:after {
     transform: translateY(-50%);
   }
-  .card:hover .content,
+  .card:active .content,
 .card:focus-within .content {
     transform: translateY(0);
   }
-  .card:hover .content > *:not(.title),
+  .card:active .content > *:not(.title),
 .card:focus-within .content > *:not(.title) {
     opacity: 1;
     transform: translateY(0);
