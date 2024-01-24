@@ -740,6 +740,9 @@ a:focus {
   border-radius: 20px 20px 0 20px;
   margin-top: 18px;
 }
+.logo {
+  width: 150px;
+}
 
 /* Existing styles for larger screens */
 
@@ -750,5 +753,8 @@ a:focus {
   .hero_area{ 
     background-repeat: no-repeat;
     height: auto;
+  }
+  .logo {
+      width: 120px;
   }
 }
