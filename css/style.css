@@ -73,7 +73,7 @@ body {
   height: 100vh;
   background-attachment: fixed; /* Add this line to make the background image fixed */
   background-color: #b5caee;
-  background-image: url('../emily-bernal-v9vII5gV8Lw-unsplash.jpg');
+  background-image: url('../bg.jpg');
   background-size: cover;
   background-blend-mode: multiply;
 }
