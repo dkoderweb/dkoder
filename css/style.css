@@ -1335,14 +1335,8 @@ section {
 /* Begin Media Queries*/
 @media screen and (max-width: 850px) {
 
-  .direct-contact-container, .form-horizontal {
-    margin: 0 auto;
-  }  
+ 
   
-  .direct-contact-container {
-    margin-top: 60px;
-    max-width: 300px;
-  }    
   .social-media-list li {
     height: 60px;
     width: 60px;
@@ -1362,14 +1356,14 @@ section {
       padding: 170px 0;
       /* bg-dc */
   }
+  .form-horizontal{
+    text-align: center;
+  }
   .services .item { 
       margin-bottom: 20px;
   }
 
-  .direct-contact-container, .form-wrapper {
-    float: none;
-    margin: 0 auto;
-  }  
+ 
   .form-control, textarea {
     
     margin: 0 auto;
@@ -1380,10 +1374,7 @@ section {
     width: 280px;
   } 
   
-  .direct-contact-container {
-    margin-top: 60px;
-    max-width: 280px;
-  }  
+ 
   .social-media-list {
     left: 0;
   }
