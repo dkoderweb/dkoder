@@ -771,7 +771,7 @@ a:focus {
   text-align: end;
 }
 .address a {
-  color: #000;
+  color: #ffff;
 }
 
 
@@ -1015,6 +1015,7 @@ fieldset.border {
 section {
   opacity: 0; /* Initially hide sections */
   transition: opacity 0.5s ease; /* Add transition effect */
+  color: #ffff;
 }
 
 
