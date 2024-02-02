@@ -140,6 +140,15 @@
           <img src="./jewellery/1.jpg" />
           <button>View More</button>
         </div>
+        <div class="gallery" id="gallery-3">
+          <img src="./jewellery/1.jpg" />
+          <button>View More</button>
+        </div>
+
+        <div class="gallery" id="gallery-3">
+          <img src="./jewellery/1.jpg" />
+          <button>View More</button>
+        </div> 
 
         <div class="gallery" id="gallery-4">
           <img src="./real estate/2.jpg" />
@@ -187,7 +196,7 @@
       <h2>
         Our Pricing
       </h2>
-      <p>
+      <!-- <p>
         <div class="toggle">
           <span>Annually </span>
           <div class="toggle-btn">
@@ -198,9 +207,9 @@
           </div>
           <span> Monthly</span>
         </div>
-      </p>
+      </p> -->
     </div>
-    <div class="do_container">
+    <div>
       <div class="cards">
         <div class="card shadow">
           <ul>
@@ -402,6 +411,9 @@
   <script
     src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/plugins/thumbnail/lg-thumbnail.min.js"></script>
   <script src="https://kit.fontawesome.com/f17998a113.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.fog.min.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.waves.min.js"></script>
   <script>
     const $gallery1 = document.getElementById("gallery-1");
     const gallery1 = window.lightGallery($gallery1, {
@@ -700,11 +712,101 @@ const professional = document.getElementById("professional");
 const master = document.getElementById("master");
 const basic = document.getElementById("basic");
 
-checkbox.addEventListener("click", () => {
-  basic.textContent = basic.textContent === "$199.99" ? "$19.99" : "$199.99";
-  professional.textContent =
-    professional.textContent === "$249.99" ? "$24.99 " : "$249.99";
-  master.textContent = master.textContent === "$399.99" ? "$39.99" : "$399.99";
+// checkbox.addEventListener("click", () => {
+//   basic.textContent = basic.textContent === "$199.99" ? "$19.99" : "$199.99";
+//   professional.textContent =
+//     professional.textContent === "$249.99" ? "$24.99 " : "$249.99";
+//   master.textContent = master.textContent === "$399.99" ? "$39.99" : "$399.99";
+// });
+
+// VANTA.FOG({
+VANTA.WAVES({
+
+  el: "#Portfolio",
+  // mouseControls: true,
+  // touchControls: true,
+  // gyroControls: false,
+  // minHeight: 200.00,
+  // minWidth: 200.00,
+  // highlightColor: 0x5ac7,
+  // midtoneColor: 0x712ac,
+  // lowlightColor: 0x900ff,
+  // baseColor: 0xd4d4e8,
+  // blurFactor: 0.71,
+  // speed: 1.20,
+  // zoom: 1.20
+  mouseControls: true,
+  touchControls: true,
+  gyroControls: false,
+  minHeight: 200.00,
+  minWidth: 200.00,
+  scale: 1.00,
+  scaleMobile: 1.00,
+  color: 0x417f,
+  shininess: 35.00,
+  waveHeight: 0.00,
+  waveSpeed: 0.00,
+  zoom: 0.72
+});
+
+// VANTA.FOG({
+VANTA.WAVES({
+
+  el: "#Pricing",
+  // mouseControls: true,
+  // touchControls: true,
+  // gyroControls: false,
+  // minHeight: 200.00,
+  // minWidth: 200.00,
+  // highlightColor: 0x5ac7,
+  // midtoneColor: 0x712ac,
+  // lowlightColor: 0x900ff,
+  // baseColor: 0xd4d4e8,
+  // blurFactor: 0.71,
+  // speed: 1.20,
+  // zoom: 1.20
+  mouseControls: true,
+  touchControls: true,
+  gyroControls: false,
+  minHeight: 200.00,
+  minWidth: 200.00,
+  scale: 1.00,
+  scaleMobile: 1.00,
+  color: 0x417f,
+  shininess: 35.00,
+  waveHeight: 0.00,
+  waveSpeed: 0.00,
+  zoom: 0.72
+});
+
+// VANTA.FOG({
+VANTA.WAVES({
+
+  el: "#Contact",
+  // mouseControls: true,
+  // touchControls: true,
+  // gyroControls: false,
+  // minHeight: 200.00,
+  // minWidth: 200.00,
+  // highlightColor: 0x5ac7,
+  // midtoneColor: 0x712ac,
+  // lowlightColor: 0x900ff,
+  // baseColor: 0xd4d4e8,
+  // blurFactor: 0.71,
+  // speed: 1.20,
+  // zoom: 1.20
+  mouseControls: true,
+  touchControls: true,
+  gyroControls: false,
+  minHeight: 200.00,
+  minWidth: 200.00,
+  scale: 1.00,
+  scaleMobile: 1.00,
+  color: 0x417f,
+  shininess: 35.00,
+  waveHeight: 0.00,
+  waveSpeed: 0.00,
+  zoom: 0.72
 });
  
   </script>
