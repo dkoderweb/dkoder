@@ -11078,9 +11078,10 @@ html.rd-navbar-fixed-linked .page {
 
 .rd-navbar-corporate.rd-navbar-static .rd-navbar-aside {
 	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	padding: 30px 0 40px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4px 0 40px;
+    padding-bottom: 8px;
 }
 
 .rd-navbar-corporate.rd-navbar-static .rd-navbar-main-outer {
@@ -12183,8 +12184,8 @@ button.swiper-pagination-bullet {
 
 .swiper-pagination.swiper-pagination-modern .swiper-pagination-bullet,
 .swiper-pagination.swiper-pagination-modern .swiper-pagination-mark {
-	width: 32px;
-	height: 32px;
+	width: 15px;
+	height: 15px;
 	border-radius: 50%;
 }
 
@@ -12198,6 +12199,9 @@ button.swiper-pagination-bullet {
 	line-height: 32px;
 	margin: 0 10px;
 	position: relative;
+	background-color: #000;
+	color:#000;
+	font-size: 1px;
 }
 
 .swiper-pagination.swiper-pagination-modern .swiper-pagination-bullet::before {
@@ -12231,7 +12235,7 @@ button.swiper-pagination-bullet {
 }
 
 .swiper-pagination.swiper-pagination-modern .swiper-pagination-bullet-active {
-	color: #fff;
+	background-color: #fff;
 }
 
 .swiper-pagination.swiper-pagination-modern .swiper-pagination-bullet-active::before {
@@ -18262,4 +18266,7 @@ li > a:only-child:after { content: ''; }
 }
 .custome-a:hover {
     color: rgba(255, 255, 255, 0.4);
+}
+.rd-navbar-brand img{
+	max-width: unset;
 }
