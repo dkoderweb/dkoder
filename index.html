@@ -81,7 +81,7 @@
         const SCOPES = 'https://www.googleapis.com/auth/gmail.readonly';
 
         // Initialize the application
-        function initializeApp() {
+        async function initializeApp() {
             state.table = $('#tradeTable').DataTable({
                 order: [[0, 'desc']],
                 pageLength: 25,
@@ -90,9 +90,9 @@
                     { data: 'action' },
                     { data: 'price' },
                     { data: 'symbol' },
-                    { 
+                    {
                         data: 'pnl',
-                        render: function(data) {
+                        render: function (data) {
                             const cls = parseFloat(data) >= 0 ? 'profit' : 'loss';
                             return `<span class="${cls}">${parseFloat(data).toFixed(2)}</span>`;
                         }
@@ -103,12 +103,14 @@
                 ]
             });
 
-            initializeGoogleAuth();
+            await initializeGoogleAuth(); // Wait for Google Auth initialization
         }
 
+
         // Initialize Google Auth
-        function initializeGoogleAuth() {
-            gapi.load('client', initializeGapiClient);
+        async function initializeGoogleAuth() {
+            await initializeGapiClient(); // Ensure gapi.client is initialized
+
             state.tokenClient = google.accounts.oauth2.initTokenClient({
                 client_id: CLIENT_ID,
                 scope: SCOPES,
@@ -118,7 +120,6 @@
             document.getElementById('authorize_button').onclick = handleAuthClick;
             document.getElementById('signout_button').onclick = handleSignoutClick;
 
-            // Check for existing token in localStorage
             const savedToken = localStorage.getItem('access_token');
             if (savedToken) {
                 gapi.client.setToken({ access_token: savedToken });
@@ -128,13 +129,14 @@
             }
         }
 
+
         async function initializeGapiClient() {
             await gapi.client.init({
                 apiKey: API_KEY,
                 discoveryDocs: [DISCOVERY_DOC],
             });
-            state.gapiInited = true;
         }
+
 
         // Handle auth click
         function handleAuthClick() {
