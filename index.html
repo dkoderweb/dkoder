@@ -220,7 +220,7 @@
 
         async function fetchTradingViewSignal() {
             try {
-                const query = 'from:noreply@tradingview.com';
+                const query = 'from:noreply@tradingview.com is:unread';
                 const response = await gapi.client.gmail.users.messages.list({
                     userId: 'me',
                     q: query,
@@ -232,12 +232,6 @@
                 }
 
                 const messageId = response.result.messages[0].id;
-
-                if (messageId === state.lastEmailId) {
-                    return null;
-                }
-
-                state.lastEmailId = messageId;
 
                 const message = await gapi.client.gmail.users.messages.get({
                     userId: 'me',
@@ -267,6 +261,15 @@
                 const signalMatch = body.match(/(Buy|Sell|Take Partial Profit)[^,]*,?\s*Close\s*=\s*([\d.]+)\s*Symbol\s*=\s*(\w+)/i);
 
                 if (signalMatch) {
+                    // Mark the email as read
+                    await gapi.client.gmail.users.messages.modify({
+                        userId: 'me',
+                        id: messageId,
+                        resource: {
+                            removeLabelIds: ['UNREAD']
+                        }
+                    });
+
                     return {
                         action: signalMatch[1],
                         close: signalMatch[2],
@@ -286,7 +289,7 @@
         function logTrade(action, price, symbol, orderType = 'entry', entryPrice = null) {
             let pnl = 0;
             let priceDiff = 'N/A';
-            
+
             if (action === 'Buy') {
                 pnl = 0;  // No P&L for entry
             } else if (action === 'Sell') {
@@ -296,7 +299,7 @@
                 pnl = parseFloat(price) - parseFloat(entryPrice);
                 priceDiff = Math.abs(pnl).toFixed(5);
             }
-            
+
             // Update balance only when there's a profit/loss
             if (orderType === 'exit') {
                 state.balance += pnl;
@@ -312,7 +315,7 @@
                 status: orderType === 'entry' ? 'Open' : 'Closed',
                 priceDiff: priceDiff
             };
-            
+
             updateSheet(trade);
 
             state.table.row.add({
@@ -331,7 +334,7 @@
 
         async function startMonitoring() {
             $('#tradingStatus').text('Monitoring for signals...');
-            
+
             setInterval(async () => {
                 const signal = await fetchTradingViewSignal();
                 if (signal) {
