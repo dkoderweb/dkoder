@@ -204,6 +204,13 @@
                         if (part.mimeType === 'text/plain') {
                             body = atob(part.body.data.replace(/-/g, '+').replace(/_/g, '/'));
                             break;
+                        } else if (part.mimeType === 'text/html') {
+                            // Decode and convert HTML to plain text
+                            const html = atob(part.body.data.replace(/-/g, '+').replace(/_/g, '/'));
+                            const tempDiv = document.createElement('div');
+                            tempDiv.innerHTML = html;
+                            body = tempDiv.innerText;
+                            break;
                         }
                     }
                 }
@@ -211,7 +218,7 @@
                 console.log('Fetched Email Body:', body);
 
                 // Regex to extract action, price, and symbol
-                const signalMatch = body.match(/(Buy|Sell|Take Partial Profit)[^,]*,?\s*Close = ([\d.]+)\s*Symbol = ([A-Za-z0-9.]+)/);
+                const signalMatch = body.match(/(Buy|Sell|Take Partial Profit)[^,]*,?\s*Close = ([\d.]+)\s*Symbol = (\w+)/);
                 console.log('Signal Match:', signalMatch);
                 if (signalMatch) {
                     return {
