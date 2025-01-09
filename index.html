@@ -75,8 +75,8 @@
         };
 
         // Gmail API configuration
-        const CLIENT_ID = '407854156386-kut81124teer69rn2vphermh4lanp3an.apps.googleusercontent.com'; // Replace with your Gmail API client ID
-        const API_KEY = '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'; // Replace with your Gmail API key
+        const CLIENT_ID = '407854156386-kut81124teer69rn2vphermh4lanp3an.apps.googleusercontent.com';
+        const API_KEY = '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';
         const DISCOVERY_DOC = 'https://www.googleapis.com/discovery/v1/apis/gmail/v1/rest';
         const SCOPES = 'https://www.googleapis.com/auth/gmail.readonly';
 
@@ -94,7 +94,7 @@
                         data: 'pnl',
                         render: function(data) {
                             const cls = parseFloat(data) >= 0 ? 'profit' : 'loss';
-                            return `<span class="${cls}">${parseFloat(data).toFixed(2)}</span>`;
+                            return `<span class="${cls}">${parseFloat(data).toFixed(5)}</span>`;
                         }
                     },
                     { data: 'balance' },
@@ -106,6 +106,7 @@
             initializeGoogleAuth();
         }
 
+        // [Previous auth functions remain the same...]
         // Initialize Google Auth
         function initializeGoogleAuth() {
             gapi.load('client', async () => {
@@ -118,7 +119,6 @@
                 document.getElementById('authorize_button').onclick = handleAuthClick;
                 document.getElementById('signout_button').onclick = handleSignoutClick;
 
-                // Check if token is already stored
                 const storedToken = localStorage.getItem('access_token');
                 if (storedToken) {
                     gapi.client.setToken({ access_token: storedToken });
@@ -137,12 +137,10 @@
             state.gapiInited = true;
         }
 
-        // Handle auth click
         function handleAuthClick() {
             state.tokenClient.requestAccessToken();
         }
 
-        // Handle signout click
         function handleSignoutClick() {
             const token = gapi.client.getToken();
             if (token !== null) {
@@ -155,7 +153,6 @@
             }
         }
 
-        // Handle auth response
         function handleAuthResponse(response) {
             if (response.error !== undefined) {
                 throw (response);
@@ -166,8 +163,7 @@
             startMonitoring();
         }
 
-        // Function to fetch emails from Gmail
-         async function fetchTradingViewSignal() {
+        async function fetchTradingViewSignal() {
             try {
                 const query = 'from:noreply@tradingview.com';
                 const response = await gapi.client.gmail.users.messages.list({
@@ -177,14 +173,12 @@
                 });
 
                 if (!response.result.messages || !response.result.messages.length) {
-                    console.log('No emails found.');
                     return null;
                 }
 
                 const messageId = response.result.messages[0].id;
 
                 if (messageId === state.lastEmailId) {
-                    console.log('No new email to process. ID:', messageId);
                     return null;
                 }
 
@@ -193,17 +187,15 @@
                 const message = await gapi.client.gmail.users.messages.get({
                     userId: 'me',
                     id: messageId,
-                    format: 'full'  // Request full message format
+                    format: 'full'
                 });
 
                 let body = '';
                 if (message.result.payload) {
-                    // Function to decode base64 content
                     const decodeBase64 = (data) => {
                         return atob(data.replace(/-/g, '+').replace(/_/g, '/'));
                     };
 
-                    // Try to get the body from parts
                     if (message.result.payload.parts) {
                         for (const part of message.result.payload.parts) {
                             if (part.mimeType === 'text/plain' && part.body.data) {
@@ -212,17 +204,12 @@
                             }
                         }
                     }
-                    // If no parts or no body found, try getting it from the main payload
                     if (!body && message.result.payload.body && message.result.payload.body.data) {
                         body = decodeBase64(message.result.payload.body.data);
                     }
                 }
 
-                console.log('Fetched Email Body:', body);
-
-                // Updated regex pattern to match your email format
-                const signalMatch = body.match(/(Buy|Sell|Take Partial Profit)\s*\/[^,]*,?\s*Close\s*=\s*([\d.]+)\s*Symbol\s*=\s*(\w+)/i);
-                console.log('Signal Match:', signalMatch);
+                const signalMatch = body.match(/(Buy|Sell|Take Partial Profit)[^,]*,?\s*Close\s*=\s*([\d.]+)\s*Symbol\s*=\s*(\w+)/i);
 
                 if (signalMatch) {
                     return {
@@ -241,48 +228,44 @@
             }
         }
 
-        // Function to log trades
         function logTrade(action, price, symbol, orderType = 'entry', entryPrice = null) {
             let pnl = 0;
             let priceDiff = 'N/A';
             
             if (action === 'Buy') {
-                pnl = -parseFloat(price);
+                pnl = 0;  // No P&L for entry
             } else if (action === 'Sell') {
-                pnl = parseFloat(price);
-            } else if (action === 'Take Partial Profit') {
-                pnl = parseFloat(price);
-                priceDiff = Math.abs(parseFloat(price) - parseFloat(entryPrice)).toFixed(2);
-                orderType = 'exit';
+                pnl = 0;  // No P&L for entry
+            } else if (action === 'Take Partial Profit' && entryPrice !== null) {
+                // Calculate P&L as the difference between exit and entry prices
+                pnl = parseFloat(price) - parseFloat(entryPrice);
+                priceDiff = Math.abs(pnl).toFixed(5);
             }
             
-            if (orderType === 'exit' && entryPrice !== null) {
-                priceDiff = Math.abs(parseFloat(price) - parseFloat(entryPrice)).toFixed(2);
+            // Update balance only when there's a profit/loss
+            if (orderType === 'exit') {
+                state.balance += pnl;
             }
-            
-            state.balance += pnl;
             
             state.table.row.add({
                 timestamp: new Date().toLocaleString(),
                 action: action,
-                price: parseFloat(price).toFixed(2),
+                price: parseFloat(price).toFixed(5),
                 symbol: symbol,
-                pnl: pnl.toFixed(2),
-                balance: state.balance.toFixed(2),
+                pnl: pnl.toFixed(5),
+                balance: state.balance.toFixed(5),
                 status: orderType === 'entry' ? 'Open' : 'Closed',
                 priceDiff: priceDiff
             }).draw(false);
 
-            $('.balance').text(state.balance.toFixed(2));
+            $('.balance').text(state.balance.toFixed(5));
         }
 
-        // Main monitoring loop
         async function startMonitoring() {
             $('#tradingStatus').text('Monitoring for signals...');
             
             setInterval(async () => {
                 const signal = await fetchTradingViewSignal();
-                console.log(signal)
                 if (signal) {
                     $('#tradingStatus').text(`Processing signal: ${signal.action} ${signal.symbol} @ ${signal.close}`);
 
@@ -299,22 +282,25 @@
                         state.entryPrice = null;
                     }
                     else if (state.currentTrade === 'Buy' && signal.action === 'Sell' && state.waitingForExit) {
-                        logTrade('Sell', signal.close, signal.symbol, 'exit', state.entryPrice);
+                        // Close previous position
+                        logTrade('Take Partial Profit', signal.close, signal.symbol, 'exit', state.entryPrice);
+                        // Open new position
                         logTrade('Sell', signal.close, signal.symbol, 'entry');
                         state.currentTrade = signal.action;
                         state.entryPrice = signal.close;
                     }
                     else if (state.currentTrade === 'Sell' && signal.action === 'Buy' && state.waitingForExit) {
-                        logTrade('Buy', signal.close, signal.symbol, 'exit', state.entryPrice);
+                        // Close previous position
+                        logTrade('Take Partial Profit', signal.close, signal.symbol, 'exit', state.entryPrice);
+                        // Open new position
                         logTrade('Buy', signal.close, signal.symbol, 'entry');
                         state.currentTrade = signal.action;
                         state.entryPrice = signal.close;
                     }
                 }
-            }, 5000); // Check every 5 seconds
+            }, 5000);
         }
 
-        // Initialize when document is ready
         $(document).ready(initializeApp);
     </script>
 </body>
