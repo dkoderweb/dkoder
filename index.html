@@ -2,7 +2,9 @@
 <html>
 <head>
     <title>Trading Signal Monitor</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/css/jquery.dataTables.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/jquery.dataTables.min.js"></script>
     <script src="https://apis.google.com/js/api.js"></script>
     <script src="https://accounts.google.com/gsi/client"></script>
     <style>
@@ -10,6 +12,7 @@
         .container { max-width: 1200px; margin: 0 auto; }
         .status { margin: 20px 0; padding: 10px; background: #f5f5f5; }
         .balance { font-weight: bold; }
+        #tradeTable { width: 100%; margin-top: 20px; }
         .profit { color: green; }
         .loss { color: red; }
         #loginSection { text-align: center; margin: 20px 0; }
@@ -39,6 +42,22 @@
             Status: <span id="tradingStatus">Please sign in to start monitoring</span>
             <div id="errorMsg" class="error"></div>
         </div>
+
+        <table id="tradeTable">
+            <thead>
+                <tr>
+                    <th>Timestamp</th>
+                    <th>Action</th>
+                    <th>Price</th>
+                    <th>Symbol</th>
+                    <th>P&L</th>
+                    <th>Balance</th>
+                    <th>Status</th>
+                    <th>Price Diff</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
     </div>
 
     <script>
@@ -48,33 +67,52 @@
             waitingForExit: false,
             currentTrade: null,
             entryPrice: null,
+            table: null,
             lastEmailId: null,
             gapiInited: false,
             gisInited: false,
-            tokenClient: null,
-            sheetId: '1wikfWy4QzBowEoh6LI80VJjTX6zUBDGD7RCm1IihS74', // Replace with your Google Sheet ID
-            sheetName: 'Sheet1' // Replace with your Sheet name
+            tokenClient: null
         };
 
         // Gmail API configuration
-        const GMAIL_CLIENT_ID = '407854156386-kut81124teer69rn2vphermh4lanp3an.apps.googleusercontent.com'; // Replace with your Gmail Client ID
-        const GMAIL_API_KEY = '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'; // Replace with your Gmail API Key
-        const SHEETS_CLIENT_ID = '666520208921-jajeplvevdgm69ojr7kjc25u0e2h5brc.apps.googleusercontent.com'; // Replace with your Sheets Client ID
-        const SHEETS_API_KEY = 'AIzaSyBl516m-XVprS78EAPJk1AyLkW3uPSvlxY'; // Replace with your Sheets API Key
-        const DISCOVERY_DOCS = ['https://www.googleapis.com/discovery/v1/apis/gmail/v1/rest', 'https://sheets.googleapis.com/$discovery/rest?version=v4'];
-        const SCOPES = 'https://www.googleapis.com/auth/gmail.readonly https://www.googleapis.com/auth/spreadsheets';
+        const CLIENT_ID = '407854156386-kut81124teer69rn2vphermh4lanp3an.apps.googleusercontent.com';
+        const API_KEY = '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';
+        const DISCOVERY_DOC = 'https://www.googleapis.com/discovery/v1/apis/gmail/v1/rest';
+        const SCOPES = 'https://www.googleapis.com/auth/gmail.readonly';
 
         // Initialize the application
         function initializeApp() {
+            state.table = $('#tradeTable').DataTable({
+                order: [[0, 'desc']],
+                pageLength: 25,
+                columns: [
+                    { data: 'timestamp' },
+                    { data: 'action' },
+                    { data: 'price' },
+                    { data: 'symbol' },
+                    { 
+                        data: 'pnl',
+                        render: function(data) {
+                            const cls = parseFloat(data) >= 0 ? 'profit' : 'loss';
+                            return `<span class="${cls}">${parseFloat(data).toFixed(5)}</span>`;
+                        }
+                    },
+                    { data: 'balance' },
+                    { data: 'status' },
+                    { data: 'priceDiff' }
+                ]
+            });
+
             initializeGoogleAuth();
         }
 
+        // [Previous auth functions remain the same...]
         // Initialize Google Auth
         function initializeGoogleAuth() {
             gapi.load('client', async () => {
                 await initializeGapiClient();
                 state.tokenClient = google.accounts.oauth2.initTokenClient({
-                    client_id: GMAIL_CLIENT_ID, // Use Gmail Client ID for authentication
+                    client_id: CLIENT_ID,
                     scope: SCOPES,
                     callback: handleAuthResponse
                 });
@@ -93,8 +131,8 @@
 
         async function initializeGapiClient() {
             await gapi.client.init({
-                apiKey: GMAIL_API_KEY, // Use Gmail API Key for initialization
-                discoveryDocs: DISCOVERY_DOCS,
+                apiKey: API_KEY,
+                discoveryDocs: [DISCOVERY_DOC],
             });
             state.gapiInited = true;
         }
@@ -209,7 +247,7 @@
                 state.balance += pnl;
             }
             
-            const tradeData = {
+            state.table.row.add({
                 timestamp: new Date().toLocaleString(),
                 action: action,
                 price: parseFloat(price).toFixed(5),
@@ -218,50 +256,9 @@
                 balance: state.balance.toFixed(5),
                 status: orderType === 'entry' ? 'Open' : 'Closed',
                 priceDiff: priceDiff
-            };
-
-            updateGoogleSheet(tradeData);
+            }).draw(false);
 
             $('.balance').text(state.balance.toFixed(5));
-        }
-
-        async function updateGoogleSheet(tradeData) {
-            try {
-                // Initialize Sheets API client with Sheets credentials
-                await gapi.client.init({
-                    apiKey: SHEETS_API_KEY, // Use Sheets API Key for initialization
-                    clientId: SHEETS_CLIENT_ID, // Use Sheets Client ID for authentication
-                    discoveryDocs: ['https://sheets.googleapis.com/$discovery/rest?version=v4']
-                });
-
-                const existingData = await gapi.client.sheets.spreadsheets.values.get({
-                    spreadsheetId: state.sheetId,
-                    range: `${state.sheetName}!A:H`
-                });
-
-                const rows = existingData.result.values;
-                const lastRow = rows ? rows[rows.length - 1] : null;
-
-                if (lastRow && lastRow[0] === tradeData.timestamp && lastRow[1] === tradeData.action && lastRow[2] === tradeData.price && lastRow[3] === tradeData.symbol) {
-                    console.log('Duplicate entry detected. Skipping insert.');
-                    return;
-                }
-
-                await gapi.client.sheets.spreadsheets.values.append({
-                    spreadsheetId: state.sheetId,
-                    range: `${state.sheetName}!A:H`,
-                    valueInputOption: 'RAW',
-                    insertDataOption: 'INSERT_ROWS',
-                    resource: {
-                        values: [
-                            [tradeData.timestamp, tradeData.action, tradeData.price, tradeData.symbol, tradeData.pnl, tradeData.balance, tradeData.status, tradeData.priceDiff]
-                        ]
-                    }
-                });
-            } catch (error) {
-                console.error('Error updating Google Sheet:', error);
-                $('#errorMsg').text('Error updating Google Sheet: ' + error.message);
-            }
         }
 
         async function startMonitoring() {
