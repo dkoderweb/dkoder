@@ -157,41 +157,41 @@
         // Function to fetch emails from Gmail
         async function fetchTradingViewSignal() {
             try {
-                const query = 'from:noreply@tradingview.com'; // Fetch all emails from this sender
+                const query = 'from:noreply@tradingview.com'; // Fetch emails from this sender
                 const response = await gapi.client.gmail.users.messages.list({
                     userId: 'me',
                     q: query,
-                    maxResults: 1 // Get the most recent email
+                    maxResults: 1 // Fetch the most recent email
                 });
 
                 if (!response.result.messages || !response.result.messages.length) {
-                    console.log('No emails found from noreply@tradingview.com');
+                    console.log('No emails found.');
                     return null;
                 }
 
                 const messageId = response.result.messages[0].id;
 
-                // Check if this email was already processed
+                // Skip already processed emails
                 if (messageId === state.lastEmailId) {
-                    console.log('No new email to process.');
+                    console.log('No new email to process. ID:', messageId);
                     return null;
                 }
 
-                state.lastEmailId = messageId; // Update last processed email ID
+                state.lastEmailId = messageId; // Update the last processed email ID
 
                 const message = await gapi.client.gmail.users.messages.get({
                     userId: 'me',
                     id: messageId
                 });
 
-                const body = message.result.snippet; // Get email snippet
-                console.log('Email Snippet:', body);
+                const body = message.result.snippet; // Email snippet
+                console.log('Fetched Email Body:', body);
 
-                // Regex to extract action, price, and symbol from email
+                // Regex to extract action, price, and symbol
                 const signalMatch = body.match(/(Buy|Sell|Take Partial Profit)[^,]*,?\s*Close = ([\d.]+)\s*Symbol = ([A-Za-z0-9.]+)/);
 
                 if (signalMatch) {
-                    console.log('Signal found:', signalMatch);
+                    console.log('Signal Match:', signalMatch);
                     return {
                         action: signalMatch[1],
                         close: signalMatch[2],
@@ -207,6 +207,7 @@
                 return null;
             }
         }
+
 
 
         // Function to log trades
