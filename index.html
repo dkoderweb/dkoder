@@ -75,8 +75,8 @@
         };
 
         // Gmail API configuration
-        const CLIENT_ID = '407854156386-kut81124teer69rn2vphermh4lanp3an.apps.googleusercontent.com';
-        const API_KEY = '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';
+        const CLIENT_ID = '666520208921-jajeplvevdgm69ojr7kjc25u0e2h5brc.apps.googleusercontent.com'; 
+        const API_KEY = 'AIzaSyBl516m-XVprS78EAPJk1AyLkW3uPSvlxY';  // Use your Google API key here
         const DISCOVERY_DOC = 'https://www.googleapis.com/discovery/v1/apis/gmail/v1/rest';
         const SCOPES = 'https://www.googleapis.com/auth/gmail.readonly';
 
@@ -91,8 +91,8 @@
 
         function initClient() {
             gapi.client.init({
-            apiKey: 'AIzaSyBl516m-XVprS78EAPJk1AyLkW3uPSvlxY',
-            clientId: '666520208921-jajeplvevdgm69ojr7kjc25u0e2h5brc.apps.googleusercontent.com',
+            apiKey: API_KEY,
+            clientId: CLIENT_ID,
             discoveryDocs: ["https://sheets.googleapis.com/$discovery/rest?version=v4"],
             scope: 'https://www.googleapis.com/auth/spreadsheets',
             }).then(() => {
