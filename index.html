@@ -74,16 +74,11 @@
             tokenClient: null
         };
 
-        // Gmail API and Google Sheets API configuration
+        // Gmail API configuration
         const CLIENT_ID = '407854156386-kut81124teer69rn2vphermh4lanp3an.apps.googleusercontent.com';
         const API_KEY = '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';
-        const DISCOVERY_DOCS = [
-            'https://www.googleapis.com/discovery/v1/apis/gmail/v1/rest',
-            'https://sheets.googleapis.com/$discovery/rest?version=v4'
-        ];
-        const SCOPES = 'https://www.googleapis.com/auth/gmail.readonly https://www.googleapis.com/auth/spreadsheets';
-        const SPREADSHEET_ID = '1wikfWy4QzBowEoh6LI80VJjTX6zUBDGD7RCm1IihS74';
-        const RANGE_NAME = 'Sheet1!A:H';
+        const DISCOVERY_DOC = 'https://www.googleapis.com/discovery/v1/apis/gmail/v1/rest';
+        const SCOPES = 'https://www.googleapis.com/auth/gmail.readonly';
 
         // Initialize the application
         function initializeApp() {
@@ -111,6 +106,7 @@
             initializeGoogleAuth();
         }
 
+        // [Previous auth functions remain the same...]
         // Initialize Google Auth
         function initializeGoogleAuth() {
             gapi.load('client', async () => {
@@ -136,7 +132,7 @@
         async function initializeGapiClient() {
             await gapi.client.init({
                 apiKey: API_KEY,
-                discoveryDocs: DISCOVERY_DOCS,
+                discoveryDocs: [DISCOVERY_DOC],
             });
             state.gapiInited = true;
         }
@@ -251,7 +247,7 @@
                 state.balance += pnl;
             }
             
-            const tradeEntry = {
+            state.table.row.add({
                 timestamp: new Date().toLocaleString(),
                 action: action,
                 price: parseFloat(price).toFixed(5),
@@ -260,44 +256,9 @@
                 balance: state.balance.toFixed(5),
                 status: orderType === 'entry' ? 'Open' : 'Closed',
                 priceDiff: priceDiff
-            };
-
-            state.table.row.add(tradeEntry).draw(false);
-            updateGoogleSheet(tradeEntry);
+            }).draw(false);
 
             $('.balance').text(state.balance.toFixed(5));
-        }
-
-        async function updateGoogleSheet(tradeEntry) {
-            try {
-                const params = {
-                    spreadsheetId: SPREADSHEET_ID,
-                    range: RANGE_NAME,
-                    valueInputOption: 'USER_ENTERED',
-                    insertDataOption: 'INSERT_ROWS'
-                };
-
-                const valueRangeBody = {
-                    "values": [
-                        [
-                            tradeEntry.timestamp,
-                            tradeEntry.action,
-                            tradeEntry.price,
-                            tradeEntry.symbol,
-                            tradeEntry.pnl,
-                            tradeEntry.balance,
-                            tradeEntry.status,
-                            tradeEntry.priceDiff
-                        ]
-                    ]
-                };
-
-                await gapi.client.sheets.spreadsheets.values.append(params, valueRangeBody);
-                console.log('Trade entry added to Google Sheets.');
-            } catch (error) {
-                console.error('Error updating Google Sheets:', error);
-                $('#errorMsg').text('Error updating Google Sheets: ' + error.message);
-            }
         }
 
         async function startMonitoring() {
