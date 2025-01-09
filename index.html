@@ -108,24 +108,25 @@
 
         // Initialize Google Auth
         function initializeGoogleAuth() {
-            gapi.load('client', initializeGapiClient);
-            state.tokenClient = google.accounts.oauth2.initTokenClient({
-                client_id: CLIENT_ID,
-                scope: SCOPES,
-                callback: handleAuthResponse
+            gapi.load('client', async () => {
+                await initializeGapiClient();
+                state.tokenClient = google.accounts.oauth2.initTokenClient({
+                    client_id: CLIENT_ID,
+                    scope: SCOPES,
+                    callback: handleAuthResponse
+                });
+                document.getElementById('authorize_button').onclick = handleAuthClick;
+                document.getElementById('signout_button').onclick = handleSignoutClick;
+
+                // Check if token is already stored
+                const storedToken = localStorage.getItem('access_token');
+                if (storedToken) {
+                    gapi.client.setToken({ access_token: storedToken });
+                    document.getElementById('authorize_button').style.display = 'none';
+                    document.getElementById('signout_button').style.display = 'block';
+                    startMonitoring();
+                }
             });
-
-            document.getElementById('authorize_button').onclick = handleAuthClick;
-            document.getElementById('signout_button').onclick = handleSignoutClick;
-
-            // Check if token is already stored
-            const storedToken = localStorage.getItem('access_token');
-            if (storedToken) {
-                gapi.client.setToken({ access_token: storedToken });
-                document.getElementById('authorize_button').style.display = 'none';
-                document.getElementById('signout_button').style.display = 'block';
-                startMonitoring();
-            }
         }
 
         async function initializeGapiClient() {
