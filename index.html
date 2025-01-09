@@ -167,13 +167,13 @@
         }
 
         // Function to fetch emails from Gmail
-        async function fetchTradingViewSignal() {
+         async function fetchTradingViewSignal() {
             try {
-                const query = 'from:noreply@tradingview.com'; // Fetch emails from this sender
+                const query = 'from:noreply@tradingview.com';
                 const response = await gapi.client.gmail.users.messages.list({
                     userId: 'me',
                     q: query,
-                    maxResults: 1 // Fetch the most recent email
+                    maxResults: 1
                 });
 
                 if (!response.result.messages || !response.result.messages.length) {
@@ -183,45 +183,47 @@
 
                 const messageId = response.result.messages[0].id;
 
-                // Skip already processed emails
                 if (messageId === state.lastEmailId) {
                     console.log('No new email to process. ID:', messageId);
                     return null;
                 }
 
-                state.lastEmailId = messageId; // Update the last processed email ID
+                state.lastEmailId = messageId;
 
                 const message = await gapi.client.gmail.users.messages.get({
                     userId: 'me',
-                    id: messageId
+                    id: messageId,
+                    format: 'full'  // Request full message format
                 });
 
-                // Extract the full body from the email payload
-                const parts = message.result;
-                console.log('parts----', parts);
-
                 let body = '';
-                if (parts && parts.length) {
-                    for (const part of parts) {
-                        if (part.mimeType === 'text/plain') {
-                            body = atob(part.body.data.replace(/-/g, '+').replace(/_/g, '/'));
-                            break;
-                        } else if (part.mimeType === 'text/html') {
-                            // Decode and convert HTML to plain text
-                            const html = atob(part.body.data.replace(/-/g, '+').replace(/_/g, '/'));
-                            const tempDiv = document.createElement('div');
-                            tempDiv.innerHTML = html;
-                            body = tempDiv.innerText;
-                            break;
+                if (message.result.payload) {
+                    // Function to decode base64 content
+                    const decodeBase64 = (data) => {
+                        return atob(data.replace(/-/g, '+').replace(/_/g, '/'));
+                    };
+
+                    // Try to get the body from parts
+                    if (message.result.payload.parts) {
+                        for (const part of message.result.payload.parts) {
+                            if (part.mimeType === 'text/plain' && part.body.data) {
+                                body = decodeBase64(part.body.data);
+                                break;
+                            }
                         }
+                    }
+                    // If no parts or no body found, try getting it from the main payload
+                    if (!body && message.result.payload.body && message.result.payload.body.data) {
+                        body = decodeBase64(message.result.payload.body.data);
                     }
                 }
 
                 console.log('Fetched Email Body:', body);
 
-                // Regex to extract action, price, and symbol
-                const signalMatch = body.match(/(Buy|Sell|Take Partial Profit)[^,]*,?\s*Close = ([\d.]+)\s*Symbol = (\w+)/);
+                // Updated regex pattern to match your email format
+                const signalMatch = body.match(/(Buy|Sell|Take Partial Profit)\s*\/[^,]*,?\s*Close\s*=\s*([\d.]+)\s*Symbol\s*=\s*(\w+)/i);
                 console.log('Signal Match:', signalMatch);
+
                 if (signalMatch) {
                     return {
                         action: signalMatch[1],
