@@ -198,6 +198,8 @@
 
                 // Extract the full body from the email payload
                 const parts = message.result.payload.parts;
+                console.log('parts', parts);
+
                 let body = '';
                 if (parts && parts.length) {
                     for (const part of parts) {
