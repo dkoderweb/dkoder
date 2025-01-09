@@ -261,7 +261,7 @@
             
             setInterval(async () => {
                 const signal = await fetchTradingViewSignal();
-
+                console.log(signal)
                 if (signal) {
                     $('#tradingStatus').text(`Processing signal: ${signal.action} ${signal.symbol} @ ${signal.close}`);
 
