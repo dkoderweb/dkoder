@@ -86,46 +86,58 @@
         
 
         function loadClient() {
-            gapi.load('client:auth2', initClient);
+            gapi.load('client', initClient);
         }
 
-        function initClient() {
-            gapi.client.init({
-            apiKey: API_KEY,
-            clientId: CLIENT_ID,
-            discoveryDocs: ["https://sheets.googleapis.com/$discovery/rest?version=v4"],
-            scope: 'https://www.googleapis.com/auth/spreadsheets',
-            }).then(() => {
-            // Sign in if needed
-            if (gapi.auth2.getAuthInstance().isSignedIn.get()) {
-                updateSheet();  // Call function to update the sheet
-            } else {
-                gapi.auth2.getAuthInstance().signIn().then(updateSheet);
+        async function initClient() {
+            try {
+                await gapi.client.init({
+                    apiKey: API_KEY,
+                    discoveryDocs: ["https://sheets.googleapis.com/$discovery/rest?version=v4"],
+                    clientId: CLIENT_ID,
+                    scope: 'https://www.googleapis.com/auth/spreadsheets'
+                });
+                
+                if (!gapi.auth2.getAuthInstance().isSignedIn.get()) {
+                    await gapi.auth2.getAuthInstance().signIn();
+                }
+                
+                // Start monitoring after authentication
+                startMonitoring();
+                
+            } catch (error) {
+                console.error('Error initializing client:', error);
+                $('#errorMsg').text('Error initializing client: ' + error.message);
             }
-            });
         }
 
-        function updateSheet() {
-            const values = [
-            ["Hello", "World"],
-            ["Google", "Sheets"]
-            ];
+        async function updateSheet(trade) {
+            try {
+                const values = [[
+                    trade.timestamp,
+                    trade.action,
+                    trade.price,
+                    trade.symbol,
+                    trade.pnl,
+                    trade.balance,
+                    trade.status,
+                    trade.priceDiff
+                ]];
 
-            const body = {
-            values: values
-            };
-
-            // Make the request to the Google Sheets API
-            gapi.client.sheets.spreadsheets.values.update({
-            spreadsheetId: SPREADSHEET_ID,
-            range: RANGE_NAME,
-            valueInputOption: 'RAW',
-            resource: body
-            }).then((response) => {
-            console.log('Sheet updated:', response);
-            }, (error) => {
-            console.error('Error updating sheet:', error);
-            });
+                await gapi.client.sheets.spreadsheets.values.append({
+                    spreadsheetId: SPREADSHEET_ID,
+                    range: 'Sheet1!A:H',
+                    valueInputOption: 'USER_ENTERED',
+                    insertDataOption: 'INSERT_ROWS',
+                    resource: {
+                        values: values
+                    }
+                });
+                console.log('Sheet updated successfully');
+            } catch (error) {
+                console.error('Error updating sheet:', error);
+                $('#errorMsg').text('Error updating sheet: ' + error.message);
+            }
         }
         // Initialize the application
         function initializeApp() {
@@ -293,7 +305,20 @@
             if (orderType === 'exit') {
                 state.balance += pnl;
             }
+
+            const trade = {
+                timestamp: new Date().toLocaleString(),
+                action: action,
+                price: parseFloat(price).toFixed(5),
+                symbol: symbol,
+                pnl: pnl.toFixed(5),
+                balance: state.balance.toFixed(5),
+                status: orderType === 'entry' ? 'Open' : 'Closed',
+                priceDiff: priceDiff
+            };
             
+            updateSheet(trade);
+
             state.table.row.add({
                 timestamp: new Date().toLocaleString(),
                 action: action,
@@ -349,7 +374,7 @@
         }
 
         $(document).ready(function () {
-            // initializeApp();
+            initializeApp();
             loadClient();
         });
     </script>
