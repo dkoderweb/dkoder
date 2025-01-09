@@ -195,16 +195,25 @@
                     userId: 'me',
                     id: messageId
                 });
-                console.log('message',message)
 
-                const body = message.result.snippet; // Email snippet
+                // Extract the full body from the email payload
+                const parts = message.result.payload.parts;
+                let body = '';
+                if (parts && parts.length) {
+                    for (const part of parts) {
+                        if (part.mimeType === 'text/plain') {
+                            body = atob(part.body.data.replace(/-/g, '+').replace(/_/g, '/'));
+                            break;
+                        }
+                    }
+                }
+
                 console.log('Fetched Email Body:', body);
 
                 // Regex to extract action, price, and symbol
                 const signalMatch = body.match(/(Buy|Sell|Take Partial Profit)[^,]*,?\s*Close = ([\d.]+)\s*Symbol = ([A-Za-z0-9.]+)/);
-                console.log('signalMatch',signalMatch)
+                console.log('Signal Match:', signalMatch);
                 if (signalMatch) {
-                    console.log('Signal Match:', signalMatch);
                     return {
                         action: signalMatch[1],
                         close: signalMatch[2],
