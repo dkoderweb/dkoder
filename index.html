@@ -74,16 +74,16 @@
             tokenClient: null
         };
 
-        // Gmail API configuration
+        // API configuration
         const CLIENT_ID = '666520208921-jajeplvevdgm69ojr7kjc25u0e2h5brc.apps.googleusercontent.com'; 
-        const API_KEY = 'AIzaSyBl516m-XVprS78EAPJk1AyLkW3uPSvlxY';  // Use your Google API key here
-        const DISCOVERY_DOC = 'https://www.googleapis.com/discovery/v1/apis/gmail/v1/rest';
-        const SCOPES = 'https://www.googleapis.com/auth/gmail.readonly';
-
+        const API_KEY = 'AIzaSyBl516m-XVprS78EAPJk1AyLkW3uPSvlxY';
+        const DISCOVERY_DOCS = [
+            'https://sheets.googleapis.com/$discovery/rest?version=v4',
+            'https://www.googleapis.com/discovery/v1/apis/gmail/v1/rest'
+        ];
+        const SCOPES = 'https://www.googleapis.com/auth/spreadsheets https://www.googleapis.com/auth/gmail.readonly';
 
         const SPREADSHEET_ID = '1wikfWy4QzBowEoh6LI80VJjTX6zUBDGD7RCm1IihS74';  // Your Spreadsheet ID
-        const RANGE_NAME = 'Sheet1!A1';  // The range you want to write to
-        
 
         function loadClient() {
             gapi.load('client', initClient);
@@ -93,16 +93,15 @@
             try {
                 await gapi.client.init({
                     apiKey: API_KEY,
-                    discoveryDocs: ["https://sheets.googleapis.com/$discovery/rest?version=v4"],
+                    discoveryDocs: DISCOVERY_DOCS,
                     clientId: CLIENT_ID,
-                    scope: 'https://www.googleapis.com/auth/spreadsheets'
+                    scope: SCOPES
                 });
-                
+
                 if (!gapi.auth2.getAuthInstance().isSignedIn.get()) {
                     await gapi.auth2.getAuthInstance().signIn();
                 }
-                
-                // Start monitoring after authentication
+
                 startMonitoring();
                 
             } catch (error) {
@@ -139,7 +138,7 @@
                 $('#errorMsg').text('Error updating sheet: ' + error.message);
             }
         }
-        // Initialize the application
+
         function initializeApp() {
             state.table = $('#tradeTable').DataTable({
                 order: [[0, 'desc']],
@@ -165,8 +164,6 @@
             initializeGoogleAuth();
         }
 
-        // [Previous auth functions remain the same...]
-        // Initialize Google Auth
         function initializeGoogleAuth() {
             gapi.load('client', async () => {
                 await initializeGapiClient();
@@ -191,7 +188,7 @@
         async function initializeGapiClient() {
             await gapi.client.init({
                 apiKey: API_KEY,
-                discoveryDocs: [DISCOVERY_DOC],
+                discoveryDocs: DISCOVERY_DOCS,
             });
             state.gapiInited = true;
         }
