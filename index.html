@@ -117,6 +117,15 @@
 
             document.getElementById('authorize_button').onclick = handleAuthClick;
             document.getElementById('signout_button').onclick = handleSignoutClick;
+
+            // Check for existing token in localStorage
+            const savedToken = localStorage.getItem('access_token');
+            if (savedToken) {
+                gapi.client.setToken({ access_token: savedToken });
+                document.getElementById('authorize_button').style.display = 'none';
+                document.getElementById('signout_button').style.display = 'block';
+                startMonitoring();
+            }
         }
 
         async function initializeGapiClient() {
@@ -138,6 +147,7 @@
             if (token !== null) {
                 google.accounts.oauth2.revoke(token.access_token);
                 gapi.client.setToken('');
+                localStorage.removeItem('access_token'); // Clear the token from localStorage
                 document.getElementById('authorize_button').style.display = 'block';
                 document.getElementById('signout_button').style.display = 'none';
                 $('#tradingStatus').text('Please sign in to start monitoring');
@@ -147,8 +157,11 @@
         // Handle auth response
         function handleAuthResponse(response) {
             if (response.error !== undefined) {
-                throw (response);
+                throw response;
             }
+            // Save the token to localStorage
+            localStorage.setItem('access_token', gapi.client.getToken().access_token);
+
             document.getElementById('authorize_button').style.display = 'none';
             document.getElementById('signout_button').style.display = 'block';
             startMonitoring();
