@@ -201,7 +201,7 @@
 
                 // Regex to extract action, price, and symbol
                 const signalMatch = body.match(/(Buy|Sell|Take Partial Profit)[^,]*,?\s*Close = ([\d.]+)\s*Symbol = ([A-Za-z0-9.]+)/);
-
+                console.log('signalMatch',signalMatch)
                 if (signalMatch) {
                     console.log('Signal Match:', signalMatch);
                     return {
