@@ -197,8 +197,8 @@
                 });
 
                 // Extract the full body from the email payload
-                const parts = message.result.payload.parts;
-                console.log('parts', parts);
+                const parts = message.result.payload;
+                console.log('parts--', parts);
 
                 let body = '';
                 if (parts && parts.length) {
