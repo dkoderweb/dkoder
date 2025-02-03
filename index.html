@@ -1250,7 +1250,7 @@ window.addEventListener('load', () => {
     initAdvancedInteractions();
 });
 
-    // Audio Manager
+// Audio Manager
 class AudioExperience {
     constructor() {
         this.backgroundMusic = new Audio('/romantic-music.mp3');
@@ -1336,7 +1336,7 @@ window.addEventListener('load', () => {
     window.audioExperience = new AudioExperience();
 });
 
-    class LoveQuotesSystem {
+class LoveQuotesSystem {
     constructor() {
         this.quotes = [
             "Every moment with you is a treasure.",
@@ -1458,8 +1458,7 @@ window.addEventListener('load', () => {
     window.loveQuotesSystem = new LoveQuotesSystem();
 });
 
-
-    class InteractionAnimations {
+class InteractionAnimations {
     constructor() {
         this.initializeTiltEffect();
         this.initializeHeartCursor();
@@ -1573,7 +1572,7 @@ window.addEventListener('load', () => {
     window.interactionAnimations = new InteractionAnimations();
 });
 
-    class PersonalizationSystem {
+class PersonalizationSystem {
     constructor() {
         this.initializeNamePersonalization();
         this.initializeColorPaletteSelector();
@@ -1658,9 +1657,21 @@ window.addEventListener('load', () => {
                     caption.textContent = 'Our New Memory';
                     
                     newMemoryCard.appendChild(img);
-                    newMemoryCar
+                    newMemoryCard.appendChild(caption);
+                    memoryGrid.appendChild(newMemoryCard);
+                };
+                reader.readAsDataURL(file);
+            });
+        });
 
-                    
+        document.body.appendChild(photoUploader);
+    }
+}
+
+// Initialize on page load
+window.addEventListener('load', () => {
+    window.personalizationSystem = new PersonalizationSystem();
+});
 </script>
 </body>
 </html>
