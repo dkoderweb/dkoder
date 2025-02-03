@@ -1086,20 +1086,7 @@ function initializeAnimations() {
         item.style.setProperty('--timeline-index', index);
     });
 
-    // Intersection Observer for triggering animations
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.animationPlayState = 'running';
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.1 });
-
-    // Observe all animated elements
-    document.querySelectorAll('.memory-card, .timeline-content, .section-title').forEach(el => {
-        observer.observe(el);
-    });
+    
 }
 
 function initAdvancedInteractions() {
