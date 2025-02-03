@@ -1315,7 +1315,6 @@ class InteractionAnimations {
     constructor() {
         this.initializeTiltEffect();
         this.initializeHeartCursor();
-        this.initializeParallaxEffects();
     }
 
     initializeTiltEffect() {
@@ -1361,17 +1360,7 @@ class InteractionAnimations {
         });
     }
 
-    initializeParallaxEffects() {
-        const parallaxElements = document.querySelectorAll('.memory-card, .section-title');
-        
-        window.addEventListener('scroll', () => {
-            parallaxElements.forEach((element, index) => {
-                const speed = 0.5 + (index * 0.1);
-                const yPos = -(window.pageYOffset * speed);
-                element.style.transform = `translateY(${yPos}px)`;
-            });
-        });
-    }
+     
 
     createComplexHeartBurst(x, y) {
         const burstContainer = document.createElement('div');
