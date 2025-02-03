@@ -429,6 +429,127 @@ body {
             0%, 100% { opacity: 0; transform: scale(0.5); }
             50% { opacity: 1; transform: scale(1); }
         }
+        /* Enhanced Memory Card Styles */
+        .memory-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 40px 0;
+        }
+
+        .memory-card {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: all 0.3s ease-in-out;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .memory-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .memory-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            transform: translateY(100%);
+            transition: transform 0.3s ease-in-out;
+            font-family: 'Pacifico', cursive;
+            z-index: 10;
+        }
+
+        .memory-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .memory-card:hover .memory-caption {
+            transform: translateY(0);
+        }
+
+        /* Mobile-First Caption Interaction */
+        @media (max-width: 768px) {
+            .memory-card {
+                height: 250px; /* Fixed height for consistent look */
+            }
+
+            .memory-caption {
+                font-size: 0.9em;
+                padding: 10px;
+                background: rgba(255,133,162,0.8);
+                transform: translateY(0);
+                opacity: 0;
+                transition: opacity 0.3s ease-in-out;
+            }
+
+            .memory-card.caption-visible .memory-caption {
+                opacity: 1;
+            }
+        }
+
+        /* Scroll Hint Styling */
+        .scroll-hint {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 133, 162, 0.9);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-family: 'Pacifico', cursive;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            animation: 
+                bounce 2s infinite,
+                fadeInUp 0.5s ease-out;
+            display: block;
+            text-align: center;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-15px); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+
+        /* Heart Burst Animation */
+        .heart-burst {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        @keyframes heartBurst {
+            0% {
+                transform: scale(0);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(3);
+                opacity: 0;
+            }
+        }
 
     </style>
 </head>
@@ -942,8 +1063,8 @@ body {
     </section>
     </div>
 
-    <script>
-       function initializeAnimations() {
+<script>
+function initializeAnimations() {
     // Initialize floating hearts
     const heartsContainer = document.getElementById('floatingHearts');
     for (let i = 0; i < 50; i++) {
@@ -981,78 +1102,153 @@ body {
     });
 }
 
-// Run on page load
-window.addEventListener('load', initializeAnimations);
+function initAdvancedInteractions() {
+    const memoryCards = document.querySelectorAll('.memory-card');
+    const scrollHint = document.createElement('div');
+    
+    // Scroll Hint Setup
+    scrollHint.classList.add('scroll-hint');
+    scrollHint.innerHTML = '✨ Keep scrolling to see more! 💕';
+    document.body.appendChild(scrollHint);
 
-                function initMobileAnimations() {
-            // Scroll Reveal for Memory Cards
-            const memoryCards = document.querySelectorAll('.memory-card');
-            const scrollHint = document.createElement('div');
-            scrollHint.classList.add('scroll-hint');
-            scrollHint.textContent = 'Keep scrolling to see more! 💕';
-            document.body.appendChild(scrollHint);
+    // Heart Burst Effect
+    function createHeartBurst(x, y) {
+        const burstContainer = document.createElement('div');
+        burstContainer.classList.add('heart-burst');
+        burstContainer.style.left = `${x}px`;
+        burstContainer.style.top = `${y}px`;
 
-            // Hide scroll hint after first scroll
-            window.addEventListener('scroll', () => {
-                scrollHint.style.display = 'none';
-            }, { once: true });
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { 
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            });
-
-            memoryCards.forEach(card => {
-                // Add cute hover effects
-                card.addEventListener('mouseenter', () => {
-                    const caption = card.querySelector('.memory-caption');
-                    caption.style.transform = 'scale(1.05) rotate(2deg)';
-                });
-
-                card.addEventListener('mouseleave', () => {
-                    const caption = card.querySelector('.memory-caption');
-                    caption.style.transform = 'scale(1) rotate(0deg)';
-                });
-
-                observer.observe(card);
-            });
-
-            // Random Sparkle Effect
-            function createSparkle(element) {
-                const sparkle = document.createElement('span');
-                sparkle.textContent = '✨';
-                sparkle.style.position = 'absolute';
-                sparkle.style.fontSize = '1.5rem';
-                sparkle.style.top = `${Math.random() * 100}%`;
-                sparkle.style.left = `${Math.random() * 100}%`;
-                sparkle.style.opacity = '0';
-                sparkle.style.animation = 'twinkle 1s infinite';
-                element.appendChild(sparkle);
-
-                setTimeout(() => {
-                    sparkle.remove();
-                }, 2000);
-            }
-
-            // Add occasional sparkles to section titles
-            document.querySelectorAll('.section-title').forEach(title => {
-                setInterval(() => {
-                    if (Math.random() > 0.5) {
-                        createSparkle(title);
-                    }
-                }, 3000);
-            });
+        for (let i = 0; i < 5; i++) {
+            const heart = document.createElement('span');
+            heart.innerHTML = '❤️';
+            heart.style.position = 'absolute';
+            heart.style.fontSize = `${Math.random() * 20 + 10}px`;
+            heart.style.left = `${Math.random() * 100 - 50}px`;
+            heart.style.top = `${Math.random() * 100 - 50}px`;
+            heart.style.animation = 'heartBurst 0.5s ease-out forwards';
+            burstContainer.appendChild(heart);
         }
 
-        // Run on page load
-        window.addEventListener('load', initMobileAnimations);
-    </script>
+        document.body.appendChild(burstContainer);
+        setTimeout(() => {
+            document.body.removeChild(burstContainer);
+        }, 1000);
+    }
+
+    // Mobile Caption Interaction
+    function setupMobileCaption() {
+        memoryCards.forEach(card => {
+            let touchCount = 0;
+            let touchTimer = null;
+            
+            card.addEventListener('touchstart', (e) => {
+                // Clear any existing timer
+                if (touchTimer) clearTimeout(touchTimer);
+
+                touchCount++;
+                
+                if (touchCount === 1) {
+                    // First touch shows caption
+                    card.classList.add('caption-visible');
+                    
+                    // Create heart burst effect
+                    const touch = e.touches[0];
+                    createHeartBurst(touch.clientX, touch.clientY);
+
+                    // Reset touch count after 3 seconds
+                    touchTimer = setTimeout(() => {
+                        touchCount = 0;
+                    }, 3000);
+                } else if (touchCount === 2) {
+                    // Second touch (full image view or any other action)
+                    card.classList.remove('caption-visible');
+                    touchCount = 0;
+                }
+            });
+
+            // Desktop hover effects
+            card.addEventListener('mouseenter', () => {
+                const caption = card.querySelector('.memory-caption');
+                caption.style.transform = 'scale(1.05) rotate(2deg)';
+            });
+
+            card.addEventListener('mouseleave', () => {
+                const caption = card.querySelector('.memory-caption');
+                caption.style.transform = 'scale(1) rotate(0deg)';
+            });
+        });
+    }
+
+    // Scroll Reveal Observer
+    const scrollRevealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                scrollRevealObserver.unobserve(entry.target);
+            }
+        });
+    }, { 
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    });
+
+    // Observe memory cards for scroll reveal
+    memoryCards.forEach(card => {
+        scrollRevealObserver.observe(card);
+    });
+
+    // Hide scroll hint
+    function hideScrollHint() {
+        scrollHint.style.display = 'none';
+    }
+
+    // Event Listeners
+    window.addEventListener('scroll', () => {
+        hideScrollHint();
+    }, { once: true });
+
+    // Random Sparkle Effect
+    function createSparkle(element) {
+        const sparkle = document.createElement('span');
+        sparkle.textContent = '✨';
+        sparkle.style.position = 'absolute';
+        sparkle.style.fontSize = '1.5rem';
+        sparkle.style.top = `${Math.random() * 100}%`;
+        sparkle.style.left = `${Math.random() * 100}%`;
+        sparkle.style.opacity = '0';
+        sparkle.style.animation = 'twinkle 1s infinite';
+        element.appendChild(sparkle);
+
+        setTimeout(() => {
+            sparkle.remove();
+        }, 2000);
+    }
+
+    // Add occasional sparkles to section titles
+    document.querySelectorAll('.section-title').forEach(title => {
+        setInterval(() => {
+            if (Math.random() > 0.5) {
+                createSparkle(title);
+            }
+        }, 3000);
+    });
+
+    // Initialize mobile interactions
+    setupMobileCaption();
+
+    // Periodic Scroll Hint
+    setTimeout(() => {
+        if (window.pageYOffset < 100) {
+            scrollHint.style.display = 'block';
+        }
+    }, 2000);
+}
+
+// Run both animation initializations on page load
+window.addEventListener('load', () => {
+    initializeAnimations();
+    initAdvancedInteractions();
+});
+</script>
 </body>
 </html>
