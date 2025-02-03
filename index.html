@@ -760,6 +760,20 @@ body {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-20px); }
 }
+         .food-love {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            padding: 30px;
+            background: url('food-pattern.png');
+        }
+
+        .food-item {
+            text-align: center;
+            padding: 15px;
+            border-radius: 20px;
+            background: white;
+        }
     </style>
 </head>
 <body>
@@ -1028,6 +1042,20 @@ body {
             </div>
         </section>
         <section>
+
+             <!-- Food Love Section -->
+    <section class="food-love">
+        <div class="food-item">
+            <h3>Your Favorites 🍴</h3>
+            <p>Maggie 🍜</p>
+            <p>Rasgulla 🍡</p>
+        </div>
+        <div class="food-item">
+            <h3>My Favorite Meal 😋</h3>
+            <p>YOU! 😘</p>
+            <div class="emoji">🍽️💋</div>
+        </div>
+    </section>
     <h2 class="section-title">Our Beautiful Journey Together 💑</h2>
     <style>
         .timeline {
