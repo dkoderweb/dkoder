@@ -1166,23 +1166,9 @@ function initAdvancedInteractions() {
         });
     }
 
-    // Scroll Reveal Observer
-    const scrollRevealObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
-                scrollRevealObserver.unobserve(entry.target);
-            }
-        });
-    }, { 
-        threshold: 0.1,
-        rootMargin: '0px 0px 0px 0px'
-    });
-
-    // Observe memory cards for scroll reveal
-    memoryCards.forEach(card => {
-        scrollRevealObserver.observe(card);
-    });
+    
+    
+    
 
     // Hide scroll hint
     function hideScrollHint() {
