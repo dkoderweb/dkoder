@@ -657,36 +657,7 @@ body {
 }
 
         
-.love-meter {
-    width: 200px;
-    height: 200px;
-    background: pink;
-    border-radius: 50%;
-    position: relative;
-    margin: 20px auto;
-    animation: pulse 2s infinite;
-}
-
-.needle {
-    width: 4px;
-    height: 90px;
-    background: #ff1493;
-    position: absolute;
-    left: 50%;
-    bottom: 50%;
-    transform-origin: bottom;
-    animation: meterWiggle 3s infinite;
-}
-
-@keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-}
-
-@keyframes meterWiggle {
-    0%, 100% { transform: rotate(-30deg); }
-    50% { transform: rotate(30deg); }
-}
+ 
 
         .floating-message {
     position: fixed;
@@ -800,10 +771,7 @@ body {
         <header class="header">
             <h1 class="title">Happy Birthday, My Love! 🦋</h1>
         </header>
-        <div class="love-meter">
-            <div class="needle"></div>
-            <span class="score">100% Love</span>
-        </div>
+       
         <!-- Section 1: I Love You in Bindi -->
         <section>
             <h2 class="section-title">I Love You in Bindi 🌸</h2>
@@ -1036,9 +1004,7 @@ body {
                 </div>
             </div>
         </section>
-        <button class="confetti-btn" onclick="burstConfetti()">
-            🎉 Click for Birthday Magic!
-        </button>
+        
         <!-- Section 11: You Love Maggie & Rasgulla, I Love to Eat You -->
         <section>
             <h2 class="section-title">You Love Maggie & Rasgulla, I Love to Eat You 😋</h2>
