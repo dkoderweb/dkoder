@@ -655,6 +655,140 @@ body {
         padding: 10px;
     }
 }
+
+        
+.love-meter {
+    width: 200px;
+    height: 200px;
+    background: pink;
+    border-radius: 50%;
+    position: relative;
+    margin: 20px auto;
+    animation: pulse 2s infinite;
+}
+
+.needle {
+    width: 4px;
+    height: 90px;
+    background: #ff1493;
+    position: absolute;
+    left: 50%;
+    bottom: 50%;
+    transform-origin: bottom;
+    animation: meterWiggle 3s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+@keyframes meterWiggle {
+    0%, 100% { transform: rotate(-30deg); }
+    50% { transform: rotate(30deg); }
+}
+
+        .floating-message {
+    position: fixed;
+    top: -50px;
+    font-family: 'Pacifico', cursive;
+    color: #ff85a2;
+    text-shadow: 2px 2px 4px rgba(255,255,255,0.5);
+    animation: floatText 15s linear infinite;
+}
+
+@keyframes floatText {
+    0% { top: 110%; opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { top: -10%; opacity: 0; }
+}
+
+        
+.confetti-btn {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 15px 30px;
+    background: #ff6b6b;
+    border: none;
+    border-radius: 30px;
+    font-family: 'Pacifico', cursive;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.confetti-btn:hover {
+    transform: translateX(-50%) scale(1.1);
+}
+
+        /* Floating hearts background */
+body::before {
+    content: '';
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(255,200,200,0.2) 0%, transparent 50%),
+        radial-gradient(circle at 90% 80%, rgba(255,230,230,0.2) 0%, transparent 50%);
+    animation: glow 8s alternate infinite;
+}
+
+@keyframes glow {
+    from { opacity: 0.3; }
+    to { opacity: 0.7; }
+}
+
+        .memory-card {
+    border: 3px solid white;
+    position: relative;
+}
+
+.memory-card::after {
+    content: '';
+    position: absolute;
+    inset: -15px;
+    border: 2px dashed #ff85a2;
+    border-radius: 20px;
+    animation: rotateFrame 20s linear infinite;
+}
+
+@keyframes rotateFrame {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+        /* Custom heart cursor */
+body {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="%23ff69b4" d="M12 4.248c-3.148-5.402-12-3.825-12 2.944 0 4.661 5.571 9.427 12 15.808 6.43-6.381 12-11.147 12-15.808 0-6.792-8.875-8.306-12-2.944z"/></svg>'), auto;
+}
+
+/* Cursor trail */
+.cursor-trail {
+    position: fixed;
+    pointer-events: none;
+    font-size: 1.2rem;
+    animation: trail 1s linear forwards;
+}
+
+@keyframes trail {
+    from { opacity: 1; transform: translate(-50%, -50%); }
+    to { opacity: 0; transform: translate(-50%, -150%); }
+}
+
+        <!-- Add to CSS -->
+.cute-element {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
     </style>
 </head>
 <body>
@@ -666,7 +800,10 @@ body {
         <header class="header">
             <h1 class="title">Happy Birthday, My Love! 🦋</h1>
         </header>
-
+        <div class="love-meter">
+            <div class="needle"></div>
+            <span class="score">100% Love</span>
+        </div>
         <!-- Section 1: I Love You in Bindi -->
         <section>
             <h2 class="section-title">I Love You in Bindi 🌸</h2>
@@ -758,7 +895,9 @@ body {
                 </div>
             </div>
         </section>
-
+        <!-- Add bouncing cupcakes to corners -->
+        <div class="cute-element" style="top:10px; left:10px;">🧁</div>
+        <div class="cute-element" style="top:10px; right:10px;">🎀</div>
         <!-- Section 5: I Love to Irritate You -->
         <section>
             <h2 class="section-title">I Love to Irritate You 😈</h2>
@@ -804,7 +943,8 @@ body {
                 </div>
             </div>
         </section>
-
+        <div class="floating-message" style="left:20%">You're Amazing! 💖</div>
+        <div class="floating-message" style="left:70%">Best GF Ever! 👑</div>
         <!-- Section 7: I Love Your Kisses -->
         <section>
             <h2 class="section-title">I Love Your Kisses 😘</h2>
@@ -896,7 +1036,9 @@ body {
                 </div>
             </div>
         </section>
-
+        <button class="confetti-btn" onclick="burstConfetti()">
+            🎉 Click for Birthday Magic!
+        </button>
         <!-- Section 11: You Love Maggie & Rasgulla, I Love to Eat You -->
         <section>
             <h2 class="section-title">You Love Maggie & Rasgulla, I Love to Eat You 😋</h2>
@@ -1572,6 +1714,48 @@ function addHeartBurstEffect() {
 window.addEventListener('load', () => {
     addSparkleEffect();
     addHeartBurstEffect();
+});
+
+    // Add emoji reaction when clicking photos
+document.querySelectorAll('.memory-card').forEach(card => {
+    card.addEventListener('click', (e) => {
+        const emoji = ['😍','💖','🌸','🎀','🍰','🦋'][Math.floor(Math.random()*6)];
+        const floatEmoji = document.createElement('div');
+        floatEmoji.style = `
+            position: absolute;
+            left: ${e.offsetX}px;
+            top: ${e.offsetY}px;
+            font-size: 2rem;
+            animation: emojiFloat 1s ease-out;
+        `;
+        floatEmoji.textContent = emoji;
+        card.appendChild(floatEmoji);
+        setTimeout(() => floatEmoji.remove(), 1000);
+    });
+});
+function burstConfetti() {
+    for(let i=0; i<50; i++) {
+        const confetti = document.createElement('div');
+        confetti.style = `
+            position: fixed;
+            left: ${Math.random() * 100}vw;
+            top: ${Math.random() * 100}vh;
+            font-size: 1.5rem;
+            animation: confettiFall ${Math.random()*3+2}s linear;
+        `;
+        confetti.innerHTML = ['🎉','🎊','✨','🎈','🎁','💖'][Math.floor(Math.random()*6)];
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 3000);
+    }
+}
+document.addEventListener('mousemove', (e) => {
+    const trail = document.createElement('div');
+    trail.className = 'cursor-trail';
+    trail.innerHTML = '🌸';
+    trail.style.left = e.clientX + 'px';
+    trail.style.top = e.clientY + 'px';
+    document.body.appendChild(trail);
+    setTimeout(() => trail.remove(), 1000);
 });
 </script>
 </body>
