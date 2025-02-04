@@ -1,340 +1,101 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Ultimate Birthday Experience 🎉</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        /* General Styles */
-        body {
-            margin: 0;
-            overflow-x: hidden;
-            font-family: 'Comic Sans MS', cursive;
-            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><text x="0" y="20" font-size="20">🎈</text></svg>'), auto;
-        }
-
-        /* Page Container */
-        .page {
-            display: none;
-            height: 100vh;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 20px;
-            animation: bgPulse 5s infinite;
-        }
-
-        @keyframes bgPulse {
-            0% { background: #ff99cc; }
-            50% { background: #ff66a3; }
-            100% { background: #ff99cc; }
-        }
-
-        /* Buttons */
-        .btn {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 10px;
-            font-size: 1.2em;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .yes-btn {
-            background: #4CAF50;
-            color: white;
-        }
-
-        .no-btn {
-            background: #f44336;
-            color: white;
-            position: absolute;
-        }
-
-        /* Animations */
-        @keyframes shake {
-            0% { transform: rotate(0.5deg); }
-            50% { transform: rotate(-0.5deg); }
-            100% { transform: rotate(0.5deg); }
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-
-        /* Cute Elements */
-        .cute-element {
-            font-size: 2em;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        /* Confetti */
-        .confetti {
-            position: fixed;
-            width: 10px;
-            height: 10px;
-            background: #ff69b4;
-            animation: confetti-fall 3s linear infinite;
-        }
-
-        @keyframes confetti-fall {
-            0% { transform: translateY(-100vh) rotate(0deg); }
-            100% { transform: translateY(100vh) rotate(360deg); }
-        }
-
-        /* Dancing Text */
-        .dancing-text {
-            animation: dance 1s infinite;
-            font-size: 2em;
-        }
-
-        @keyframes dance {
-            0%, 100% { transform: rotate(-5deg); }
-            50% { transform: rotate(5deg); }
-        }
-
-        /* Mobile Optimization */
-        @media (max-width: 600px) {
-            .btn {
-                font-size: 1em;
-                padding: 8px 16px;
-            }
-            .cute-element {
-                font-size: 1.5em;
-            }
-            .dancing-text {
-                font-size: 1.5em;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Ready for a Surprise?</title>
+  <style>
+    /* Overall page styling */
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #ffe6f0, #fff0e6);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      height: 100vh;
+      align-items: center;
+      justify-content: center;
+    }
+    /* Container for the playful dialogue */
+    .dialog-box {
+      background: #fff;
+      border: 3px solid #ff6f91;
+      border-radius: 15px;
+      padding: 30px 40px;
+      text-align: center;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+      max-width: 90%;
+    }
+    h2 {
+      color: #ff6f91;
+      margin-bottom: 20px;
+    }
+    p {
+      font-size: 18px;
+      color: #555;
+      margin: 15px 0;
+    }
+    /* Button styling */
+    .btn {
+      margin: 10px;
+      padding: 12px 25px;
+      font-size: 16px;
+      background: #ff6f91;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .btn:hover {
+      background: #ff8fa3;
+    }
+  </style>
 </head>
 <body>
-
-<!-- Page 1: Initial Question -->
-<div class="page" id="page1" style="display: flex;">
-    <div>
-        <h2>Can I show you something special? 🎀</h2>
-        <div class="buttons">
-            <button class="btn yes-btn" onclick="startTheMadness()">Yes</button>
-            <button class="btn no-btn" id="noBtn" onmouseover="moveButton()" onclick="forceYes()">No</button>
-        </div>
+  <div class="dialog-box">
+    <h2 id="dialogTitle">Can I show you something?</h2>
+    <p id="dialogText">Yes or No?</p>
+    <div id="buttonContainer">
+      <button class="btn" onclick="handleResponse('yes')">Yes</button>
+      <button class="btn" onclick="handleResponse('no')">No</button>
     </div>
-</div>
+  </div>
 
-<!-- Page 2: Fake Loading Screen -->
-<div class="page" id="page2">
-    <div>
-        <div class="loader"></div>
-        <p>Initializing birthday protocols... <span id="loadingPercent">0%</span></p>
-        <p>Checking compatibility... <span id="compatStatus">▊▊▊▊▊▊▊▊▊▊</span></p>
-    </div>
-</div>
-
-<!-- Page 3: Password Page -->
-<div class="page" id="page3">
-    <div>
-        <h2>🔒 Secret Password Required 🐰</h2>
-        <p>To prove you're the cutest person in the world, enter the magic words:</p>
-        <input type="password" id="passwordInput" placeholder="Enter the magic words">
-        <button class="btn" onclick="checkPassword()">Submit</button>
-        <p id="passwordHint">Hint: It's how you feel about me! 💖</p>
-    </div>
-</div>
-
-<!-- Page 4: Math Test -->
-<div class="page" id="page4">
-    <div>
-        <h2>Quick Security Math Test ✖️</h2>
-        <p id="mathProblem"></p>
-        <input type="number" id="mathAnswer">
-        <button class="btn" onclick="checkMath()">Submit</button>
-    </div>
-</div>
-
-<!-- Page 5: Funny Birthday Wishes -->
-<div class="page" id="funnyWishes">
-    <div>
-        <div class="dancing-text">🎉 HAPPY BIRTHDAY! 🎂</div>
-        <p>You're older today but...</p>
-        <p>Still cute as a button! 🐰</p>
-        <button class="btn" onclick="showNextPage()">Continue</button>
-        <div style="position:absolute;bottom:10px;right:10px">🎈🎈🎈</div>
-    </div>
-</div>
-
-<!-- Page 6: "Made by Me?" Quiz -->
-<div class="page" id="creatorQuiz">
-    <div>
-        <h2>Wait a minute... 🤔</h2>
-        <p>Do you really think I made this website?</p>
-        <button class="btn" onclick="handleCreatorResponse(true)">Of course! 😍</button>
-        <button class="btn" onclick="handleCreatorResponse(false)">No way! 😒</button>
-        <p id="responseText" style="display:none;margin-top:20px"></p>
-    </div>
-</div>
-
-<!-- Final Real Link Page -->
-<div class="page" id="finalTruth">
-    <div>
-        <h1 class="dancing-text">Okay, Truth Time! 🕵️♀️</h1>
-        <p>After all that...</p>
-        <p>Here's the REAL website:</p>
-        <a href="YOUR_MAIN_WEBSITE_LINK_HERE" style="font-size:1.5em">🎁 Click for Actual Surprise 🎁</a>
-        <div id="finalConfetti"></div>
-    </div>
-</div>
-
-<script>
-    let currentStep = 0;
-    const steps = [
-        () => showLoadingScreen(3000),
-        () => showPasswordPage(),
-        () => showMathTest(),
-        () => showFunnyWishes(),
-        () => showCreatorQuiz(),
-        () => showFinalTruth()
+  <script>
+    // Extended dialog steps to add more questions for a playful, irritating twist
+    let step = 0;
+    const dialogSteps = [
+      { text: "Can I show you something? Yes or No?", title: "Question 1" },
+      { text: "I know you might say no... but come on, are you sure? Yes or No?", title: "Question 2" },
+      { text: "Really? Do you really want to miss this? Yes or No?", title: "Question 3" },
+      { text: "Seriously, it's going to be fun. Are you in? Yes or No?", title: "Question 4" },
+      { text: "Oh, come on! Just say yes already. Yes or No?", title: "Question 5" },
+      { text: "Alright, last chance: Are you ready for your surprise? Yes or No?", title: "Final Question" }
     ];
 
-    function moveButton() {
-        const btn = document.getElementById('noBtn');
-        btn.style.position = 'absolute';
-        btn.style.left = Math.random() * 80 + '%';
-        btn.style.top = Math.random() * 80 + '%';
-    }
-
-    function startTheMadness() {
-        document.getElementById('page1').style.display = 'none';
-        steps[currentStep]();
-    }
-
-    function forceYes() {
-        alert("Error 404: 'No' option not found");
-        startTheMadness();
-    }
-
-    function showLoadingScreen(duration) {
-        const loader = document.getElementById('page2');
-        loader.style.display = 'flex';
-        
-        let percent = 0;
-        const interval = setInterval(() => {
-            percent += Math.random() * 10;
-            document.getElementById('loadingPercent').textContent = Math.min(percent, 100).toFixed(0) + '%';
-            
-            if (percent >= 100) {
-                clearInterval(interval);
-                loader.style.display = 'none';
-                currentStep++;
-                steps[currentStep]();
-            }
-        }, duration/10);
-    }
-
-    function showPasswordPage() {
-        document.getElementById('page3').style.display = 'flex';
-    }
-
-    function checkPassword() {
-        const correctPassword = "ILoveYou"; // The password is now "ILoveYou"
-        const userInput = document.getElementById('passwordInput').value.trim();
-
-        if (userInput.toLowerCase() === correctPassword.toLowerCase()) {
-            alert("Aww, you're so sweet! 🥰");
-            document.getElementById('page3').style.display = 'none';
-            currentStep++;
-            steps[currentStep]();
+    function handleResponse(response) {
+      if (step < dialogSteps.length - 1) {
+        // Playfully nudge her even if she says "no"
+        if(response === 'no'){
+          document.getElementById('dialogText').innerText = dialogSteps[step + 1].text + " (I promise you'll love it!)";
         } else {
-            alert("Nope, that's not it! Try again 😋");
-            document.getElementById('passwordInput').value = '';
-            document.getElementById('passwordInput').focus();
+          document.getElementById('dialogText').innerText = dialogSteps[step + 1].text;
         }
-    }
-
-    function showMathTest() {
-        document.getElementById('page4').style.display = 'flex';
-        
-        // Generate random numbers for the math problem
-        const num1 = Math.floor(Math.random() * 10) + 1; // Smaller numbers for easier solving
-        const num2 = Math.floor(Math.random() * 10) + 1;
-        document.getElementById('mathProblem').textContent = `${num1} × ${num2} = ?`;
-        
-        // Store the correct answer in a data attribute
-        document.getElementById('page4').dataset.answer = num1 * num2;
-    }
-
-    function checkMath() {
-        const userAnswer = parseInt(document.getElementById('mathAnswer').value);
-        const correctAnswer = parseInt(document.getElementById('page4').dataset.answer);
-
-        if (userAnswer === correctAnswer) {
-            alert("Correct! You're a math genius! 🎉");
-            document.getElementById('page4').style.display = 'none';
-            currentStep++;
-            steps[currentStep]();
+        document.getElementById('dialogTitle').innerText = dialogSteps[step + 1].title;
+        step++;
+      } else {
+        // Final step: if she says no, give one last playful nudge; if yes, proceed to the surprise.
+        if(response === 'no'){
+          document.getElementById('dialogText').innerText = "Oh come on, you know you want to see it!";
         } else {
-            alert("Oops! Wrong answer. Try again! 😅");
-            document.getElementById('mathAnswer').value = ''; // Clear the input
-            document.getElementById('mathAnswer').focus(); // Refocus on the input
+          document.getElementById('dialogText').innerText = "Told you! Get ready for a surprise...";
+          // Redirect after a short delay
+          setTimeout(() => {
+            window.location.href = "bday.html";
+          }, 1500);
         }
+      }
     }
-
-    function showFunnyWishes() {
-        showPage('funnyWishes');
-        createConfetti(50);
-        setTimeout(showNextPage, 5000);
-    }
-
-    function showCreatorQuiz() {
-        showPage('creatorQuiz');
-    }
-
-    function handleCreatorResponse(believes) {
-        const responses = {
-            true: ["I knew you'd believe me! 😘", "Smart choice! 💡", "You're so trusting! 🌟"],
-            false: ["Ouch! So little faith! 😭", "I worked hard on this! 😤", "You'll see... 😈"]
-        };
-        
-        const randomResponse = responses[believes][Math.floor(Math.random()*3)];
-        document.getElementById('responseText').innerHTML = 
-            `${randomResponse}<br><button class="btn" onclick="showFinalTruth()">Continue Anyway</button>`;
-        document.getElementById('responseText').style.display = 'block';
-    }
-
-    function showFinalTruth() {
-        showPage('finalTruth');
-        createConfetti(100);
-        // Add floating emojis
-        setInterval(() => {
-            const emojis = ['🎉', '🎂', '🎁', '💖'];
-            const e = document.createElement('div');
-            e.className = 'confetti';
-            e.textContent = emojis[Math.floor(Math.random()*emojis.length)];
-            document.getElementById('finalConfetti').appendChild(e);
-            setTimeout(() => e.remove(), 3000);
-        }, 300);
-    }
-
-    function createConfetti(count) {
-        for(let i = 0; i < count; i++) {
-            const confetti = document.createElement('div');
-            confetti.className = 'confetti';
-            confetti.style.left = Math.random() * 100 + 'vw';
-            confetti.style.animationDelay = Math.random() * 2 + 's';
-            document.body.appendChild(confetti);
-            setTimeout(() => confetti.remove(), 3000);
-        }
-    }
-
-    function showNextPage() {
-        currentStep++;
-        steps[currentStep]();
-    }
-
-    function showPage(pageId) {
-        document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
-        document.getElementById(pageId).style.display = 'flex';
-    }
-</script>
-
+  </script>
 </body>
 </html>
