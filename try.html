@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Loading Special Surprise...</title>
+    <title>Loading... 🎀</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        /* Annoying cursor effect */
-        * {
+        /* General Styles */
+        body {
+            margin: 0;
+            overflow: hidden;
+            font-family: 'Comic Sans MS', cursive;
             cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><text x="0" y="20" font-size="20">🐰</text></svg>'), auto;
         }
 
-        /* Page 1 Styles */
-        .page1 {
-            background: #ff99cc;
+        /* Page Container */
+        .page {
+            display: none;
             height: 100vh;
-            display: flex;
             justify-content: center;
             align-items: center;
-            font-family: 'Comic Sans MS', cursive;
-            animation: bgPulse 2s infinite;
+            text-align: center;
+            padding: 20px;
+            animation: bgPulse 5s infinite;
         }
 
         @keyframes bgPulse {
@@ -25,46 +29,43 @@
             100% { background: #ff99cc; }
         }
 
-        .dialog-box {
-            background: white;
-            padding: 2rem;
-            border-radius: 20px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.2);
-            text-align: center;
-            animation: shake 0.5s infinite;
+        /* Buttons */
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
+        .yes-btn {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .no-btn {
+            background: #f44336;
+            color: white;
+            position: absolute;
+        }
+
+        /* Animations */
         @keyframes shake {
             0% { transform: rotate(0.5deg); }
             50% { transform: rotate(-0.5deg); }
             100% { transform: rotate(0.5deg); }
         }
 
-        .buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin-top: 1rem;
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
         }
 
-        .no-btn {
-            transition: all 0.1s ease;
-            cursor: pointer;
-            position: absolute;
-        }
-
-        .yes-btn {
-            background: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .yes-btn:hover {
-            transform: scale(0.9);
+        /* Cute Elements */
+        .cute-element {
+            font-size: 2em;
+            animation: float 3s ease-in-out infinite;
         }
 
         /* Fake Loading Screen */
@@ -83,78 +84,68 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* Password Page */
-        .password-page {
-            background: #000;
-            color: #0f0;
-            font-family: 'Courier New', monospace;
-            padding: 2rem;
-            text-align: center;
-        }
-
-        #passwordInput {
-            background: #000;
-            color: #0f0;
-            border: 1px solid #0f0;
-            padding: 10px;
-            margin: 10px;
-        }
-
-        /* Math Test Page */
-        .math-test {
-            background: #fff;
-            color: #000;
-            padding: 2rem;
-            font-size: 2em;
+        /* Mobile Optimization */
+        @media (max-width: 600px) {
+            .btn {
+                font-size: 1em;
+                padding: 8px 16px;
+            }
+            .cute-element {
+                font-size: 1.5em;
+            }
         }
     </style>
 </head>
 <body>
 
-<!-- Page 1 -->
-<div class="page1" id="page1">
-    <div class="dialog-box">
-        <h2>Can I show you something special? 🐇</h2>
+<!-- Page 1: Initial Question -->
+<div class="page" id="page1" style="display: flex;">
+    <div>
+        <h2>Can I show you something special? 🎀</h2>
         <div class="buttons">
-            <button class="yes-btn" onclick="startTheMadness()">Yes</button>
-            <button class="no-btn" id="noBtn" 
-                    onmouseover="moveButton()"
-                    onclick="forceYes()">No</button>
+            <button class="btn yes-btn" onclick="startTheMadness()">Yes</button>
+            <button class="btn no-btn" id="noBtn" onmouseover="moveButton()" onclick="forceYes()">No</button>
         </div>
     </div>
 </div>
 
-<!-- Fake Loading Screen -->
-<div id="loadingScreen" style="display: none;">
-    <div class="loader"></div>
-    <p>Initializing birthday protocols... <span id="loadingPercent">0%</span></p>
-    <p>Checking compatibility... <span id="compatStatus">▊▊▊▊▊▊▊▊▊▊</span></p>
+<!-- Page 2: Fake Loading Screen -->
+<div class="page" id="page2">
+    <div>
+        <div class="loader"></div>
+        <p>Initializing birthday protocols... <span id="loadingPercent">0%</span></p>
+        <p>Checking compatibility... <span id="compatStatus">▊▊▊▊▊▊▊▊▊▊</span></p>
+    </div>
 </div>
 
-<!-- Password Page -->
-<div id="passwordPage" class="password-page" style="display: none;">
-    <h2>🔒 Security Verification Required</h2>
-    <p>Prove you're worthy to continue:</p>
-    <input type="password" id="passwordInput" placeholder="Enter secret password">
-    <button onclick="checkPassword()">Submit</button>
-    <p id="passwordHint" style="display: none;">Hint: It's the date we first met (MMDDYYYY)</p>
+<!-- Page 3: Password Page -->
+<div class="page" id="page3">
+    <div>
+        <h2>🔒 Security Verification Required</h2>
+        <p>Prove you're worthy to continue:</p>
+        <input type="password" id="passwordInput" placeholder="Enter secret password">
+        <button class="btn" onclick="checkPassword()">Submit</button>
+        <p id="passwordHint" style="display: none;">Hint: It's the date we first met (MMDDYYYY)</p>
+    </div>
 </div>
 
-<!-- Math Test Page -->
-<div id="mathTest" class="math-test" style="display: none;">
-    <h2>Quick Security Math Test ✖️</h2>
-    <p id="mathProblem"></p>
-    <input type="number" id="mathAnswer">
-    <button onclick="checkMath()">Submit</button>
+<!-- Page 4: Math Test -->
+<div class="page" id="page4">
+    <div>
+        <h2>Quick Security Math Test ✖️</h2>
+        <p id="mathProblem"></p>
+        <input type="number" id="mathAnswer">
+        <button class="btn" onclick="checkMath()">Submit</button>
+    </div>
 </div>
 
-<!-- Final Fake Page -->
-<div id="finalFake" style="display: none;">
-    <div class="page2">
-        <div class="balloon">🎈</div>
+<!-- Page 5: Fake Final Page -->
+<div class="page" id="page5">
+    <div>
+        <div class="cute-element">🎈</div>
         <h1>Just Kidding! Again! 😈</h1>
         <p>Did you really think it would be this easy?</p>
-        <button onclick="showRealLink()">Click for Real Website</button>
+        <button class="btn" onclick="showRealLink()">Click for Real Website</button>
         <div id="realLink" style="display: none;">
             <p>Here's the real link: <a href="YOUR_MAIN_WEBSITE_LINK_HERE">True Birthday Surprise</a></p>
         </div>
@@ -164,7 +155,7 @@
 <script>
     let currentStep = 0;
     const steps = [
-        () => showLoadingScreen(2000),
+        () => showLoadingScreen(3000),
         () => showPasswordPage(),
         () => showMathTest(),
         () => showFinalFake(),
@@ -189,8 +180,8 @@
     }
 
     function showLoadingScreen(duration) {
-        const loader = document.getElementById('loadingScreen');
-        loader.style.display = 'block';
+        const loader = document.getElementById('page2');
+        loader.style.display = 'flex';
         
         let percent = 0;
         const interval = setInterval(() => {
@@ -207,7 +198,7 @@
     }
 
     function showPasswordPage() {
-        document.getElementById('passwordPage').style.display = 'block';
+        document.getElementById('page3').style.display = 'flex';
         setTimeout(() => {
             document.getElementById('passwordHint').style.display = 'block';
         }, 5000);
@@ -220,9 +211,9 @@
     }
 
     function showMathTest() {
-        document.getElementById('passwordPage').style.display = 'none';
-        const mathPage = document.getElementById('mathTest');
-        mathPage.style.display = 'block';
+        document.getElementById('page3').style.display = 'none';
+        const mathPage = document.getElementById('page4');
+        mathPage.style.display = 'flex';
         
         const num1 = Math.floor(Math.random() * 100) + 50;
         const num2 = Math.floor(Math.random() * 100) + 50;
@@ -238,8 +229,8 @@
     }
 
     function showFinalFake() {
-        document.getElementById('mathTest').style.display = 'none';
-        document.getElementById('finalFake').style.display = 'block';
+        document.getElementById('page4').style.display = 'none';
+        document.getElementById('page5').style.display = 'flex';
     }
 
     function showRealLink() {
