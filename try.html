@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Loading... 🎀</title>
+    <title>Ultimate Birthday Experience 🎉</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         /* General Styles */
         body {
             margin: 0;
-            overflow: hidden;
+            overflow-x: hidden;
             font-family: 'Comic Sans MS', cursive;
-            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><text x="0" y="20" font-size="20">🐰</text></svg>'), auto;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><text x="0" y="20" font-size="20">🎈</text></svg>'), auto;
         }
 
         /* Page Container */
@@ -68,20 +68,29 @@
             animation: float 3s ease-in-out infinite;
         }
 
-        /* Fake Loading Screen */
-        .loader {
-            border: 16px solid #f3f3f3;
-            border-radius: 50%;
-            border-top: 16px solid #3498db;
-            width: 120px;
-            height: 120px;
-            animation: spin 2s linear infinite;
-            margin: 20px auto;
+        /* Confetti */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #ff69b4;
+            animation: confetti-fall 3s linear infinite;
         }
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        @keyframes confetti-fall {
+            0% { transform: translateY(-100vh) rotate(0deg); }
+            100% { transform: translateY(100vh) rotate(360deg); }
+        }
+
+        /* Dancing Text */
+        .dancing-text {
+            animation: dance 1s infinite;
+            font-size: 2em;
+        }
+
+        @keyframes dance {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
         }
 
         /* Mobile Optimization */
@@ -91,6 +100,9 @@
                 padding: 8px 16px;
             }
             .cute-element {
+                font-size: 1.5em;
+            }
+            .dancing-text {
                 font-size: 1.5em;
             }
         }
@@ -121,11 +133,11 @@
 <!-- Page 3: Password Page -->
 <div class="page" id="page3">
     <div>
-        <h2>🔒 Security Verification Required</h2>
-        <p>Prove you're worthy to continue:</p>
-        <input type="password" id="passwordInput" placeholder="Enter secret password">
+        <h2>🔒 Secret Password Required 🐰</h2>
+        <p>To prove you're the cutest person in the world, enter the magic words:</p>
+        <input type="password" id="passwordInput" placeholder="Enter the magic words">
         <button class="btn" onclick="checkPassword()">Submit</button>
-        <p id="passwordHint" style="display: none;">Hint: It's the date we first met (MMDDYYYY)</p>
+        <p id="passwordHint">Hint: It's how you feel about me! 💖</p>
     </div>
 </div>
 
@@ -139,16 +151,36 @@
     </div>
 </div>
 
-<!-- Page 5: Fake Final Page -->
-<div class="page" id="page5">
+<!-- Page 5: Funny Birthday Wishes -->
+<div class="page" id="funnyWishes">
     <div>
-        <div class="cute-element">🎈</div>
-        <h1>Just Kidding! Again! 😈</h1>
-        <p>Did you really think it would be this easy?</p>
-        <button class="btn" onclick="showRealLink()">Click for Real Website</button>
-        <div id="realLink" style="display: none;">
-            <p>Here's the real link: <a href="YOUR_MAIN_WEBSITE_LINK_HERE">True Birthday Surprise</a></p>
-        </div>
+        <div class="dancing-text">🎉 HAPPY BIRTHDAY! 🎂</div>
+        <p>You're older today but...</p>
+        <p>Still cute as a button! 🐰</p>
+        <button class="btn" onclick="showNextPage()">Continue</button>
+        <div style="position:absolute;bottom:10px;right:10px">🎈🎈🎈</div>
+    </div>
+</div>
+
+<!-- Page 6: "Made by Me?" Quiz -->
+<div class="page" id="creatorQuiz">
+    <div>
+        <h2>Wait a minute... 🤔</h2>
+        <p>Do you really think I made this website?</p>
+        <button class="btn" onclick="handleCreatorResponse(true)">Of course! 😍</button>
+        <button class="btn" onclick="handleCreatorResponse(false)">No way! 😒</button>
+        <p id="responseText" style="display:none;margin-top:20px"></p>
+    </div>
+</div>
+
+<!-- Final Real Link Page -->
+<div class="page" id="finalTruth">
+    <div>
+        <h1 class="dancing-text">Okay, Truth Time! 🕵️♀️</h1>
+        <p>After all that...</p>
+        <p>Here's the REAL website:</p>
+        <a href="YOUR_MAIN_WEBSITE_LINK_HERE" style="font-size:1.5em">🎁 Click for Actual Surprise 🎁</a>
+        <div id="finalConfetti"></div>
     </div>
 </div>
 
@@ -158,8 +190,9 @@
         () => showLoadingScreen(3000),
         () => showPasswordPage(),
         () => showMathTest(),
-        () => showFinalFake(),
-        () => showRealLink()
+        () => showFunnyWishes(),
+        () => showCreatorQuiz(),
+        () => showFinalTruth()
     ];
 
     function moveButton() {
@@ -199,28 +232,33 @@
 
     function showPasswordPage() {
         document.getElementById('page3').style.display = 'flex';
-        setTimeout(() => {
-            document.getElementById('passwordHint').style.display = 'block';
-        }, 5000);
     }
 
     function checkPassword() {
-        alert("Incorrect password! Try again 😈");
-        document.getElementById('passwordInput').value = '';
-        document.getElementById('passwordInput').focus();
+        const correctPassword = "ILoveYou"; // The password is now "ILoveYou"
+        const userInput = document.getElementById('passwordInput').value.trim();
+
+        if (userInput.toLowerCase() === correctPassword.toLowerCase()) {
+            alert("Aww, you're so sweet! 🥰");
+            document.getElementById('page3').style.display = 'none';
+            currentStep++;
+            steps[currentStep]();
+        } else {
+            alert("Nope, that's not it! Try again 😋");
+            document.getElementById('passwordInput').value = '';
+            document.getElementById('passwordInput').focus();
+        }
     }
 
     function showMathTest() {
-        document.getElementById('page3').style.display = 'none';
-        const mathPage = document.getElementById('page4');
-        mathPage.style.display = 'flex';
+        document.getElementById('page4').style.display = 'flex';
         
         const num1 = Math.floor(Math.random() * 100) + 50;
         const num2 = Math.floor(Math.random() * 100) + 50;
         document.getElementById('mathProblem').textContent = `${num1} × ${num2} = ?`;
         
         // Store the answer even though we'll ignore it
-        mathPage.dataset.answer = num1 * num2;
+        document.getElementById('page4').dataset.answer = num1 * num2;
     }
 
     function checkMath() {
@@ -228,57 +266,62 @@
         showMathTest();
     }
 
-    function showFinalFake() {
-        document.getElementById('page4').style.display = 'none';
-        document.getElementById('page5').style.display = 'flex';
+    function showFunnyWishes() {
+        showPage('funnyWishes');
+        createConfetti(50);
+        setTimeout(showNextPage, 5000);
     }
 
-    function showRealLink() {
-        document.getElementById('realLink').style.display = 'block';
-        // Add more irritation
+    function showCreatorQuiz() {
+        showPage('creatorQuiz');
+    }
+
+    function handleCreatorResponse(believes) {
+        const responses = {
+            true: ["I knew you'd believe me! 😘", "Smart choice! 💡", "You're so trusting! 🌟"],
+            false: ["Ouch! So little faith! 😭", "I worked hard on this! 😤", "You'll see... 😈"]
+        };
+        
+        const randomResponse = responses[believes][Math.floor(Math.random()*3)];
+        document.getElementById('responseText').innerHTML = 
+            `${randomResponse}<br><button class="btn" onclick="showFinalTruth()">Continue Anyway</button>`;
+        document.getElementById('responseText').style.display = 'block';
+    }
+
+    function showFinalTruth() {
+        showPage('finalTruth');
+        createConfetti(100);
+        // Add floating emojis
         setInterval(() => {
-            document.body.style.backgroundColor = 
-                `hsl(${Math.random() * 360}, 100%, 50%)`;
-        }, 100);
-        
-        // Add floating hearts
-        setInterval(createFloatingHeart, 500);
+            const emojis = ['🎉', '🎂', '🎁', '💖'];
+            const e = document.createElement('div');
+            e.className = 'confetti';
+            e.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+            document.getElementById('finalConfetti').appendChild(e);
+            setTimeout(() => e.remove(), 3000);
+        }, 300);
     }
 
-    function createFloatingHeart() {
-        const heart = document.createElement('div');
-        heart.style.position = 'fixed';
-        heart.style.left = Math.random() * window.innerWidth + 'px';
-        heart.style.fontSize = (Math.random() * 30 + 20) + 'px';
-        heart.textContent = ['💖', '💝', '💘'][Math.floor(Math.random() * 3)];
-        document.body.appendChild(heart);
-        
-        animateHeart(heart);
+    function createConfetti(count) {
+        for(let i = 0; i < count; i++) {
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.animationDelay = Math.random() * 2 + 's';
+            document.body.appendChild(confetti);
+            setTimeout(() => confetti.remove(), 3000);
+        }
     }
 
-    function animateHeart(element) {
-        let position = 0;
-        const animation = setInterval(() => {
-            position += 2;
-            element.style.top = (window.innerHeight - position) + 'px';
-            
-            if (position > window.innerHeight) {
-                element.remove();
-                clearInterval(animation);
-            }
-        }, 20);
+    function showNextPage() {
+        currentStep++;
+        steps[currentStep]();
     }
 
-    // Easter egg: Right-click disable
-    document.addEventListener('contextmenu', e => {
-        e.preventDefault();
-        alert("Right-click disabled! 😈");
-    });
-
-    // Easter egg: Alt text for images
-    document.addEventListener('dragstart', e => {
-        e.preventDefault();
-    });
+    function showPage(pageId) {
+        document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
+        document.getElementById(pageId).style.display = 'flex';
+    }
 </script>
 
 </body>
