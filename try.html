@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Loading Special Surprise...</title>
+    <style>
+        /* Annoying cursor effect */
+        * {
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><text x="0" y="20" font-size="20">🐰</text></svg>'), auto;
+        }
+
+        /* Page 1 Styles */
+        .page1 {
+            background: #ff99cc;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Comic Sans MS', cursive;
+            animation: bgPulse 2s infinite;
+        }
+
+        @keyframes bgPulse {
+            0% { background: #ff99cc; }
+            50% { background: #ff66a3; }
+            100% { background: #ff99cc; }
+        }
+
+        .dialog-box {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+            text-align: center;
+            animation: shake 0.5s infinite;
+        }
+
+        @keyframes shake {
+            0% { transform: rotate(0.5deg); }
+            50% { transform: rotate(-0.5deg); }
+            100% { transform: rotate(0.5deg); }
+        }
+
+        .buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .no-btn {
+            transition: all 0.1s ease;
+            cursor: pointer;
+            position: absolute;
+        }
+
+        .yes-btn {
+            background: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .yes-btn:hover {
+            transform: scale(0.9);
+        }
+
+        /* Fake Loading Screen */
+        .loader {
+            border: 16px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 16px solid #3498db;
+            width: 120px;
+            height: 120px;
+            animation: spin 2s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Password Page */
+        .password-page {
+            background: #000;
+            color: #0f0;
+            font-family: 'Courier New', monospace;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        #passwordInput {
+            background: #000;
+            color: #0f0;
+            border: 1px solid #0f0;
+            padding: 10px;
+            margin: 10px;
+        }
+
+        /* Math Test Page */
+        .math-test {
+            background: #fff;
+            color: #000;
+            padding: 2rem;
+            font-size: 2em;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Page 1 -->
+<div class="page1" id="page1">
+    <div class="dialog-box">
+        <h2>Can I show you something special? 🐇</h2>
+        <div class="buttons">
+            <button class="yes-btn" onclick="startTheMadness()">Yes</button>
+            <button class="no-btn" id="noBtn" 
+                    onmouseover="moveButton()"
+                    onclick="forceYes()">No</button>
+        </div>
+    </div>
+</div>
+
+<!-- Fake Loading Screen -->
+<div id="loadingScreen" style="display: none;">
+    <div class="loader"></div>
+    <p>Initializing birthday protocols... <span id="loadingPercent">0%</span></p>
+    <p>Checking compatibility... <span id="compatStatus">▊▊▊▊▊▊▊▊▊▊</span></p>
+</div>
+
+<!-- Password Page -->
+<div id="passwordPage" class="password-page" style="display: none;">
+    <h2>🔒 Security Verification Required</h2>
+    <p>Prove you're worthy to continue:</p>
+    <input type="password" id="passwordInput" placeholder="Enter secret password">
+    <button onclick="checkPassword()">Submit</button>
+    <p id="passwordHint" style="display: none;">Hint: It's the date we first met (MMDDYYYY)</p>
+</div>
+
+<!-- Math Test Page -->
+<div id="mathTest" class="math-test" style="display: none;">
+    <h2>Quick Security Math Test ✖️</h2>
+    <p id="mathProblem"></p>
+    <input type="number" id="mathAnswer">
+    <button onclick="checkMath()">Submit</button>
+</div>
+
+<!-- Final Fake Page -->
+<div id="finalFake" style="display: none;">
+    <div class="page2">
+        <div class="balloon">🎈</div>
+        <h1>Just Kidding! Again! 😈</h1>
+        <p>Did you really think it would be this easy?</p>
+        <button onclick="showRealLink()">Click for Real Website</button>
+        <div id="realLink" style="display: none;">
+            <p>Here's the real link: <a href="YOUR_MAIN_WEBSITE_LINK_HERE">True Birthday Surprise</a></p>
+        </div>
+    </div>
+</div>
+
+<script>
+    let currentStep = 0;
+    const steps = [
+        () => showLoadingScreen(2000),
+        () => showPasswordPage(),
+        () => showMathTest(),
+        () => showFinalFake(),
+        () => showRealLink()
+    ];
+
+    function moveButton() {
+        const btn = document.getElementById('noBtn');
+        btn.style.position = 'absolute';
+        btn.style.left = Math.random() * 80 + '%';
+        btn.style.top = Math.random() * 80 + '%';
+    }
+
+    function startTheMadness() {
+        document.getElementById('page1').style.display = 'none';
+        steps[currentStep]();
+    }
+
+    function forceYes() {
+        alert("Error 404: 'No' option not found");
+        startTheMadness();
+    }
+
+    function showLoadingScreen(duration) {
+        const loader = document.getElementById('loadingScreen');
+        loader.style.display = 'block';
+        
+        let percent = 0;
+        const interval = setInterval(() => {
+            percent += Math.random() * 10;
+            document.getElementById('loadingPercent').textContent = Math.min(percent, 100).toFixed(0) + '%';
+            
+            if (percent >= 100) {
+                clearInterval(interval);
+                loader.style.display = 'none';
+                currentStep++;
+                steps[currentStep]();
+            }
+        }, duration/10);
+    }
+
+    function showPasswordPage() {
+        document.getElementById('passwordPage').style.display = 'block';
+        setTimeout(() => {
+            document.getElementById('passwordHint').style.display = 'block';
+        }, 5000);
+    }
+
+    function checkPassword() {
+        alert("Incorrect password! Try again 😈");
+        document.getElementById('passwordInput').value = '';
+        document.getElementById('passwordInput').focus();
+    }
+
+    function showMathTest() {
+        document.getElementById('passwordPage').style.display = 'none';
+        const mathPage = document.getElementById('mathTest');
+        mathPage.style.display = 'block';
+        
+        const num1 = Math.floor(Math.random() * 100) + 50;
+        const num2 = Math.floor(Math.random() * 100) + 50;
+        document.getElementById('mathProblem').textContent = `${num1} × ${num2} = ?`;
+        
+        // Store the answer even though we'll ignore it
+        mathPage.dataset.answer = num1 * num2;
+    }
+
+    function checkMath() {
+        alert("Incorrect answer! Let's try another one 😅");
+        showMathTest();
+    }
+
+    function showFinalFake() {
+        document.getElementById('mathTest').style.display = 'none';
+        document.getElementById('finalFake').style.display = 'block';
+    }
+
+    function showRealLink() {
+        document.getElementById('realLink').style.display = 'block';
+        // Add more irritation
+        setInterval(() => {
+            document.body.style.backgroundColor = 
+                `hsl(${Math.random() * 360}, 100%, 50%)`;
+        }, 100);
+        
+        // Add floating hearts
+        setInterval(createFloatingHeart, 500);
+    }
+
+    function createFloatingHeart() {
+        const heart = document.createElement('div');
+        heart.style.position = 'fixed';
+        heart.style.left = Math.random() * window.innerWidth + 'px';
+        heart.style.fontSize = (Math.random() * 30 + 20) + 'px';
+        heart.textContent = ['💖', '💝', '💘'][Math.floor(Math.random() * 3)];
+        document.body.appendChild(heart);
+        
+        animateHeart(heart);
+    }
+
+    function animateHeart(element) {
+        let position = 0;
+        const animation = setInterval(() => {
+            position += 2;
+            element.style.top = (window.innerHeight - position) + 'px';
+            
+            if (position > window.innerHeight) {
+                element.remove();
+                clearInterval(animation);
+            }
+        }, 20);
+    }
+
+    // Easter egg: Right-click disable
+    document.addEventListener('contextmenu', e => {
+        e.preventDefault();
+        alert("Right-click disabled! 😈");
+    });
+
+    // Easter egg: Alt text for images
+    document.addEventListener('dragstart', e => {
+        e.preventDefault();
+    });
+</script>
+
+</body>
+</html>
