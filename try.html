@@ -2,43 +2,52 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Ready for a Surprise?</title>
   <style>
-    /* Overall page styling */
-    body {
+    /* Reset and overall page styling */
+    * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      background: linear-gradient(135deg, #ffe6f0, #fff0e6);
+    }
+    body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #ffe6f0, #fff0e6);
       display: flex;
-      height: 100vh;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
+      padding: 20px;
+      min-height: 100vh;
     }
-    /* Container for the playful dialogue */
+    /* Dialog container */
     .dialog-box {
       background: #fff;
       border: 3px solid #ff6f91;
       border-radius: 15px;
-      padding: 30px 40px;
+      padding: 30px 20px;
       text-align: center;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.15);
-      max-width: 90%;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+      width: 100%;
+      max-width: 500px;
+      margin-bottom: 20px;
     }
     h2 {
       color: #ff6f91;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
+      font-size: 1.8rem;
     }
     p {
-      font-size: 18px;
+      font-size: 1.1rem;
       color: #555;
-      margin: 15px 0;
+      margin-bottom: 20px;
     }
     /* Button styling */
     .btn {
       margin: 10px;
       padding: 12px 25px;
-      font-size: 16px;
+      font-size: 1rem;
       background: #ff6f91;
       color: #fff;
       border: none;
@@ -49,10 +58,43 @@
     .btn:hover {
       background: #ff8fa3;
     }
+    /* Additional cute sections */
+    .extra-section {
+      background: #fff;
+      border: 2px dashed #ff6f91;
+      border-radius: 10px;
+      padding: 20px;
+      margin-top: 20px;
+      width: 100%;
+      max-width: 500px;
+      text-align: center;
+    }
+    .extra-section h3 {
+      color: #ff6f91;
+      margin-bottom: 10px;
+      font-size: 1.4rem;
+    }
+    .extra-section p {
+      font-size: 1rem;
+      color: #666;
+    }
+    /* Responsive adjustments */
+    @media (max-width: 480px) {
+      h2 {
+        font-size: 1.6rem;
+      }
+      p, .extra-section p {
+        font-size: 0.95rem;
+      }
+      .btn {
+        font-size: 0.9rem;
+        padding: 10px 20px;
+      }
+    }
   </style>
 </head>
 <body>
-  <div class="dialog-box">
+  <div class="dialog-box" id="dialogBox">
     <h2 id="dialogTitle">Can I show you something?</h2>
     <p id="dialogText">Yes or No?</p>
     <div id="buttonContainer">
@@ -61,8 +103,14 @@
     </div>
   </div>
 
+  <!-- Additional cute and funny section -->
+  <div class="extra-section">
+    <h3>Just a Little Teaser...</h3>
+    <p>I might be a bit mischievous today, but all my mischief comes with lots of love! 💕</p>
+  </div>
+
   <script>
-    // Extended dialog steps to add more questions for a playful, irritating twist
+    // Extended dialog steps for a playful, irritating twist
     let step = 0;
     const dialogSteps = [
       { text: "Can I show you something? Yes or No?", title: "Question 1" },
@@ -75,9 +123,9 @@
 
     function handleResponse(response) {
       if (step < dialogSteps.length - 1) {
-        // Playfully nudge her even if she says "no"
-        if(response === 'no'){
-          document.getElementById('dialogText').innerText = dialogSteps[step + 1].text + " (I promise you'll love it!)";
+        // Even if she clicks "no", add a playful nudge
+        if (response === 'no') {
+          document.getElementById('dialogText').innerText = dialogSteps[step + 1].text + " (Trust me, you'll love it!)";
         } else {
           document.getElementById('dialogText').innerText = dialogSteps[step + 1].text;
         }
@@ -85,11 +133,11 @@
         step++;
       } else {
         // Final step: if she says no, give one last playful nudge; if yes, proceed to the surprise.
-        if(response === 'no'){
+        if (response === 'no') {
           document.getElementById('dialogText').innerText = "Oh come on, you know you want to see it!";
         } else {
           document.getElementById('dialogText').innerText = "Told you! Get ready for a surprise...";
-          // Redirect after a short delay
+          // Redirect after a short delay to the birthday page
           setTimeout(() => {
             window.location.href = "bday.html";
           }, 1500);
