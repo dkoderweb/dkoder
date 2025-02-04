@@ -253,17 +253,29 @@
     function showMathTest() {
         document.getElementById('page4').style.display = 'flex';
         
-        const num1 = Math.floor(Math.random() * 100) + 50;
-        const num2 = Math.floor(Math.random() * 100) + 50;
+        // Generate random numbers for the math problem
+        const num1 = Math.floor(Math.random() * 10) + 1; // Smaller numbers for easier solving
+        const num2 = Math.floor(Math.random() * 10) + 1;
         document.getElementById('mathProblem').textContent = `${num1} × ${num2} = ?`;
         
-        // Store the answer even though we'll ignore it
+        // Store the correct answer in a data attribute
         document.getElementById('page4').dataset.answer = num1 * num2;
     }
 
     function checkMath() {
-        alert("Incorrect answer! Let's try another one 😅");
-        showMathTest();
+        const userAnswer = parseInt(document.getElementById('mathAnswer').value);
+        const correctAnswer = parseInt(document.getElementById('page4').dataset.answer);
+
+        if (userAnswer === correctAnswer) {
+            alert("Correct! You're a math genius! 🎉");
+            document.getElementById('page4').style.display = 'none';
+            currentStep++;
+            steps[currentStep]();
+        } else {
+            alert("Oops! Wrong answer. Try again! 😅");
+            document.getElementById('mathAnswer').value = ''; // Clear the input
+            document.getElementById('mathAnswer').focus(); // Refocus on the input
+        }
     }
 
     function showFunnyWishes() {
