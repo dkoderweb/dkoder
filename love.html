@@ -1057,234 +1057,242 @@ body {
         </div>
     </section>
     <h2 class="section-title">Our Beautiful Journey Together 💑</h2>
-    <style>
-        .timeline {
-            position: relative;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 0;
-        }
+<style>
+    .timeline {
+        position: relative;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px 0;
+    }
 
+    .timeline::after {
+        content: '';
+        position: absolute;
+        width: 6px;
+        background-color: var(--accent-color);
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        margin-left: -3px;
+        border-radius: 3px;
+    }
+
+    .timeline-item {
+        padding: 10px 40px;
+        position: relative;
+        width: 50%;
+        animation: fadeIn 0.8s ease-out forwards;
+    }
+
+    .timeline-item::after {
+        content: '';
+        position: absolute;
+        width: 25px;
+        height: 25px;
+        right: -17px;
+        background-color: var(--main-color);
+        border: 4px solid var(--accent-color);
+        top: 15px;
+        border-radius: 50%;
+        z-index: 1;
+    }
+
+    .left {
+        left: 0;
+    }
+
+    .right {
+        left: 50%;
+    }
+
+    .right::after {
+        left: -16px;
+    }
+
+    .timeline-content {
+        padding: 20px;
+        background-color: white;
+        position: relative;
+        border-radius: 15px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+    }
+
+    .timeline-content:hover {
+        transform: scale(1.02);
+    }
+
+    .timeline-date {
+        font-family: 'Pacifico', cursive;
+        color: var(--main-color);
+        font-size: 1.2em;
+        margin-bottom: 10px;
+    }
+
+    .timeline-title {
+        font-weight: bold;
+        margin-bottom: 10px;
+        color: #4a2a3f;
+    }
+
+    .timeline-photos {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 15px;
+    }
+
+    .timeline-photo {
+        width: calc(50% - 5px);
+        aspect-ratio: 1;
+        object-fit: cover;
+        border-radius: 8px;
+        transition: transform 0.3s ease;
+    }
+
+    .timeline-photo:hover {
+        transform: scale(1.1);
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @media screen and (max-width: 768px) {
         .timeline::after {
-            content: '';
-            position: absolute;
-            width: 6px;
-            background-color: var(--accent-color);
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            margin-left: -3px;
-            border-radius: 3px;
+            left: 31px;
         }
 
         .timeline-item {
-            padding: 10px 40px;
-            position: relative;
-            width: 50%;
-            animation: fadeIn 0.8s ease-out forwards;
-        }
-
-        .timeline-item::after {
-            content: '';
-            position: absolute;
-            width: 25px;
-            height: 25px;
-            right: -17px;
-            background-color: var(--main-color);
-            border: 4px solid var(--accent-color);
-            top: 15px;
-            border-radius: 50%;
-            z-index: 1;
-        }
-
-        .left {
-            left: 0;
+            width: 100%;
+            padding-left: 70px;
+            padding-right: 25px;
         }
 
         .right {
-            left: 50%;
+            left: 0;
         }
 
-        .right::after {
-            left: -16px;
-        }
-
-        .timeline-content {
-            padding: 20px;
-            background-color: white;
-            position: relative;
-            border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .timeline-content:hover {
-            transform: scale(1.02);
-        }
-
-        .timeline-date {
-            font-family: 'Pacifico', cursive;
-            color: var(--main-color);
-            font-size: 1.2em;
-            margin-bottom: 10px;
-        }
-
-        .timeline-title {
-            font-weight: bold;
-            margin-bottom: 10px;
-            color: #4a2a3f;
+        .timeline-item::after {
+            left: 15px;
         }
 
         .timeline-photos {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin-top: 15px;
+            flex-direction: column;
         }
 
         .timeline-photo {
             width: 100%;
-            aspect-ratio: 1;
-            object-fit: cover;
-            border-radius: 8px;
-            transition: transform 0.3s ease;
         }
+    }
+</style>
 
-        .timeline-photo:hover {
-            transform: scale(1.1);
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @media screen and (max-width: 768px) {
-            .timeline::after {
-                left: 31px;
-            }
-
-            .timeline-item {
-                width: 100%;
-                padding-left: 70px;
-                padding-right: 25px;
-            }
-
-            .right {
-                left: 0;
-            }
-
-            .timeline-item::after {
-                left: 15px;
-            }
-        }
-    </style>
-
-    <div class="timeline">
-        <!-- First Meeting -->
-        <div class="timeline-item left">
-            <div class="timeline-content">
-                <div class="timeline-date">First Meeting</div>
-                <div class="timeline-title">Where Our Story Began ✨</div>
-                <p>The magical moment when our eyes first met and our hearts knew this was something special.</p>
-                <div class="timeline-photos">
-                    <img src="first-meet1.jpg" alt="First Meeting" class="timeline-photo">
-                    <img src="first-meet2.jpg" alt="First Meeting" class="timeline-photo">
-                    <img src="first-meet3.jpg" alt="First Meeting" class="timeline-photo">
-                </div>
-            </div>
-        </div>
-
-        <!-- Pavagadh Trip -->
-        <div class="timeline-item right">
-            <div class="timeline-content">
-                <div class="timeline-date">First Trip to Pavagadh</div>
-                <div class="timeline-title">Our First Hand Hold 🤝</div>
-                <p>That beautiful moment when I first held your hand at Pavagadh. My heart was racing, and everything felt perfect.</p>
-                <div class="timeline-photos">
-                    <img src="pavagadh1.jpg" alt="Pavagadh Trip" class="timeline-photo">
-                    <img src="pavagadh2.jpg" alt="Pavagadh Trip" class="timeline-photo">
-                    <img src="pavagadh3.jpg" alt="Pavagadh Trip" class="timeline-photo">
-                </div>
-            </div>
-        </div>
-
-        <!-- First Long Bike Ride -->
-        <div class="timeline-item left">
-            <div class="timeline-content">
-                <div class="timeline-date">First Long Bike Ride</div>
-                <div class="timeline-title">Adventure on Two Wheels 🏍️</div>
-                <p>Our first long bike ride together, feeling the wind and sharing endless conversations.</p>
-                <div class="timeline-photos">
-                    <img src="bike1.jpg" alt="Bike Ride" class="timeline-photo">
-                    <img src="bike2.jpg" alt="Bike Ride" class="timeline-photo">
-                    <img src="bike3.jpg" alt="Bike Ride" class="timeline-photo">
-                </div>
-            </div>
-        </div>
-
-        <!-- First Movie Theater -->
-        <div class="timeline-item right">
-            <div class="timeline-content">
-                <div class="timeline-date">First Movie Theater Date</div>
-                <div class="timeline-title">Cinema Magic 🎬</div>
-                <p>Our first movie date, sharing popcorn and stealing glances at each other in the dark.</p>
-                <div class="timeline-photos">
-                    <img src="movie1.jpg" alt="Movie Date" class="timeline-photo">
-                    <img src="movie2.jpg" alt="Movie Date" class="timeline-photo">
-                    <img src="movie3.jpg" alt="Movie Date" class="timeline-photo">
-                </div>
-            </div>
-        </div>
-
-        <!-- Trip to Poicha -->
-        <div class="timeline-item left">
-            <div class="timeline-content">
-                <div class="timeline-date">Trip to Poicha</div>
-                <div class="timeline-title">Spiritual Journey Together 🕉️</div>
-                <p>Our beautiful trip to Poicha, sharing spiritual moments and creating lasting memories.</p>
-                <div class="timeline-photos">
-                    <img src="poicha1.jpg" alt="Poicha Trip" class="timeline-photo">
-                    <img src="poicha2.jpg" alt="Poicha Trip" class="timeline-photo">
-                    <img src="poicha3.jpg" alt="Poicha Trip" class="timeline-photo">
-                </div>
-            </div>
-        </div>
-
-        <!-- Trip to Rashulpur -->
-        <div class="timeline-item right">
-            <div class="timeline-content">
-                <div class="timeline-date">Trip to Rashulpur</div>
-                <div class="timeline-title">Adventure in Rashulpur 🌟</div>
-                <p>Exploring Rashulpur together, every moment filled with joy and laughter.</p>
-                <div class="timeline-photos">
-                    <img src="rashulpur1.jpg" alt="Rashulpur Trip" class="timeline-photo">
-                    <img src="rashulpur2.jpg" alt="Rashulpur Trip" class="timeline-photo">
-                    <img src="rashulpur3.jpg" alt="Rashulpur Trip" class="timeline-photo">
-                </div>
-            </div>
-        </div>
-
-        <!-- Trip to Dakor -->
-        <div class="timeline-item left">
-            <div class="timeline-content">
-                <div class="timeline-date">Trip to Dakor</div>
-                <div class="timeline-title">Divine Blessings at Dakor 🙏</div>
-                <p>Our special trip to Dakor, seeking blessings and making beautiful memories together.</p>
-                <div class="timeline-photos">
-                    <img src="dakor1.jpg" alt="Dakor Trip" class="timeline-photo">
-                    <img src="dakor2.jpg" alt="Dakor Trip" class="timeline-photo">
-                    <img src="dakor3.jpg" alt="Dakor Trip" class="timeline-photo">
-                </div>
+<div class="timeline">
+    <!-- First Meeting -->
+    <div class="timeline-item left">
+        <div class="timeline-content">
+            <div class="timeline-date">First Meeting</div>
+            <div class="timeline-title">Where Our Story Began ✨</div>
+            <p>The magical moment when our eyes first met and our hearts knew this was something special.</p>
+            <div class="timeline-photos">
+                <img src="first-meet1.jpg" alt="First Meeting" class="timeline-photo">
+                <img src="first-meet2.jpg" alt="First Meeting" class="timeline-photo">
+                <img src="first-meet3.jpg" alt="First Meeting" class="timeline-photo">
             </div>
         </div>
     </div>
+
+    <!-- Pavagadh Trip -->
+    <div class="timeline-item right">
+        <div class="timeline-content">
+            <div class="timeline-date">First Trip to Pavagadh</div>
+            <div class="timeline-title">Our First Hand Hold 🤝</div>
+            <p>That beautiful moment when I first held your hand at Pavagadh. My heart was racing, and everything felt perfect.</p>
+            <div class="timeline-photos">
+                <img src="pavagadh1.jpg" alt="Pavagadh Trip" class="timeline-photo">
+                <img src="pavagadh2.jpg" alt="Pavagadh Trip" class="timeline-photo">
+                <img src="pavagadh3.jpg" alt="Pavagadh Trip" class="timeline-photo">
+            </div>
+        </div>
+    </div>
+
+    <!-- First Long Bike Ride -->
+    <div class="timeline-item left">
+        <div class="timeline-content">
+            <div class="timeline-date">First Long Bike Ride</div>
+            <div class="timeline-title">Adventure on Two Wheels 🏍️</div>
+            <p>Our first long bike ride together, feeling the wind and sharing endless conversations.</p>
+            <div class="timeline-photos">
+                <img src="bike1.jpg" alt="Bike Ride" class="timeline-photo">
+                <img src="bike2.jpg" alt="Bike Ride" class="timeline-photo">
+                <img src="bike3.jpg" alt="Bike Ride" class="timeline-photo">
+            </div>
+        </div>
+    </div>
+
+    <!-- First Movie Theater -->
+    <div class="timeline-item right">
+        <div class="timeline-content">
+            <div class="timeline-date">First Movie Theater Date</div>
+            <div class="timeline-title">Cinema Magic 🎬</div>
+            <p>Our first movie date, sharing popcorn and stealing glances at each other in the dark.</p>
+            <div class="timeline-photos">
+                <img src="movie1.jpg" alt="Movie Date" class="timeline-photo">
+                <img src="movie2.jpg" alt="Movie Date" class="timeline-photo">
+                <img src="movie3.jpg" alt="Movie Date" class="timeline-photo">
+            </div>
+        </div>
+    </div>
+
+    <!-- Trip to Poicha -->
+    <div class="timeline-item left">
+        <div class="timeline-content">
+            <div class="timeline-date">Trip to Poicha</div>
+            <div class="timeline-title">Spiritual Journey Together 🕉️</div>
+            <p>Our beautiful trip to Poicha, sharing spiritual moments and creating lasting memories.</p>
+            <div class="timeline-photos">
+                <img src="poicha1.jpg" alt="Poicha Trip" class="timeline-photo">
+                <img src="poicha2.jpg" alt="Poicha Trip" class="timeline-photo">
+                <img src="poicha3.jpg" alt="Poicha Trip" class="timeline-photo">
+            </div>
+        </div>
+    </div>
+
+    <!-- Trip to Rashulpur -->
+    <div class="timeline-item right">
+        <div class="timeline-content">
+            <div class="timeline-date">Trip to Rashulpur</div>
+            <div class="timeline-title">Adventure in Rashulpur 🌟</div>
+            <p>Exploring Rashulpur together, every moment filled with joy and laughter.</p>
+            <div class="timeline-photos">
+                <img src="rashulpur1.jpg" alt="Rashulpur Trip" class="timeline-photo">
+                <img src="rashulpur2.jpg" alt="Rashulpur Trip" class="timeline-photo">
+                <img src="rashulpur3.jpg" alt="Rashulpur Trip" class="timeline-photo">
+            </div>
+        </div>
+    </div>
+
+    <!-- Trip to Dakor -->
+    <div class="timeline-item left">
+        <div class="timeline-content">
+            <div class="timeline-date">Trip to Dakor</div>
+            <div class="timeline-title">Divine Blessings at Dakor 🙏</div>
+            <p>Our special trip to Dakor, seeking blessings and making beautiful memories together.</p>
+            <div class="timeline-photos">
+                <img src="dakor1.jpg" alt="Dakor Trip" class="timeline-photo">
+                <img src="dakor2.jpg" alt="Dakor Trip" class="timeline-photo">
+                <img src="dakor3.jpg" alt="Dakor Trip" class="timeline-photo">
+            </div>
+        </div>
+    </div>
+</div>
 </section>
         <style>
 .love-weather {
