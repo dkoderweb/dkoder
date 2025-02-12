@@ -774,6 +774,17 @@ body {
             border-radius: 20px;
             background: white;
         }
+        @media (max-width: 768px) {
+    .memory-caption {
+        transition: opacity 0.2s ease-out !important;
+        transform: translateY(0) !important;
+        opacity: 0;
+    }
+    
+    .memory-card.caption-visible .memory-caption {
+        opacity: 1;
+    }
+}
     </style>
 </head>
 <body>
