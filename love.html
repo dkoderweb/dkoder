@@ -853,34 +853,14 @@ body {
                     let touchCount = 0;
                     let touchTimer = null;
                     
+                    // In the setupMobileCaption function
                     card.addEventListener('touchstart', (e) => {
-                        // Clear any existing timer
                         e.preventDefault(); // Add this to prevent delayed touch response
                         card.classList.toggle('caption-visible'); // Toggle instead of add/remove
-                        // Create heart burst effect immediately
-                            const touch = e.touches[0];
-                                createHeartBurst(touch.clientX, touch.clientY);
-                        if (touchTimer) clearTimeout(touchTimer);
-        
-                        touchCount++;
                         
-                        if (touchCount === 1) {
-                            // First touch shows caption
-                            card.classList.add('caption-visible');
-                            
-                            // Create heart burst effect
-                            const touch = e.touches[0];
-                            createHeartBurst(touch.clientX, touch.clientY);
-        
-                            // Reset touch count after 3 seconds
-                            touchTimer = setTimeout(() => {
-                                touchCount = 0;
-                            }, 3000);
-                        } else if (touchCount === 2) {
-                            // Second touch (full image view or any other action)
-                            card.classList.remove('caption-visible');
-                            touchCount = 0;
-                        }
+                        // Create heart burst effect immediately
+                        const touch = e.touches[0];
+                        createHeartBurst(touch.clientX, touch.clientY);
                     });
         
                     // Desktop hover effects
