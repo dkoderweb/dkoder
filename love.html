@@ -776,16 +776,16 @@ body {
         }
 
         @media (max-width: 768px) {
-                .memory-caption {
-                    transition: opacity 0.2s ease-out !important;
-                    transform: translateY(0) !important;
-                    opacity: 0;
-                }
-                
-                .memory-card.caption-visible .memory-caption {
-                    opacity: 1;
-                }
-            }
+    .memory-caption {
+        transition: none !important; /* Remove transition for instant visibility */
+        opacity: 0;
+    }
+    
+    .memory-card.caption-visible .memory-caption {
+        opacity: 1;
+        transition: none !important; /* Remove transition when visible */
+    }
+}
     </style>
     
     <script>
@@ -850,40 +850,28 @@ body {
             // Mobile Caption Interaction
             function setupMobileCaption() {
                 memoryCards.forEach(card => {
-                    let touchStartY = 0;
-                    let isScrolling = false;
-
-                    // Touch Start Handler
+                    let touchCount = 0;
+                    let touchTimer = null;
+                    
+                    // In the setupMobileCaption function
                     card.addEventListener('touchstart', (e) => {
-                        touchStartY = e.touches[0].clientY;
-                        isScrolling = false;
+                        e.preventDefault(); // Add this to prevent delayed touch response
+                        card.classList.toggle('caption-visible'); // Toggle instead of add/remove
+                        
+                        // Create heart burst effect immediately
+                        const touch = e.touches[0];
+                        createHeartBurst(touch.clientX, touch.clientY);
                     });
-
-                    // Touch Move Handler (detect scroll)
-                    card.addEventListener('touchmove', (e) => {
-                        const currentY = e.touches[0].clientY;
-                        if (Math.abs(currentY - touchStartY) > 5) {
-                            isScrolling = true;
-                        }
+        
+                    // Desktop hover effects
+                    card.addEventListener('mouseenter', () => {
+                        const caption = card.querySelector('.memory-caption');
+                        caption.style.transform = 'scale(1.05) rotate(2deg)';
                     });
-
-                    // Touch End Handler
-                    card.addEventListener('touchend', (e) => {
-                        if (!isScrolling) {
-                            // Only toggle caption if not scrolling
-                            e.preventDefault();
-                            card.classList.toggle('caption-visible');
-                            
-                            // Create heart burst effect
-                            const rect = card.getBoundingClientRect();
-                            createHeartBurst(rect.left + rect.width/2, rect.top + rect.height/2);
-                        }
-                        isScrolling = false;
-                    });
-
-                    // Click Handler for Desktop
-                    card.addEventListener('click', () => {
-                        card.classList.toggle('caption-visible');
+        
+                    card.addEventListener('mouseleave', () => {
+                        const caption = card.querySelector('.memory-caption');
+                        caption.style.transform = 'scale(1) rotate(0deg)';
                     });
                 });
             }
