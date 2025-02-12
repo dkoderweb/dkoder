@@ -2,182 +2,207 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Happy Birthday, My Love!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>🎀 Happy Birthday My Love! 💖</title>
   <style>
-    /* Global reset */
+    :root {
+      --main-pink: #ff6f91;
+      --soft-pink: #ff9a9e;
+      --pastel-yellow: #fff6bf;
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+      touch-action: manipulation;
     }
-    /* Full-screen container with a vibrant, radial gradient background */
+
     body {
       margin: 0;
-      padding: 0;
+      padding: 20px 15px;
       overflow-x: hidden;
-      background: radial-gradient(circle at center, #ffecd2, #fcb69f);
-      font-family: 'Lucida Sans', Arial, sans-serif;
-      color: #333;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      text-align: center;
-      position: relative;
+      background: linear-gradient(45deg, #fff5f5, #ffe8e8);
+      font-family: 'Comic Neue', cursive;
+      color: #5a3a3a;
       min-height: 100vh;
-      padding: 20px;
+      position: relative;
     }
-    /* Main greeting header */
+
     h1 {
-      font-size: 3rem;
+      font-size: 2.8rem;
       margin: 20px 0;
-      color: #ff6f91;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+      color: var(--main-pink);
+      text-shadow: 2px 2px 4px rgba(255, 111, 145, 0.2);
+      animation: bounce 1.2s ease infinite;
     }
-    /* Message container styling */
+
     .message-container {
-      font-size: 1.25rem;
-      max-width: 90%;
-      line-height: 1.4;
-      margin: 15px auto;
-      padding: 10px;
-      background: rgba(255, 255, 255, 0.85);
-      border-radius: 10px;
-    }
-    /* Next button styling */
-    .btn-next {
-      margin-top: 20px;
-      padding: 12px 25px;
-      font-size: 1.1rem;
-      background: #ff6f91;
-      border: none;
-      border-radius: 8px;
-      color: #fff;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-    .btn-next:hover {
-      background: #ff8fa3;
-    }
-    /* Extra cute sections styling */
-    .extra-section {
-      background: #fff;
-      border: 2px dashed #ff6f91;
-      border-radius: 10px;
-      padding: 15px;
+      font-size: 1.3rem;
+      max-width: 95%;
+      line-height: 1.6;
       margin: 20px auto;
-      width: 90%;
-      max-width: 500px;
+      padding: 25px;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      box-shadow: 0 4px 15px rgba(255, 111, 145, 0.15);
+      border: 3px solid var(--main-pink);
+      position: relative;
+      transition: transform 0.3s ease;
     }
-    .extra-section h3 {
-      color: #ff6f91;
-      margin-bottom: 10px;
-      font-size: 1.5rem;
+
+    .message-container::after {
+      content: '💌';
+      position: absolute;
+      right: -15px;
+      top: -15px;
+      font-size: 2rem;
+      animation: float 3s ease-in-out infinite;
     }
-    .extra-section p {
-      font-size: 1.1rem;
-      color: #666;
+
+    .btn-next {
+      margin-top: 25px;
+      padding: 15px 35px;
+      font-size: 1.3rem;
+      background: var(--main-pink);
+      border: none;
+      border-radius: 15px;
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(255, 111, 145, 0.3);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
     }
-    /* Overlay styling for revealing the main website link */
+
+    .btn-next:hover {
+      transform: scale(1.05);
+      background: #ff8fa3;
+      box-shadow: 0 6px 15px rgba(255, 111, 145, 0.4);
+    }
+
+    .btn-next:active {
+      transform: scale(0.95);
+    }
+
     .overlay {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(255, 255, 255, 0.95);
+      background: linear-gradient(135deg, rgba(255, 245, 245, 0.98), rgba(255, 232, 232, 0.98));
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      z-index: 100;
-      text-align: center;
+      z-index: 1000;
       padding: 20px;
+      text-align: center;
+      backdrop-filter: blur(5px);
     }
+
     .overlay a {
-      font-size: 1.5rem;
-      color: #ff6f91;
+      font-size: 1.8rem;
+      color: var(--main-pink);
       text-decoration: none;
-      font-weight: bold;
+      padding: 20px 40px;
+      background: white;
+      border-radius: 30px;
+      margin: 20px;
+      box-shadow: 0 4px 15px rgba(255, 111, 145, 0.2);
+      transition: all 0.3s ease;
+      border: 3px solid var(--main-pink);
     }
-    .overlay button {
-      margin-top: 20px;
-      padding: 10px 20px;
-      font-size: 1rem;
-      background: #ff6f91;
-      border: none;
-      border-radius: 5px;
-      color: #fff;
-      cursor: pointer;
+
+    .overlay a:hover {
+      transform: scale(1.05);
+      background: var(--pastel-yellow);
     }
-    /* Balloon styles */
-    .balloon {
-      position: absolute;
-      bottom: -150px;
-      width: 50px;
-      height: 70px;
-      border-radius: 50%;
-      opacity: 0.85;
-      animation: floatUp linear;
+
+    .hearts {
+      position: fixed;
+      pointer-events: none;
+      z-index: 999;
     }
-    @keyframes floatUp {
-      0% { transform: translateY(0) scale(1); opacity: 0.85; }
-      100% { transform: translateY(-120vh) scale(1.2); opacity: 0.2; }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
     }
-    /* Confetti effect */
-    .confetti {
-      position: absolute;
-      width: 10px;
-      height: 10px;
-      background: #fff;
-      opacity: 0.9;
-      animation: fall linear;
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
     }
-    @keyframes fall {
-      0% { transform: translateY(-10vh) rotate(0deg); }
-      100% { transform: translateY(110vh) rotate(360deg); }
+
+    @keyframes sparkle {
+      0% { opacity: 0; transform: scale(0); }
+      50% { opacity: 1; transform: scale(1.2); }
+      100% { opacity: 0; transform: scale(0.5); }
     }
-    /* Responsive adjustments */
+
     @media (max-width: 480px) {
       h1 {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
+        margin: 15px 0;
       }
-      .message-container, .extra-section p, .extra-section h3 {
-        font-size: 1rem;
+
+      .message-container {
+        font-size: 1.1rem;
+        padding: 20px;
       }
+
       .btn-next {
-        font-size: 1rem;
-        padding: 10px 20px;
+        font-size: 1.1rem;
+        padding: 12px 25px;
       }
+
+      .overlay a {
+        font-size: 1.4rem;
+        padding: 15px 30px;
+      }
+    }
+
+    .sparkle {
+      position: absolute;
+      animation: sparkle 1.5s ease-out;
+      pointer-events: none;
+    }
+
+    .floating-heart {
+      position: fixed;
+      animation: float 3s ease-in-out infinite;
+      font-size: 1.5rem;
+      opacity: 0.8;
     }
   </style>
 </head>
 <body>
-  <h1>Happy Birthday, My Love! 💖</h1>
+  <!-- Floating elements -->
+  <div class="hearts" id="heartsContainer"></div>
+
+  <h1>🎂 Happy Birthday My Love! 💝</h1>
   
-  <!-- Interactive Message Section -->
   <div class="message-container" id="messageContainer">
-    Today is all about celebrating YOU! Every moment with you is a reason to smile. 🎉
+    Today is all about celebrating YOU! Every moment with you is magical ✨
   </div>
-  <button class="btn-next" id="nextButton" onclick="nextStep()">Next</button>
-
-   
-
-  <!-- Container for the overlay reveal -->
-  <div id="realSiteOverlay" style="display:none;"></div>
+  
+  <button class="btn-next" id="nextButton" onclick="nextStep()">
+    <span>Next</span> 🌸
+  </button>
 
   <script>
-    // Array of messages for the interactive birthday page
     const messages = [
-      "Today is all about celebrating YOU! Every moment with you is a reason to smile. 🎉",
-      "How's it so far? Simple, sweet, and a little mysterious, right? 😉",
-      "You know me well enough to know I made this just for you! 💖",
-      "Do you really think this is the whole story? Hmm... 🤔",
-      "Maybe it's too simple, or maybe I'm just teasing you a bit! 😜",
-      "Irritating? Confusing? A little of both—because I love keeping you on your toes! 😘",
-      "Alright, enough fun—here comes the final surprise: 🎁",
-      "Surprise! Here is the main website: 💕"
+      "You're the most amazing person I know! 🌟",
+      "Your smile lights up my world 💖",
+      "I love how you make every day special 🌈",
+      "You're my favorite adventure partner 🚀",
+      "Your kindness inspires me every day 🌸",
+      "I'm so grateful for your love 💌",
+      "Ready for the big surprise? 🎁",
+      "Here's our special page: 💕"
     ];
 
     let currentStep = 0;
@@ -185,58 +210,71 @@
     const nextButton = document.getElementById("nextButton");
 
     function nextStep() {
+      createSparkle(event);
       currentStep++;
+      
       if (currentStep < messages.length) {
         messageContainer.innerHTML = messages[currentStep];
-        // Change button text on the final step
         if (currentStep === messages.length - 1) {
-          nextButton.innerText = "Reveal the Website";
+          nextButton.innerHTML = '<span>Reveal</span> 🎀';
         }
       } else {
         revealRealSite();
       }
     }
 
+    function createSparkle(e) {
+      const sparkle = document.createElement('div');
+      sparkle.className = 'sparkle';
+      sparkle.style.left = e.clientX + 'px';
+      sparkle.style.top = e.clientY + 'px';
+      sparkle.innerHTML = '✨';
+      document.body.appendChild(sparkle);
+      setTimeout(() => sparkle.remove(), 1500);
+    }
+
+    function createFloatingHeart() {
+      const heart = document.createElement('div');
+      heart.className = 'floating-heart';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (Math.random() * 3 + 5) + 's';
+      heart.innerHTML = ['💖', '💝', '💗', '💓'][Math.floor(Math.random()*4)];
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 5000);
+    }
+
     function revealRealSite() {
       const overlay = document.createElement("div");
       overlay.className = "overlay";
       overlay.innerHTML = `
-        <h2>Surprise, darling! 💖</h2>
-        <p>You know how much I adore you—this entire page was made by me!</p>
-        <p>Do you really think this is a real website? Well, here's the truth:</p>
-        <a href="love.html">Click here to see my real love for you</a> 
+        <h2 style="color: #ff6f91; margin-bottom: 20px;">Surprise, My Love! 💞</h2>
+        <p style="font-size: 1.2rem; margin-bottom: 15px;">This is just the beginning of our celebration! 🎉</p>
+        <a href="love.html">Click here for our love story 💑</a>
+        <button onclick="this.parentElement.remove()" style="margin-top: 30px; padding: 10px 25px; background: #ff6f91; color: white; border: none; border-radius: 20px; font-size: 1.1rem;">
+          Keep Exploring 🌸
+        </button>
       `;
       document.body.appendChild(overlay);
     }
 
-    // Create floating balloons at random intervals for extra cuteness
-    function createBalloon() {
-      const balloon = document.createElement("div");
-      balloon.classList.add("balloon");
-      // Random horizontal position
-      balloon.style.left = Math.random() * 100 + "vw";
-      // Random pastel color for the balloon
-      const colors = ["#ff9a9e", "#fad0c4", "#fbc2eb", "#a18cd1", "#ff6f91"];
-      balloon.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-      // Randomize animation duration (between 8s and 14s)
-      balloon.style.animationDuration = (Math.random() * 6 + 8) + "s";
-      document.body.appendChild(balloon);
-      // Remove balloon after its animation
-      setTimeout(() => { balloon.remove(); }, 15000);
-    }
-    setInterval(createBalloon, 600);
+    // Create floating hearts
+    setInterval(createFloatingHeart, 1500);
 
-    // Generate confetti for an extra festive feel
-    function createConfetti() {
-      const confetti = document.createElement("div");
-      confetti.classList.add("confetti");
-      confetti.style.left = Math.random() * 100 + "vw";
-      confetti.style.backgroundColor = "#" + Math.floor(Math.random()*16777215).toString(16);
-      confetti.style.animationDuration = (Math.random() * 3 + 4) + "s";
-      document.body.appendChild(confetti);
-      setTimeout(() => { confetti.remove(); }, 8000);
-    }
-    setInterval(createConfetti, 300);
+    // Add cute cursor effect
+    document.addEventListener('mousemove', (e) => {
+      const cursor = document.createElement('div');
+      cursor.className = 'sparkle';
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+      cursor.innerHTML = '🌸';
+      document.body.appendChild(cursor);
+      setTimeout(() => cursor.remove(), 1000);
+    });
+
+    // Mobile touch effects
+    document.addEventListener('touchstart', (e) => {
+      createSparkle(e.touches[0]);
+    }, { passive: true });
   </script>
 </body>
 </html>
