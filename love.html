@@ -855,7 +855,6 @@ body {
                     
                     // In the setupMobileCaption function
                     card.addEventListener('touchstart', (e) => {
-                        e.preventDefault(); // Add this to prevent delayed touch response
                         card.classList.toggle('caption-visible'); // Toggle instead of add/remove
                         
                         // Create heart burst effect immediately
