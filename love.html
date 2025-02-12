@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Birthday, My Love! 🌸 Our Beautiful Journey</title>
-    // Include Lazysizes library in your HTML
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js" async></script>
     <style>
         /* Custom Fonts */
         @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;700&display=swap');
@@ -776,18 +774,289 @@ body {
             border-radius: 20px;
             background: white;
         }
-        @media (max-width: 768px) {
-    .memory-caption {
-        transition: opacity 0.2s ease-out !important;
-        transform: translateY(0) !important;
-        opacity: 0;
-    }
-    
-    .memory-card.caption-visible .memory-caption {
-        opacity: 1;
-    }
-}
     </style>
+</head>
+<body>
+    <!-- Floating Hearts Animation -->
+    <div class="floating-hearts" id="floatingHearts"></div>
+
+    <div class="container">
+        <!-- Header Section -->
+        <header class="header">
+            <h1 class="title">Happy Birthday, My Love! 🦋</h1>
+        </header>
+       
+        <!-- Section 1: I Love You in Bindi -->
+        <section>
+            <h2 class="section-title">I Love You in Bindi 🌸</h2>
+            <div class="memory-grid">
+                <div class="memory-card">
+                    <img src="bindi1.jpg" alt="Bindi Look 1">
+                    <div class="memory-caption">Traditional beauty in bindi 💖</div>
+                </div>
+                <div class="memory-card">
+                    <img src="bindi2.jpg" alt="Bindi Look 2">
+                    <div class="memory-caption">Elegance personified 🌸</div>
+                </div>
+                <div class="memory-card">
+                    <img src="bindi3.jpg" alt="Bindi Look 3">
+                    <div class="memory-caption">My forever love in bindi 💕</div>
+                </div>
+                <div class="memory-card">
+                    <img src="bindi4.jpg" alt="Bindi Look 4">
+                    <div class="memory-caption">You shine brightest in bindi ✨</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: I Love You in Ice Cream Suit -->
+        <section>
+            <h2 class="section-title">I Love You in Ice Cream Suit 🍦</h2>
+            <div class="memory-grid">
+                <div class="memory-card">
+                    <img src="icecream1.jpg" alt="Ice Cream Suit 1">
+                    <div class="memory-caption">Sweetest treat in ice cream suit 🍨</div>
+                </div>
+                <div class="memory-card">
+                    <img src="icecream2.jpg" alt="Ice Cream Suit 2">
+                    <div class="memory-caption">Cool and lovely in your suit ❄️</div>
+                </div>
+                <div class="memory-card">
+                    <img src="icecream3.jpg" alt="Ice Cream Suit 3">
+                    <div class="memory-caption">My dessert queen 🍧</div>
+                </div>
+                <div class="memory-card">
+                    <img src="icecream4.jpg" alt="Ice Cream Suit 4">
+                    <div class="memory-caption">You're my favorite flavor 🍦</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: I Love Your Pucchis -->
+        <section>
+            <h2 class="section-title">I Love Your Pucchis 😘</h2>
+            <div class="memory-grid">
+                <div class="memory-card">
+                    <img src="pucchis1.jpg" alt="Pucchis 1">
+                    <div class="memory-caption">Your pucchis make me smile 😊</div>
+                </div>
+                <div class="memory-card">
+                    <img src="pucchis2.jpg" alt="Pucchis 2">
+                    <div class="memory-caption">My favorite sound 💕</div>
+                </div>
+                <div class="memory-card">
+                    <img src="pucchis3.jpg" alt="Pucchis 3">
+                    <div class="memory-caption">Cuteness overload in pucchis 😍</div>
+                </div>
+                <div class="memory-card">
+                    <img src="pucchis4.jpg" alt="Pucchis 4">
+                    <div class="memory-caption">Pucchis = Pure love 💖</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: I Love You in Dress -->
+        <section>
+            <h2 class="section-title">I Love You in Dress 👗</h2>
+            <div class="memory-grid">
+                <div class="memory-card">
+                    <img src="dress1.jpg" alt="Dress Look 1">
+                    <div class="memory-caption">Elegance in every dress 💃</div>
+                </div>
+                <div class="memory-card">
+                    <img src="dress2.jpg" alt="Dress Look 2">
+                    <div class="memory-caption">My fashion queen 👑</div>
+                </div>
+                <div class="memory-card">
+                    <img src="dress3.jpg" alt="Dress Look 3">
+                    <div class="memory-caption">You slay in every outfit 💖</div>
+                </div>
+                <div class="memory-card">
+                    <img src="dress4.jpg" alt="Dress Look 4">
+                    <div class="memory-caption">Dress or no dress, you're perfect 🌸</div>
+                </div>
+            </div>
+        </section>
+        <!-- Add bouncing cupcakes to corners -->
+        <div class="cute-element" style="top:10px; left:10px;">🧁</div>
+        <div class="cute-element" style="top:10px; right:10px;">🎀</div>
+        <!-- Section 5: I Love to Irritate You -->
+        <section>
+            <h2 class="section-title">I Love to Irritate You 😈</h2>
+            <div class="memory-grid">
+                <div class="memory-card">
+                    <img src="irritate1.jpg" alt="Irritate 1">
+                    <div class="memory-caption">Your reactions are priceless 😂</div>
+                </div>
+                <div class="memory-card">
+                    <img src="irritate2.jpg" alt="Irritate 2">
+                    <div class="memory-caption">Teasing you is my hobby 😜</div>
+                </div>
+                <div class="memory-card">
+                    <img src="irritate3.jpg" alt="Irritate 3">
+                    <div class="memory-caption">Your angry face is cute 😠</div>
+                </div>
+                <div class="memory-card">
+                    <img src="irritate4.jpg" alt="Irritate 4">
+                    <div class="memory-caption">I love how you forgive me 💕</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: I Love Your Hugs -->
+        <section>
+            <h2 class="section-title">I Love Your Hugs 🤗</h2>
+            <div class="memory-grid">
+                <div class="memory-card">
+                    <img src="hugs1.jpg" alt="Hugs 1">
+                    <div class="memory-caption">Your hugs are my safe place 💖</div>
+                </div>
+                <div class="memory-card">
+                    <img src="hugs2.jpg" alt="Hugs 2">
+                    <div class="memory-caption">Warmest embrace ever 🌸</div>
+                </div>
+                <div class="memory-card">
+                    <img src="hugs3.jpg" alt="Hugs 3">
+                    <div class="memory-caption">Hugs that heal everything 💕</div>
+                </div>
+                <div class="memory-card">
+                    <img src="hugs4.jpg" alt="Hugs 4">
+                    <div class="memory-caption">I never want to let go 🤗</div>
+                </div>
+            </div>
+        </section>
+        <div class="floating-message" style="left:20%">You're Amazing! 💖</div>
+        <div class="floating-message" style="left:70%">Best GF Ever! 👑</div>
+        <!-- Section 7: I Love Your Kisses -->
+        <section>
+            <h2 class="section-title">I Love Your Kisses 😘</h2>
+            <div class="memory-grid">
+                <div class="memory-card">
+                    <img src="kisses1.jpg" alt="Kisses 1">
+                    <div class="memory-caption">Sweetest kisses ever 💋</div>
+                </div>
+                <div class="memory-card">
+                    <img src="kisses2.jpg" alt="Kisses 2">
+                    <div class="memory-caption">Your kisses are magical ✨</div>
+                </div>
+                <div class="memory-card">
+                    <img src="kisses3.jpg" alt="Kisses 3">
+                    <div class="memory-caption">I crave your kisses 😍</div>
+                </div>
+                <div class="memory-card">
+                    <img src="kisses4.jpg" alt="Kisses 4">
+                    <div class="memory-caption">Kisses that melt my heart 💖</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 8: I Love Your Selfies -->
+        <section>
+            <h2 class="section-title">I Love Your Selfies 📸</h2>
+            <div class="memory-grid">
+                <div class="memory-card">
+                    <img src="selfies1.jpg" alt="Selfies 1">
+                    <div class="memory-caption">Your selfies brighten my day 🌞</div>
+                </div>
+                <div class="memory-card">
+                    <img src="selfies2.jpg" alt="Selfies 2">
+                    <div class="memory-caption">My favorite gallery 💕</div>
+                </div>
+                <div class="memory-card">
+                    <img src="selfies3.jpg" alt="Selfies 3">
+                    <div class="memory-caption">You're a selfie queen 👑</div>
+                </div>
+                <div class="memory-card">
+                    <img src="selfies4.jpg" alt="Selfies 4">
+                    <div class="memory-caption">Every selfie is a masterpiece 🎨</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 9: I Love Your Anger -->
+        <section>
+            <h2 class="section-title">I Love Your Anger 😠</h2>
+            <div class="memory-grid">
+                <div class="memory-card">
+                    <img src="anger1.jpg" alt="Anger 1">
+                    <div class="memory-caption">Your anger is cute 😊</div>
+                </div>
+                <div class="memory-card">
+                    <img src="anger2.jpg" alt="Anger 2">
+                    <div class="memory-caption">Even when angry, you're lovely 💖</div>
+                </div>
+                <div class="memory-card">
+                    <img src="anger3.jpg" alt="Anger 3">
+                    <div class="memory-caption">I love how you calm down 🌸</div>
+                </div>
+                <div class="memory-card">
+                    <img src="anger4.jpg" alt="Anger 4">
+                    <div class="memory-caption">Your serious face is adorable 😍</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 10: I Love When You Show Me New Clothes -->
+        <section>
+            <h2 class="section-title">I Love When You Show Me New Clothes 👗</h2>
+            <div class="memory-grid">
+                <div class="memory-card">
+                    <img src="new-clothes1.jpg" alt="New Clothes 1">
+                    <div class="memory-caption">Your fashion sense is amazing 💃</div>
+                </div>
+                <div class="memory-card">
+                    <img src="new-clothes2.jpg" alt="New Clothes 2">
+                    <div class="memory-caption">You slay in every outfit 👑</div>
+                </div>
+                <div class="memory-card">
+                    <img src="new-clothes3.jpg" alt="New Clothes 3">
+                    <div class="memory-caption">My personal fashion icon 🌟</div>
+                </div>
+                <div class="memory-card">
+                    <img src="new-clothes4.jpg" alt="New Clothes 4">
+                    <div class="memory-caption">You make every outfit special 💖</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Section 11: You Love Maggie & Rasgulla, I Love to Eat You -->
+        <section>
+            <h2 class="section-title">You Love Maggie & Rasgulla, I Love to Eat You 😋</h2>
+            <div class="memory-grid">
+                <div class="memory-card">
+                    <img src="maggie1.jpg" alt="Maggie 1">
+                    <div class="memory-caption">You + Maggie = Perfect combo 🍜</div>
+                </div>
+                <div class="memory-card">
+                    <img src="rasgulla1.jpg" alt="Rasgulla 1">
+                    <div class="memory-caption">Rasgulla vs You? You're sweeter 🍬</div>
+                </div>
+                <div class="memory-card">
+                    <img src="eat-you1.jpg" alt="Eat You 1">
+                    <div class="memory-caption">I love to eat you 😋</div>
+                </div>
+                <div class="memory-card">
+                    <img src="eat-you2.jpg" alt="Eat You 2">
+                    <div class="memory-caption">You're my favorite dessert 🍨</div>
+                </div>
+            </div>
+        </section>
+        <section>
+
+             <!-- Food Love Section -->
+    <section class="food-love">
+        <div class="food-item">
+            <h3>Your Favorites 🍴</h3>
+            <p>Maggie 🍜</p>
+            <p>Rasgulla 🍡</p>
+        </div>
+        <div class="food-item">
+            <h3>My Favorite Meal 😋</h3>
+            <p>YOU! 😘</p>
+            <div class="emoji">🍽️💋</div>
+        </div>
+    </section>
+    <h2 class="section-title">Our Beautiful Journey Together 💑</h2>
 <style>
     .timeline {
         position: relative;
@@ -925,736 +1194,6 @@ body {
     }
 </style>
 
-<script>
-    function initializeAnimations() {
-        // Initialize floating hearts
-        const heartsContainer = document.getElementById('floatingHearts');
-        for (let i = 0; i < 50; i++) {
-            const heart = document.createElement('div');
-            heart.className = 'heart';
-            heart.innerHTML = '❤️';
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.animationDelay = Math.random() * 15 + 's';
-            heartsContainer.appendChild(heart);
-        }
-    
-        // Add animation delays to memory cards
-        document.querySelectorAll('.memory-card').forEach((card, index) => {
-            card.style.setProperty('--card-index', index);
-        });
-    
-        // Add animation delays to timeline items
-        document.querySelectorAll('.timeline-content').forEach((item, index) => {
-            item.style.setProperty('--timeline-index', index);
-        });
-    
-        
-    }
-    
-    function initAdvancedInteractions() {
-        const memoryCards = document.querySelectorAll('.memory-card');
-        const scrollHint = document.createElement('div');
-        
-        // Scroll Hint Setup
-        scrollHint.classList.add('scroll-hint');
-        scrollHint.innerHTML = '✨ Keep scrolling to see more! 💕';
-        document.body.appendChild(scrollHint);
-    
-        // Heart Burst Effect
-        function createHeartBurst(x, y) {
-            const burstContainer = document.createElement('div');
-            burstContainer.classList.add('heart-burst');
-            burstContainer.style.left = `${x}px`;
-            burstContainer.style.top = `${y}px`;
-    
-            for (let i = 0; i < 5; i++) {
-                const heart = document.createElement('span');
-                heart.innerHTML = '❤️';
-                heart.style.position = 'absolute';
-                heart.style.fontSize = `${Math.random() * 20 + 10}px`;
-                heart.style.left = `${Math.random() * 100 - 50}px`;
-                heart.style.top = `${Math.random() * 100 - 50}px`;
-                heart.style.animation = 'heartBurst 0.5s ease-out forwards';
-                burstContainer.appendChild(heart);
-            }
-    
-            document.body.appendChild(burstContainer);
-            setTimeout(() => {
-                document.body.removeChild(burstContainer);
-            }, 1000);
-        }
-    
-        function setupMobileCaption() {
-        memoryCards.forEach(card => {
-            let touchStartY = 0;
-            let isScrolling = false;
-    
-            // Touch Start Handler
-            card.addEventListener('touchstart', (e) => {
-                touchStartY = e.touches[0].clientY;
-                isScrolling = false;
-            });
-    
-            // Touch Move Handler (detect scroll)
-            card.addEventListener('touchmove', (e) => {
-                const currentY = e.touches[0].clientY;
-                if (Math.abs(currentY - touchStartY) > 5) {
-                    isScrolling = true;
-                }
-            });
-    
-            // Touch End Handler
-            card.addEventListener('touchend', (e) => {
-                if (!isScrolling) {
-                    // Only toggle caption if not scrolling
-                    e.preventDefault();
-                    card.classList.toggle('caption-visible');
-                    
-                    // Create heart burst effect
-                    const rect = card.getBoundingClientRect();
-                    createHeartBurst(rect.left + rect.width/2, rect.top + rect.height/2);
-                }
-                isScrolling = false;
-            });
-    
-            // Click Handler for Desktop
-            card.addEventListener('click', () => {
-                card.classList.toggle('caption-visible');
-            });
-        });
-    }
-    
-        
-        
-        
-    
-        // Hide scroll hint
-        function hideScrollHint() {
-            scrollHint.style.display = 'none';
-        }
-    
-        // Event Listeners
-        window.addEventListener('scroll', () => {
-            hideScrollHint();
-        }, { once: true });
-    
-        // Random Sparkle Effect
-        function createSparkle(element) {
-            const sparkle = document.createElement('span');
-            sparkle.textContent = '✨';
-            sparkle.style.position = 'absolute';
-            sparkle.style.fontSize = '1.5rem';
-            sparkle.style.top = `${Math.random() * 100}%`;
-            sparkle.style.left = `${Math.random() * 100}%`;
-            sparkle.style.opacity = '0';
-            sparkle.style.animation = 'twinkle 1s infinite';
-            element.appendChild(sparkle);
-    
-            setTimeout(() => {
-                sparkle.remove();
-            }, 2000);
-        }
-    
-        // Add occasional sparkles to section titles
-        document.querySelectorAll('.section-title').forEach(title => {
-            setInterval(() => {
-                if (Math.random() > 0.5) {
-                    createSparkle(title);
-                }
-            }, 3000);
-        });
-    
-        // Initialize mobile interactions
-        setupMobileCaption();
-    
-        // Periodic Scroll Hint
-        setTimeout(() => {
-            if (window.pageYOffset < 100) {
-                scrollHint.style.display = 'block';
-            }
-        }, 2000);
-    }
-    
-    // Run both animation initializations on page load
-    window.addEventListener('load', () => {
-        initializeAnimations();
-        initAdvancedInteractions();
-    });
-    
-    // Audio Manager
-    class AudioExperience {
-        constructor() {
-            this.backgroundMusic = new Audio('/romantic-music.mp3');
-            this.soundEffects = {
-                heartBurst: new Audio('/heart-burst.wav'),
-                cardTouch: new Audio('/card-touch.wav'),
-                sparkle: new Audio('/sparkle.wav'),
-                scroll: new Audio('/scroll.wav')
-            };
-    
-            this.initializeMusicControls();
-            this.setupSoundEffects();
-        }
-    
-        initializeMusicControls() {
-            // Create music control UI
-            const musicControl = document.createElement('div');
-            musicControl.innerHTML = `
-                <button id="music-toggle" style="
-                    position: fixed;
-                    bottom: 20px;
-                    right: 20px;
-                    z-index: 1000;
-                    background: rgba(255,133,162,0.8);
-                    border: none;
-                    color: white;
-                    padding: 10px;
-                    border-radius: 50%;
-                ">🎵</button>
-            `;
-            document.body.appendChild(musicControl);
-    
-            const toggleButton = document.getElementById('music-toggle');
-            
-            toggleButton.addEventListener('click', () => {
-                if (this.backgroundMusic.paused) {
-                    this.backgroundMusic.loop = true;
-                    this.backgroundMusic.volume = 0.3; // Soft volume
-                    this.backgroundMusic.play();
-                    toggleButton.textContent = '🔊';
-                } else {
-                    this.backgroundMusic.pause();
-                    toggleButton.textContent = '🔇';
-                }
-            });
-        }
-    
-        setupSoundEffects() {
-            // Heart Burst Sound
-            window.addEventListener('heartBurst', (e) => {
-                this.playSoundEffect('heartBurst');
-            });
-    
-            // Card Touch Sound
-            document.querySelectorAll('.memory-card').forEach(card => {
-                card.addEventListener('mouseenter', () => {
-                    this.playSoundEffect('cardTouch');
-                });
-            });
-    
-            // Scroll Sound
-            let lastScrollTop = 0;
-            window.addEventListener('scroll', () => {
-                const st = window.pageYOffset || document.documentElement.scrollTop;
-                if (Math.abs(st - lastScrollTop) > 100) {
-                    this.playSoundEffect('scroll');
-                    lastScrollTop = st;
-                }
-            });
-        }
-    
-        playSoundEffect(effectName) {
-            const sound = this.soundEffects[effectName];
-            if (sound) {
-                sound.currentTime = 0;
-                sound.play().catch(e => console.log('Sound play error:', e));
-            }
-        }
-    }
-    
-    // Initialize on page load
-    window.addEventListener('load', () => {
-        window.audioExperience = new AudioExperience();
-    });
-    
-    
-    
-    class InteractionAnimations {
-        constructor() {
-            this.initializeTiltEffect();
-            this.initializeHeartCursor();
-        }
-    
-        initializeTiltEffect() {
-            const memoryCards = document.querySelectorAll('.memory-card');
-            
-            memoryCards.forEach(card => {
-                card.addEventListener('mousemove', (e) => {
-                    const rect = card.getBoundingClientRect();
-                    const centerX = rect.left + rect.width / 2;
-                    const centerY = rect.top + rect.height / 2;
-                    
-                    const angleX = (e.clientY - centerY) / 20;
-                    const angleY = -(e.clientX - centerX) / 20;
-                    
-                    card.style.transform = `
-                        perspective(1000px) 
-                        rotateX(${angleX}deg) 
-                        rotateY(${angleY}deg) 
-                        scale(1.05)
-                    `;
-                    card.style.transition = 'transform 0.1s';
-                });
-                
-                card.addEventListener('mouseleave', () => {
-                    card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
-                });
-            });
-        }
-    
-        initializeHeartCursor() {
-            const cursor = document.createElement('div');
-            cursor.innerHTML = '❤️';
-            cursor.style.position = 'fixed';
-            cursor.style.pointerEvents = 'none';
-            cursor.style.zIndex = '9999';
-            cursor.style.fontSize = '20px';
-            cursor.style.opacity = '0.7';
-            document.body.appendChild(cursor);
-    
-            document.addEventListener('mousemove', (e) => {
-                cursor.style.left = `${e.clientX + 10}px`;
-                cursor.style.top = `${e.clientY + 10}px`;
-            });
-        }
-    
-         
-    
-        createComplexHeartBurst(x, y) {
-            const burstContainer = document.createElement('div');
-            burstContainer.style.position = 'fixed';
-            burstContainer.style.left = `${x}px`;
-            burstContainer.style.top = `${y}px`;
-            burstContainer.style.zIndex = '9999';
-            document.body.appendChild(burstContainer);
-    
-            // Multiple heart burst variations
-            for (let i = 0; i < 10; i++) {
-                const heart = document.createElement('span');
-                heart.innerHTML = '❤️';
-                heart.style.position = 'absolute';
-                heart.style.fontSize = `${Math.random() * 30 + 10}px`;
-                heart.style.left = `${Math.random() * 200 - 100}px`;
-                heart.style.top = `${Math.random() * 200 - 100}px`;
-                heart.style.opacity = '0';
-                heart.style.animation = `
-                    heartBurst 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards,
-                    fadeOut 0.8s ease-out forwards
-                `;
-                burstContainer.appendChild(heart);
-            }
-    
-            // Remove container after animation
-            setTimeout(() => {
-                document.body.removeChild(burstContainer);
-            }, 1000);
-        }
-    }
-    
-    // Add global styles for heart burst
-    const style = document.createElement('style');
-    style.innerHTML = `
-    @keyframes heartBurst {
-        0% { transform: scale(0) rotate(0deg); }
-        50% { transform: scale(1.5) rotate(180deg); }
-        100% { transform: scale(3) rotate(360deg); }
-    }
-    
-    @keyframes fadeOut {
-        from { opacity: 1; }
-        to { opacity: 0; }
-    }
-    `;
-    document.head.appendChild(style);
-    
-    // Initialize on page load
-    window.addEventListener('load', () => {
-        window.interactionAnimations = new InteractionAnimations();
-    });
-    
-    
-    
-    // Initialize on page load
-    window.addEventListener('load', () => {
-        window.personalizationSystem = new PersonalizationSystem();
-    });
-        // Add Sparkle Effect to Cards
-    function addSparkleEffect() {
-        const memoryCards = document.querySelectorAll('.memory-card');
-        memoryCards.forEach(card => {
-            const sparkle = document.createElement('span');
-            sparkle.textContent = '✨';
-            sparkle.style.position = 'absolute';
-            sparkle.style.fontSize = '2rem';
-            sparkle.style.top = `${Math.random() * 100}%`;
-            sparkle.style.left = `${Math.random() * 100}%`;
-            sparkle.style.opacity = '0';
-            sparkle.style.animation = 'sparkle 2s infinite';
-            card.appendChild(sparkle);
-    
-            setTimeout(() => {
-                sparkle.remove();
-            }, 2000);
-        });
-    }
-    
-    // Add Heart Burst Effect on Click
-    function addHeartBurstEffect() {
-        const memoryCards = document.querySelectorAll('.memory-card');
-        memoryCards.forEach(card => {
-            card.addEventListener('click', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-    
-                const heart = document.createElement('span');
-                heart.textContent = '❤️';
-                heart.style.position = 'absolute';
-                heart.style.left = `${x}px`;
-                heart.style.top = `${y}px`;
-                heart.style.fontSize = '2rem';
-                heart.style.animation = 'heartBurst 1s ease-out forwards';
-                card.appendChild(heart);
-    
-                setTimeout(() => {
-                    heart.remove();
-                }, 1000);
-            });
-        });
-    }
-    
-    // Initialize Effects on Page Load
-    window.addEventListener('load', () => {
-        addSparkleEffect();
-        addHeartBurstEffect();
-    });
-    
-        // Add emoji reaction when clicking photos
-    document.querySelectorAll('.memory-card').forEach(card => {
-        card.addEventListener('click', (e) => {
-            const emoji = ['😍','💖','🌸','🎀','🍰','🦋'][Math.floor(Math.random()*6)];
-            const floatEmoji = document.createElement('div');
-            floatEmoji.style = `
-                position: absolute;
-                left: ${e.offsetX}px;
-                top: ${e.offsetY}px;
-                font-size: 2rem;
-                animation: emojiFloat 1s ease-out;
-            `;
-            floatEmoji.textContent = emoji;
-            card.appendChild(floatEmoji);
-            setTimeout(() => floatEmoji.remove(), 1000);
-        });
-    });
-    function burstConfetti() {
-        for(let i=0; i<50; i++) {
-            const confetti = document.createElement('div');
-            confetti.style = `
-                position: fixed;
-                left: ${Math.random() * 100}vw;
-                top: ${Math.random() * 100}vh;
-                font-size: 1.5rem;
-                animation: confettiFall ${Math.random()*3+2}s linear;
-            `;
-            confetti.innerHTML = ['🎉','🎊','✨','🎈','🎁','💖'][Math.floor(Math.random()*6)];
-            document.body.appendChild(confetti);
-            setTimeout(() => confetti.remove(), 3000);
-        }
-    }
-    document.addEventListener('mousemove', (e) => {
-        const trail = document.createElement('div');
-        trail.className = 'cursor-trail';
-        trail.innerHTML = '🌸';
-        trail.style.left = e.clientX + 'px';
-        trail.style.top = e.clientY + 'px';
-        document.body.appendChild(trail);
-        setTimeout(() => trail.remove(), 1000);
-    });
-    </script>
-</head>
-<body>
-    <!-- Floating Hearts Animation -->
-    <div class="floating-hearts" id="floatingHearts"></div>
-
-    <div class="container">
-        <!-- Header Section -->
-        <header class="header">
-            <h1 class="title">Happy Birthday, My Love! 🦋</h1>
-        </header>
-       
-        <!-- Section 1: I Love You in Bindi -->
-        <section>
-            <h2 class="section-title">I Love You in Bindi 🌸</h2>
-            <div class="memory-grid">
-                <div class="memory-card">
-                    <img class="lazyload" src="bindi1.jpg" alt="Bindi Look 1">
-                    <div class="memory-caption">Traditional beauty in bindi 💖</div>
-                </div>
-                <div class="memory-card">
-                    <img class="lazyload" src="bindi2.jpg" alt="Bindi Look 2">
-                    <div class="memory-caption">Elegance personified 🌸</div>
-                </div>
-                <div class="memory-card">
-                    <img class="lazyload" src="bindi3.jpg" alt="Bindi Look 3">
-                    <div class="memory-caption">My forever love in bindi 💕</div>
-                </div>
-                <div class="memory-card">
-                    <img class="lazyload" src="bindi4.jpg" alt="Bindi Look 4">
-                    <div class="memory-caption">You shine brightest in bindi ✨</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section 2: I Love You in Ice Cream Suit -->
-        <section>
-            <h2 class="section-title">I Love You in Ice Cream Suit 🍦</h2>
-            <div class="memory-grid">
-                <div class="memory-card">
-                    <img class="lazyload" src="icecream1.jpg" alt="Ice Cream Suit 1">
-                    <div class="memory-caption">Sweetest treat in ice cream suit 🍨</div>
-                </div>
-                <div class="memory-card">
-                    <img class="lazyload" src="icecream2.jpg" alt="Ice Cream Suit 2">
-                    <div class="memory-caption">Cool and lovely in your suit ❄️</div>
-                </div>
-                <div class="memory-card">
-                    <img class="lazyload" src="icecream3.jpg" alt="Ice Cream Suit 3">
-                    <div class="memory-caption">My dessert queen 🍧</div>
-                </div>
-                <div class="memory-card">
-                    <img class="lazyload" src="icecream4.jpg" alt="Ice Cream Suit 4">
-                    <div class="memory-caption">You're my favorite flavor 🍦</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section 3: I Love Your Pucchis -->
-        <section>
-            <h2 class="section-title">I Love Your Pucchis 😘</h2>
-            <div class="memory-grid">
-                <div class="memory-card">
-                    <img class="lazyload" src="pucchis1.jpg" alt="Pucchis 1">
-                    <div class="memory-caption">Your pucchis make me smile 😊</div>
-                </div>
-                <div class="memory-card">
-                    <img class="lazyload" src="pucchis2.jpg" alt="Pucchis 2">
-                    <div class="memory-caption">My favorite sound 💕</div>
-                </div>
-                <div class="memory-card">
-                    <img class="lazyload" src="pucchis3.jpg" alt="Pucchis 3">
-                    <div class="memory-caption">Cuteness overload in pucchis 😍</div>
-                </div>
-                <div class="memory-card">
-                    <img class="lazyload" src="pucchis4.jpg" alt="Pucchis 4">
-                    <div class="memory-caption">Pucchis = Pure love 💖</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section 4: I Love You in Dress -->
-        <section>
-            <h2 class="section-title">I Love You in Dress 👗</h2>
-            <div class="memory-grid">
-                <div class="memory-card">
-                    <img class="lazyload" src="dress1.jpg" alt="Dress Look 1">
-                    <div class="memory-caption">Elegance in every dress 💃</div>
-                </div>
-                <div class="memory-card">
-                    <img class="lazyload" src="dress2.jpg" alt="Dress Look 2">
-                    <div class="memory-caption">My fashion queen 👑</div>
-                </div>
-                <div class="memory-card">
-                    <img class="lazyload" src="dress3.jpg" alt="Dress Look 3">
-                    <div class="memory-caption">You slay in every outfit 💖</div>
-                </div>
-                <div class="memory-card">
-                    <img class="lazyload" src="dress4.jpg" alt="Dress Look 4">
-                    <div class="memory-caption">Dress or no dress, you're perfect 🌸</div>
-                </div>
-            </div>
-        </section>
-        <!-- Add bouncing cupcakes to corners -->
-        <div class="cute-element" style="top:10px; left:10px;">🧁</div>
-        <div class="cute-element" style="top:10px; right:10px;">🎀</div>
-        <!-- Section 5: I Love to Irritate You -->
-        <section>
-            <h2 class="section-title">I Love to Irritate You 😈</h2>
-            <div class="memory-grid">
-                <div class="memory-card">
-                    <img class="lazyload" src="irritate1.jpg" alt="Irritate 1">
-                    <div class="memory-caption">Your reactions are priceless 😂</div>
-                </div>
-                <div class="memory-card">
-                    <img class="lazyload" src="irritate2.jpg" alt="Irritate 2">
-                    <div class="memory-caption">Teasing you is my hobby 😜</div>
-                </div>
-                <div class="memory-card">
-                    <img class="lazyload" src="irritate3.jpg" alt="Irritate 3">
-                    <div class="memory-caption">Your angry face is cute 😠</div>
-                </div>
-                <div class="memory-card">
-                    <img class="lazyload" src="irritate4.jpg" alt="Irritate 4">
-                    <div class="memory-caption">I love how you forgive me 💕</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section 6: I Love Your Hugs -->
-        <section>
-            <h2 class="section-title">I Love Your Hugs 🤗</h2>
-            <div class="memory-grid">
-                <div class="memory-card">
-                    <img class="lazyload" src="hugs1.jpg" alt="Hugs 1">
-                    <div class="memory-caption">Your hugs are my safe place 💖</div>
-                </div>
-                <div class="memory-card">
-                    <img class="lazyload" src="hugs2.jpg" alt="Hugs 2">
-                    <div class="memory-caption">Warmest embrace ever 🌸</div>
-                </div>
-                <div class="memory-card">
-                    <img class="lazyload" src="hugs3.jpg" alt="Hugs 3">
-                    <div class="memory-caption">Hugs that heal everything 💕</div>
-                </div>
-                <div class="memory-card">
-                    <img class="lazyload" src="hugs4.jpg" alt="Hugs 4">
-                    <div class="memory-caption">I never want to let go 🤗</div>
-                </div>
-            </div>
-        </section>
-        <div class="floating-message" style="left:20%">You're Amazing! 💖</div>
-        <div class="floating-message" style="left:70%">Best GF Ever! 👑</div>
-        <!-- Section 7: I Love Your Kisses -->
-        <section>
-            <h2 class="section-title">I Love Your Kisses 😘</h2>
-            <div class="memory-grid">
-                <div class="memory-card">
-                    <img class="lazyload" src="kisses1.jpg" alt="Kisses 1">
-                    <div class="memory-caption">Sweetest kisses ever 💋</div>
-                </div>
-                <div class="memory-card">
-                    <img class="lazyload" src="kisses2.jpg" alt="Kisses 2">
-                    <div class="memory-caption">Your kisses are magical ✨</div>
-                </div>
-                <div class="memory-card">
-                    <img class="lazyload" src="kisses3.jpg" alt="Kisses 3">
-                    <div class="memory-caption">I crave your kisses 😍</div>
-                </div>
-                <div class="memory-card">
-                    <img class="lazyload" src="kisses4.jpg" alt="Kisses 4">
-                    <div class="memory-caption">Kisses that melt my heart 💖</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section 8: I Love Your Selfies -->
-        <section>
-            <h2 class="section-title">I Love Your Selfies 📸</h2>
-            <div class="memory-grid">
-                <div class="memory-card">
-                    <img class="lazyload" src="selfies1.jpg" alt="Selfies 1">
-                    <div class="memory-caption">Your selfies brighten my day 🌞</div>
-                </div>
-                <div class="memory-card">
-                    <img class="lazyload" src="selfies2.jpg" alt="Selfies 2">
-                    <div class="memory-caption">My favorite gallery 💕</div>
-                </div>
-                <div class="memory-card">
-                    <img class="lazyload" src="selfies3.jpg" alt="Selfies 3">
-                    <div class="memory-caption">You're a selfie queen 👑</div>
-                </div>
-                <div class="memory-card">
-                    <img class="lazyload" src="selfies4.jpg" alt="Selfies 4">
-                    <div class="memory-caption">Every selfie is a masterpiece 🎨</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section 9: I Love Your Anger -->
-        <section>
-            <h2 class="section-title">I Love Your Anger 😠</h2>
-            <div class="memory-grid">
-                <div class="memory-card">
-                    <img class="lazyload" src="anger1.jpg" alt="Anger 1">
-                    <div class="memory-caption">Your anger is cute 😊</div>
-                </div>
-                <div class="memory-card">
-                    <img class="lazyload" src="anger2.jpg" alt="Anger 2">
-                    <div class="memory-caption">Even when angry, you're lovely 💖</div>
-                </div>
-                <div class="memory-card">
-                    <img class="lazyload" src="anger3.jpg" alt="Anger 3">
-                    <div class="memory-caption">I love how you calm down 🌸</div>
-                </div>
-                <div class="memory-card">
-                    <img class="lazyload" src="anger4.jpg" alt="Anger 4">
-                    <div class="memory-caption">Your serious face is adorable 😍</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section 10: I Love When You Show Me New Clothes -->
-        <section>
-            <h2 class="section-title">I Love When You Show Me New Clothes 👗</h2>
-            <div class="memory-grid">
-                <div class="memory-card">
-                    <img class="lazyload" src="new-clothes1.jpg" alt="New Clothes 1">
-                    <div class="memory-caption">Your fashion sense is amazing 💃</div>
-                </div>
-                <div class="memory-card">
-                    <img class="lazyload" src="new-clothes2.jpg" alt="New Clothes 2">
-                    <div class="memory-caption">You slay in every outfit 👑</div>
-                </div>
-                <div class="memory-card">
-                    <img class="lazyload" src="new-clothes3.jpg" alt="New Clothes 3">
-                    <div class="memory-caption">My personal fashion icon 🌟</div>
-                </div>
-                <div class="memory-card">
-                    <img class="lazyload" src="new-clothes4.jpg" alt="New Clothes 4">
-                    <div class="memory-caption">You make every outfit special 💖</div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Section 11: You Love Maggie & Rasgulla, I Love to Eat You -->
-        <section>
-            <h2 class="section-title">You Love Maggie & Rasgulla, I Love to Eat You 😋</h2>
-            <div class="memory-grid">
-                <div class="memory-card">
-                    <img class="lazyload" src="maggie1.jpg" alt="Maggie 1">
-                    <div class="memory-caption">You + Maggie = Perfect combo 🍜</div>
-                </div>
-                <div class="memory-card">
-                    <img class="lazyload" src="rasgulla1.jpg" alt="Rasgulla 1">
-                    <div class="memory-caption">Rasgulla vs You? You're sweeter 🍬</div>
-                </div>
-                <div class="memory-card">
-                    <img class="lazyload" src="eat-you1.jpg" alt="Eat You 1">
-                    <div class="memory-caption">I love to eat you 😋</div>
-                </div>
-                <div class="memory-card">
-                    <img class="lazyload" src="eat-you2.jpg" alt="Eat You 2">
-                    <div class="memory-caption">You're my favorite dessert 🍨</div>
-                </div>
-            </div>
-        </section>
-        <section>
-
-             <!-- Food Love Section -->
-    <section class="food-love">
-        <div class="food-item">
-            <h3>Your Favorites 🍴</h3>
-            <p>Maggie 🍜</p>
-            <p>Rasgulla 🍡</p>
-        </div>
-        <div class="food-item">
-            <h3>My Favorite Meal 😋</h3>
-            <p>YOU! 😘</p>
-            <div class="emoji">🍽️💋</div>
-        </div>
-    </section>
-    <h2 class="section-title">Our Beautiful Journey Together 💑</h2>
-
-
 <div class="timeline">
     <!-- First Meeting -->
     <div class="timeline-item left">
@@ -1663,9 +1202,9 @@ body {
             <div class="timeline-title">Where Our Story Began ✨</div>
             <p>The magical moment when our eyes first met and our hearts knew this was something special.</p>
             <div class="timeline-photos">
-                <img class="lazyload" src="first-meet1.jpg" alt="First Meeting" class="timeline-photo">
-                <img class="lazyload" src="first-meet2.jpg" alt="First Meeting" class="timeline-photo">
-                <img class="lazyload" src="first-meet3.jpg" alt="First Meeting" class="timeline-photo">
+                <img src="first-meet1.jpg" alt="First Meeting" class="timeline-photo">
+                <img src="first-meet2.jpg" alt="First Meeting" class="timeline-photo">
+                <img src="first-meet3.jpg" alt="First Meeting" class="timeline-photo">
             </div>
         </div>
     </div>
@@ -1677,9 +1216,9 @@ body {
             <div class="timeline-title">Our First Hand Hold 🤝</div>
             <p>That beautiful moment when I first held your hand at Hathni Mata Waterfall. My heart was racing, and everything felt perfect.</p>
             <div class="timeline-photos">
-                <img class="lazyload" src="pavagadh1.jpg" alt="Pavagadh Trip" class="timeline-photo">
-                <img class="lazyload" src="pavagadh2.jpg" alt="Pavagadh Trip" class="timeline-photo">
-                <img class="lazyload" src="pavagadh3.jpg" alt="Pavagadh Trip" class="timeline-photo">
+                <img src="pavagadh1.jpg" alt="Pavagadh Trip" class="timeline-photo">
+                <img src="pavagadh2.jpg" alt="Pavagadh Trip" class="timeline-photo">
+                <img src="pavagadh3.jpg" alt="Pavagadh Trip" class="timeline-photo">
             </div>
         </div>
     </div>
@@ -1691,9 +1230,9 @@ body {
             <div class="timeline-title">Adventure on Two Wheels 🏍️</div>
             <p>Our first long bike ride together, feeling the wind and sharing endless conversations.</p>
             <div class="timeline-photos">
-                <img class="lazyload" src="bike1.jpg" alt="Bike Ride" class="timeline-photo">
-                <img class="lazyload" src="bike2.jpg" alt="Bike Ride" class="timeline-photo">
-                <img class="lazyload" src="bike3.jpg" alt="Bike Ride" class="timeline-photo">
+                <img src="bike1.jpg" alt="Bike Ride" class="timeline-photo">
+                <img src="bike2.jpg" alt="Bike Ride" class="timeline-photo">
+                <img src="bike3.jpg" alt="Bike Ride" class="timeline-photo">
             </div>
         </div>
     </div>
@@ -1703,11 +1242,11 @@ body {
         <div class="timeline-content">
             <div class="timeline-date">First Movie Theater Date</div>
             <div class="timeline-title">Cinema Magic 🎬</div>
-            <p>Our first movie date, sharing Pucchies and stealing glances at each other in the dark.</p>
+            <p>Our first movie date, sharing popcorn and stealing glances at each other in the dark.</p>
             <div class="timeline-photos">
-                <img class="lazyload" src="movie1.jpg" alt="Movie Date" class="timeline-photo">
-                <img class="lazyload" src="movie2.jpg" alt="Movie Date" class="timeline-photo">
-                <img class="lazyload" src="movie3.jpg" alt="Movie Date" class="timeline-photo">
+                <img src="movie1.jpg" alt="Movie Date" class="timeline-photo">
+                <img src="movie2.jpg" alt="Movie Date" class="timeline-photo">
+                <img src="movie3.jpg" alt="Movie Date" class="timeline-photo">
             </div>
         </div>
     </div>
@@ -1719,9 +1258,9 @@ body {
             <div class="timeline-title">Spiritual Journey Together 🕉️</div>
             <p>Our beautiful trip to Poicha, sharing spiritual moments and creating lasting memories.</p>
             <div class="timeline-photos">
-                <img class="lazyload" src="poicha1.jpg" alt="Poicha Trip" class="timeline-photo">
-                <img class="lazyload" src="poicha2.jpg" alt="Poicha Trip" class="timeline-photo">
-                <img class="lazyload" src="poicha3.jpg" alt="Poicha Trip" class="timeline-photo">
+                <img src="poicha1.jpg" alt="Poicha Trip" class="timeline-photo">
+                <img src="poicha2.jpg" alt="Poicha Trip" class="timeline-photo">
+                <img src="poicha3.jpg" alt="Poicha Trip" class="timeline-photo">
             </div>
         </div>
     </div>
@@ -1733,9 +1272,9 @@ body {
             <div class="timeline-title">Adventure in Rashulpur 🌟</div>
             <p>Exploring Rashulpur together, every moment filled with joy and laughter.</p>
             <div class="timeline-photos">
-                <img class="lazyload" src="rashulpur1.jpg" alt="Rashulpur Trip" class="timeline-photo">
-                <img class="lazyload" src="rashulpur2.jpg" alt="Rashulpur Trip" class="timeline-photo">
-                <img class="lazyload" src="rashulpur3.jpg" alt="Rashulpur Trip" class="timeline-photo">
+                <img src="rashulpur1.jpg" alt="Rashulpur Trip" class="timeline-photo">
+                <img src="rashulpur2.jpg" alt="Rashulpur Trip" class="timeline-photo">
+                <img src="rashulpur3.jpg" alt="Rashulpur Trip" class="timeline-photo">
             </div>
         </div>
     </div>
@@ -1747,9 +1286,9 @@ body {
             <div class="timeline-title">Divine Blessings at Dakor 🙏</div>
             <p>Our special trip to Dakor, seeking blessings and making beautiful memories together.</p>
             <div class="timeline-photos">
-                <img class="lazyload" src="dakor1.jpg" alt="Dakor Trip" class="timeline-photo">
-                <img class="lazyload" src="dakor2.jpg" alt="Dakor Trip" class="timeline-photo">
-                <img class="lazyload" src="dakor3.jpg" alt="Dakor Trip" class="timeline-photo">
+                <img src="dakor1.jpg" alt="Dakor Trip" class="timeline-photo">
+                <img src="dakor2.jpg" alt="Dakor Trip" class="timeline-photo">
+                <img src="dakor3.jpg" alt="Dakor Trip" class="timeline-photo">
             </div>
         </div>
     </div>
@@ -1771,7 +1310,7 @@ body {
             <section class="end-speech">
         <h2 class="section-title">My Heart Belongs to You ❤️</h2>
         <p>My dearest love,</p>
-        <p>Every moment with you feels like a beautiful dream come true. From our first meeting to all our adventures together - Hathni mata waterfall, Poicha, Rashulpur, Dakor - each memory is etched in my heart forever.</p>
+        <p>Every moment with you feels like a beautiful dream come true. From our first meeting to all our adventures together - Hathani Mata Waterfall, Poicha, Rashulpur, Dakor - each memory is etched in my heart forever.</p>
         <p>I love everything about you - your beautiful bindi look, how adorable you are in your ice cream suit, your precious pucchis, your stunning dresses, and even your cute anger. Your hugs heal my soul, your kisses melt my heart, and your selfies brighten my days.</p>
         <p>I love how you show me your new clothes with such excitement, how you enjoy your Maggie and rasgulla, and how perfectly you fit in my arms. Even when I irritate you (which I love to do 😈), your reactions make me fall in love with you all over again.</p>
         <p>You're not just my girlfriend/wife - you're my best friend, my support system, my adventure partner, and my soulmate. Every day with you is a gift I cherish.</p>
@@ -1783,6 +1322,455 @@ body {
     </section>
     </div>
 
+<script>
+function initializeAnimations() {
+    // Initialize floating hearts
+    const heartsContainer = document.getElementById('floatingHearts');
+    for (let i = 0; i < 50; i++) {
+        const heart = document.createElement('div');
+        heart.className = 'heart';
+        heart.innerHTML = '❤️';
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.animationDelay = Math.random() * 15 + 's';
+        heartsContainer.appendChild(heart);
+    }
 
+    // Add animation delays to memory cards
+    document.querySelectorAll('.memory-card').forEach((card, index) => {
+        card.style.setProperty('--card-index', index);
+    });
+
+    // Add animation delays to timeline items
+    document.querySelectorAll('.timeline-content').forEach((item, index) => {
+        item.style.setProperty('--timeline-index', index);
+    });
+
+    
+}
+
+function initAdvancedInteractions() {
+    const memoryCards = document.querySelectorAll('.memory-card');
+    const scrollHint = document.createElement('div');
+    
+    // Scroll Hint Setup
+    scrollHint.classList.add('scroll-hint');
+    scrollHint.innerHTML = '✨ Keep scrolling to see more! 💕';
+    document.body.appendChild(scrollHint);
+
+    // Heart Burst Effect
+    function createHeartBurst(x, y) {
+        const burstContainer = document.createElement('div');
+        burstContainer.classList.add('heart-burst');
+        burstContainer.style.left = `${x}px`;
+        burstContainer.style.top = `${y}px`;
+
+        for (let i = 0; i < 5; i++) {
+            const heart = document.createElement('span');
+            heart.innerHTML = '❤️';
+            heart.style.position = 'absolute';
+            heart.style.fontSize = `${Math.random() * 20 + 10}px`;
+            heart.style.left = `${Math.random() * 100 - 50}px`;
+            heart.style.top = `${Math.random() * 100 - 50}px`;
+            heart.style.animation = 'heartBurst 0.5s ease-out forwards';
+            burstContainer.appendChild(heart);
+        }
+
+        document.body.appendChild(burstContainer);
+        setTimeout(() => {
+            document.body.removeChild(burstContainer);
+        }, 1000);
+    }
+
+    // Mobile Caption Interaction
+    function setupMobileCaption() {
+        memoryCards.forEach(card => {
+            let touchCount = 0;
+            let touchTimer = null;
+            
+            card.addEventListener('touchstart', (e) => {
+                // Clear any existing timer
+                if (touchTimer) clearTimeout(touchTimer);
+
+                touchCount++;
+                
+                if (touchCount === 1) {
+                    // First touch shows caption
+                    card.classList.add('caption-visible');
+                    
+                    // Create heart burst effect
+                    const touch = e.touches[0];
+                    createHeartBurst(touch.clientX, touch.clientY);
+
+                    // Reset touch count after 3 seconds
+                    touchTimer = setTimeout(() => {
+                        touchCount = 0;
+                    }, 3000);
+                } else if (touchCount === 2) {
+                    // Second touch (full image view or any other action)
+                    card.classList.remove('caption-visible');
+                    touchCount = 0;
+                }
+            });
+
+            // Desktop hover effects
+            card.addEventListener('mouseenter', () => {
+                const caption = card.querySelector('.memory-caption');
+                caption.style.transform = 'scale(1.05) rotate(2deg)';
+            });
+
+            card.addEventListener('mouseleave', () => {
+                const caption = card.querySelector('.memory-caption');
+                caption.style.transform = 'scale(1) rotate(0deg)';
+            });
+        });
+    }
+
+    
+    
+    
+
+    // Hide scroll hint
+    function hideScrollHint() {
+        scrollHint.style.display = 'none';
+    }
+
+    // Event Listeners
+    window.addEventListener('scroll', () => {
+        hideScrollHint();
+    }, { once: true });
+
+    // Random Sparkle Effect
+    function createSparkle(element) {
+        const sparkle = document.createElement('span');
+        sparkle.textContent = '✨';
+        sparkle.style.position = 'absolute';
+        sparkle.style.fontSize = '1.5rem';
+        sparkle.style.top = `${Math.random() * 100}%`;
+        sparkle.style.left = `${Math.random() * 100}%`;
+        sparkle.style.opacity = '0';
+        sparkle.style.animation = 'twinkle 1s infinite';
+        element.appendChild(sparkle);
+
+        setTimeout(() => {
+            sparkle.remove();
+        }, 2000);
+    }
+
+    // Add occasional sparkles to section titles
+    document.querySelectorAll('.section-title').forEach(title => {
+        setInterval(() => {
+            if (Math.random() > 0.5) {
+                createSparkle(title);
+            }
+        }, 3000);
+    });
+
+    // Initialize mobile interactions
+    setupMobileCaption();
+
+    // Periodic Scroll Hint
+    setTimeout(() => {
+        if (window.pageYOffset < 100) {
+            scrollHint.style.display = 'block';
+        }
+    }, 2000);
+}
+
+// Run both animation initializations on page load
+window.addEventListener('load', () => {
+    initializeAnimations();
+    initAdvancedInteractions();
+});
+
+// Audio Manager
+class AudioExperience {
+    constructor() {
+        this.backgroundMusic = new Audio('/romantic-music.mp3');
+        this.soundEffects = {
+            heartBurst: new Audio('/heart-burst.wav'),
+            cardTouch: new Audio('/card-touch.wav'),
+            sparkle: new Audio('/sparkle.wav'),
+            scroll: new Audio('/scroll.wav')
+        };
+
+        this.initializeMusicControls();
+        this.setupSoundEffects();
+    }
+
+    initializeMusicControls() {
+        // Create music control UI
+        const musicControl = document.createElement('div');
+        musicControl.innerHTML = `
+            <button id="music-toggle" style="
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                z-index: 1000;
+                background: rgba(255,133,162,0.8);
+                border: none;
+                color: white;
+                padding: 10px;
+                border-radius: 50%;
+            ">🎵</button>
+        `;
+        document.body.appendChild(musicControl);
+
+        const toggleButton = document.getElementById('music-toggle');
+        
+        toggleButton.addEventListener('click', () => {
+            if (this.backgroundMusic.paused) {
+                this.backgroundMusic.loop = true;
+                this.backgroundMusic.volume = 0.3; // Soft volume
+                this.backgroundMusic.play();
+                toggleButton.textContent = '🔊';
+            } else {
+                this.backgroundMusic.pause();
+                toggleButton.textContent = '🔇';
+            }
+        });
+    }
+
+    setupSoundEffects() {
+        // Heart Burst Sound
+        window.addEventListener('heartBurst', (e) => {
+            this.playSoundEffect('heartBurst');
+        });
+
+        // Card Touch Sound
+        document.querySelectorAll('.memory-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                this.playSoundEffect('cardTouch');
+            });
+        });
+
+        // Scroll Sound
+        let lastScrollTop = 0;
+        window.addEventListener('scroll', () => {
+            const st = window.pageYOffset || document.documentElement.scrollTop;
+            if (Math.abs(st - lastScrollTop) > 100) {
+                this.playSoundEffect('scroll');
+                lastScrollTop = st;
+            }
+        });
+    }
+
+    playSoundEffect(effectName) {
+        const sound = this.soundEffects[effectName];
+        if (sound) {
+            sound.currentTime = 0;
+            sound.play().catch(e => console.log('Sound play error:', e));
+        }
+    }
+}
+
+// Initialize on page load
+window.addEventListener('load', () => {
+    window.audioExperience = new AudioExperience();
+});
+
+
+
+class InteractionAnimations {
+    constructor() {
+        this.initializeTiltEffect();
+        this.initializeHeartCursor();
+    }
+
+    initializeTiltEffect() {
+        const memoryCards = document.querySelectorAll('.memory-card');
+        
+        memoryCards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const centerX = rect.left + rect.width / 2;
+                const centerY = rect.top + rect.height / 2;
+                
+                const angleX = (e.clientY - centerY) / 20;
+                const angleY = -(e.clientX - centerX) / 20;
+                
+                card.style.transform = `
+                    perspective(1000px) 
+                    rotateX(${angleX}deg) 
+                    rotateY(${angleY}deg) 
+                    scale(1.05)
+                `;
+                card.style.transition = 'transform 0.1s';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
+            });
+        });
+    }
+
+    initializeHeartCursor() {
+        const cursor = document.createElement('div');
+        cursor.innerHTML = '❤️';
+        cursor.style.position = 'fixed';
+        cursor.style.pointerEvents = 'none';
+        cursor.style.zIndex = '9999';
+        cursor.style.fontSize = '20px';
+        cursor.style.opacity = '0.7';
+        document.body.appendChild(cursor);
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = `${e.clientX + 10}px`;
+            cursor.style.top = `${e.clientY + 10}px`;
+        });
+    }
+
+     
+
+    createComplexHeartBurst(x, y) {
+        const burstContainer = document.createElement('div');
+        burstContainer.style.position = 'fixed';
+        burstContainer.style.left = `${x}px`;
+        burstContainer.style.top = `${y}px`;
+        burstContainer.style.zIndex = '9999';
+        document.body.appendChild(burstContainer);
+
+        // Multiple heart burst variations
+        for (let i = 0; i < 10; i++) {
+            const heart = document.createElement('span');
+            heart.innerHTML = '❤️';
+            heart.style.position = 'absolute';
+            heart.style.fontSize = `${Math.random() * 30 + 10}px`;
+            heart.style.left = `${Math.random() * 200 - 100}px`;
+            heart.style.top = `${Math.random() * 200 - 100}px`;
+            heart.style.opacity = '0';
+            heart.style.animation = `
+                heartBurst 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards,
+                fadeOut 0.8s ease-out forwards
+            `;
+            burstContainer.appendChild(heart);
+        }
+
+        // Remove container after animation
+        setTimeout(() => {
+            document.body.removeChild(burstContainer);
+        }, 1000);
+    }
+}
+
+// Add global styles for heart burst
+const style = document.createElement('style');
+style.innerHTML = `
+@keyframes heartBurst {
+    0% { transform: scale(0) rotate(0deg); }
+    50% { transform: scale(1.5) rotate(180deg); }
+    100% { transform: scale(3) rotate(360deg); }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+`;
+document.head.appendChild(style);
+
+// Initialize on page load
+window.addEventListener('load', () => {
+    window.interactionAnimations = new InteractionAnimations();
+});
+
+
+
+// Initialize on page load
+window.addEventListener('load', () => {
+    window.personalizationSystem = new PersonalizationSystem();
+});
+    // Add Sparkle Effect to Cards
+function addSparkleEffect() {
+    const memoryCards = document.querySelectorAll('.memory-card');
+    memoryCards.forEach(card => {
+        const sparkle = document.createElement('span');
+        sparkle.textContent = '✨';
+        sparkle.style.position = 'absolute';
+        sparkle.style.fontSize = '2rem';
+        sparkle.style.top = `${Math.random() * 100}%`;
+        sparkle.style.left = `${Math.random() * 100}%`;
+        sparkle.style.opacity = '0';
+        sparkle.style.animation = 'sparkle 2s infinite';
+        card.appendChild(sparkle);
+
+        setTimeout(() => {
+            sparkle.remove();
+        }, 2000);
+    });
+}
+
+// Add Heart Burst Effect on Click
+function addHeartBurstEffect() {
+    const memoryCards = document.querySelectorAll('.memory-card');
+    memoryCards.forEach(card => {
+        card.addEventListener('click', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            const heart = document.createElement('span');
+            heart.textContent = '❤️';
+            heart.style.position = 'absolute';
+            heart.style.left = `${x}px`;
+            heart.style.top = `${y}px`;
+            heart.style.fontSize = '2rem';
+            heart.style.animation = 'heartBurst 1s ease-out forwards';
+            card.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 1000);
+        });
+    });
+}
+
+// Initialize Effects on Page Load
+window.addEventListener('load', () => {
+    addSparkleEffect();
+    addHeartBurstEffect();
+});
+
+    // Add emoji reaction when clicking photos
+document.querySelectorAll('.memory-card').forEach(card => {
+    card.addEventListener('click', (e) => {
+        const emoji = ['😍','💖','🌸','🎀','🍰','🦋'][Math.floor(Math.random()*6)];
+        const floatEmoji = document.createElement('div');
+        floatEmoji.style = `
+            position: absolute;
+            left: ${e.offsetX}px;
+            top: ${e.offsetY}px;
+            font-size: 2rem;
+            animation: emojiFloat 1s ease-out;
+        `;
+        floatEmoji.textContent = emoji;
+        card.appendChild(floatEmoji);
+        setTimeout(() => floatEmoji.remove(), 1000);
+    });
+});
+function burstConfetti() {
+    for(let i=0; i<50; i++) {
+        const confetti = document.createElement('div');
+        confetti.style = `
+            position: fixed;
+            left: ${Math.random() * 100}vw;
+            top: ${Math.random() * 100}vh;
+            font-size: 1.5rem;
+            animation: confettiFall ${Math.random()*3+2}s linear;
+        `;
+        confetti.innerHTML = ['🎉','🎊','✨','🎈','🎁','💖'][Math.floor(Math.random()*6)];
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 3000);
+    }
+}
+document.addEventListener('mousemove', (e) => {
+    const trail = document.createElement('div');
+    trail.className = 'cursor-trail';
+    trail.innerHTML = '🌸';
+    trail.style.left = e.clientX + 'px';
+    trail.style.top = e.clientY + 'px';
+    document.body.appendChild(trail);
+    setTimeout(() => trail.remove(), 1000);
+});
+</script>
 </body>
 </html>
