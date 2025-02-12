@@ -786,6 +786,589 @@ body {
     }
 }
     </style>
+<style>
+    .timeline {
+        position: relative;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px 0;
+    }
+
+    .timeline::after {
+        content: '';
+        position: absolute;
+        width: 6px;
+        background-color: var(--accent-color);
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        margin-left: -3px;
+        border-radius: 3px;
+    }
+
+    .timeline-item {
+        padding: 10px 40px;
+        position: relative;
+        width: 50%;
+        animation: fadeIn 0.8s ease-out forwards;
+    }
+
+    .timeline-item::after {
+        content: '';
+        position: absolute;
+        width: 25px;
+        height: 25px;
+        right: -17px;
+        background-color: var(--main-color);
+        border: 4px solid var(--accent-color);
+        top: 15px;
+        border-radius: 50%;
+        z-index: 1;
+    }
+
+    .left {
+        left: 0;
+    }
+
+    .right {
+        left: 50%;
+    }
+
+    .right::after {
+        left: -16px;
+    }
+
+    .timeline-content {
+        padding: 20px;
+        background-color: white;
+        position: relative;
+        border-radius: 15px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+    }
+
+    .timeline-content:hover {
+        transform: scale(1.02);
+    }
+
+    .timeline-date {
+        font-family: 'Pacifico', cursive;
+        color: var(--main-color);
+        font-size: 1.2em;
+        margin-bottom: 10px;
+    }
+
+    .timeline-title {
+        font-weight: bold;
+        margin-bottom: 10px;
+        color: #4a2a3f;
+    }
+
+    .timeline-photos {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 15px;
+    }
+
+    .timeline-photo {
+        width: calc(50% - 5px);
+        aspect-ratio: 1;
+        object-fit: cover;
+        border-radius: 8px;
+        transition: transform 0.3s ease;
+    }
+
+    .timeline-photo:hover {
+        transform: scale(1.1);
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        .timeline::after {
+            left: 31px;
+        }
+
+        .timeline-item {
+            width: 100%;
+            padding-left: 70px;
+            padding-right: 25px;
+        }
+
+        .right {
+            left: 0;
+        }
+
+        .timeline-item::after {
+            left: 15px;
+        }
+
+        .timeline-photos {
+            flex-direction: column;
+        }
+
+        .timeline-photo {
+            width: 100%;
+        }
+    }
+</style>
+
+<script>
+    function initializeAnimations() {
+        // Initialize floating hearts
+        const heartsContainer = document.getElementById('floatingHearts');
+        for (let i = 0; i < 50; i++) {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDelay = Math.random() * 15 + 's';
+            heartsContainer.appendChild(heart);
+        }
+    
+        // Add animation delays to memory cards
+        document.querySelectorAll('.memory-card').forEach((card, index) => {
+            card.style.setProperty('--card-index', index);
+        });
+    
+        // Add animation delays to timeline items
+        document.querySelectorAll('.timeline-content').forEach((item, index) => {
+            item.style.setProperty('--timeline-index', index);
+        });
+    
+        
+    }
+    
+    function initAdvancedInteractions() {
+        const memoryCards = document.querySelectorAll('.memory-card');
+        const scrollHint = document.createElement('div');
+        
+        // Scroll Hint Setup
+        scrollHint.classList.add('scroll-hint');
+        scrollHint.innerHTML = '✨ Keep scrolling to see more! 💕';
+        document.body.appendChild(scrollHint);
+    
+        // Heart Burst Effect
+        function createHeartBurst(x, y) {
+            const burstContainer = document.createElement('div');
+            burstContainer.classList.add('heart-burst');
+            burstContainer.style.left = `${x}px`;
+            burstContainer.style.top = `${y}px`;
+    
+            for (let i = 0; i < 5; i++) {
+                const heart = document.createElement('span');
+                heart.innerHTML = '❤️';
+                heart.style.position = 'absolute';
+                heart.style.fontSize = `${Math.random() * 20 + 10}px`;
+                heart.style.left = `${Math.random() * 100 - 50}px`;
+                heart.style.top = `${Math.random() * 100 - 50}px`;
+                heart.style.animation = 'heartBurst 0.5s ease-out forwards';
+                burstContainer.appendChild(heart);
+            }
+    
+            document.body.appendChild(burstContainer);
+            setTimeout(() => {
+                document.body.removeChild(burstContainer);
+            }, 1000);
+        }
+    
+        function setupMobileCaption() {
+        memoryCards.forEach(card => {
+            let touchStartY = 0;
+            let isScrolling = false;
+    
+            // Touch Start Handler
+            card.addEventListener('touchstart', (e) => {
+                touchStartY = e.touches[0].clientY;
+                isScrolling = false;
+            });
+    
+            // Touch Move Handler (detect scroll)
+            card.addEventListener('touchmove', (e) => {
+                const currentY = e.touches[0].clientY;
+                if (Math.abs(currentY - touchStartY) > 5) {
+                    isScrolling = true;
+                }
+            });
+    
+            // Touch End Handler
+            card.addEventListener('touchend', (e) => {
+                if (!isScrolling) {
+                    // Only toggle caption if not scrolling
+                    e.preventDefault();
+                    card.classList.toggle('caption-visible');
+                    
+                    // Create heart burst effect
+                    const rect = card.getBoundingClientRect();
+                    createHeartBurst(rect.left + rect.width/2, rect.top + rect.height/2);
+                }
+                isScrolling = false;
+            });
+    
+            // Click Handler for Desktop
+            card.addEventListener('click', () => {
+                card.classList.toggle('caption-visible');
+            });
+        });
+    }
+    
+        
+        
+        
+    
+        // Hide scroll hint
+        function hideScrollHint() {
+            scrollHint.style.display = 'none';
+        }
+    
+        // Event Listeners
+        window.addEventListener('scroll', () => {
+            hideScrollHint();
+        }, { once: true });
+    
+        // Random Sparkle Effect
+        function createSparkle(element) {
+            const sparkle = document.createElement('span');
+            sparkle.textContent = '✨';
+            sparkle.style.position = 'absolute';
+            sparkle.style.fontSize = '1.5rem';
+            sparkle.style.top = `${Math.random() * 100}%`;
+            sparkle.style.left = `${Math.random() * 100}%`;
+            sparkle.style.opacity = '0';
+            sparkle.style.animation = 'twinkle 1s infinite';
+            element.appendChild(sparkle);
+    
+            setTimeout(() => {
+                sparkle.remove();
+            }, 2000);
+        }
+    
+        // Add occasional sparkles to section titles
+        document.querySelectorAll('.section-title').forEach(title => {
+            setInterval(() => {
+                if (Math.random() > 0.5) {
+                    createSparkle(title);
+                }
+            }, 3000);
+        });
+    
+        // Initialize mobile interactions
+        setupMobileCaption();
+    
+        // Periodic Scroll Hint
+        setTimeout(() => {
+            if (window.pageYOffset < 100) {
+                scrollHint.style.display = 'block';
+            }
+        }, 2000);
+    }
+    
+    // Run both animation initializations on page load
+    window.addEventListener('load', () => {
+        initializeAnimations();
+        initAdvancedInteractions();
+    });
+    
+    // Audio Manager
+    class AudioExperience {
+        constructor() {
+            this.backgroundMusic = new Audio('/romantic-music.mp3');
+            this.soundEffects = {
+                heartBurst: new Audio('/heart-burst.wav'),
+                cardTouch: new Audio('/card-touch.wav'),
+                sparkle: new Audio('/sparkle.wav'),
+                scroll: new Audio('/scroll.wav')
+            };
+    
+            this.initializeMusicControls();
+            this.setupSoundEffects();
+        }
+    
+        initializeMusicControls() {
+            // Create music control UI
+            const musicControl = document.createElement('div');
+            musicControl.innerHTML = `
+                <button id="music-toggle" style="
+                    position: fixed;
+                    bottom: 20px;
+                    right: 20px;
+                    z-index: 1000;
+                    background: rgba(255,133,162,0.8);
+                    border: none;
+                    color: white;
+                    padding: 10px;
+                    border-radius: 50%;
+                ">🎵</button>
+            `;
+            document.body.appendChild(musicControl);
+    
+            const toggleButton = document.getElementById('music-toggle');
+            
+            toggleButton.addEventListener('click', () => {
+                if (this.backgroundMusic.paused) {
+                    this.backgroundMusic.loop = true;
+                    this.backgroundMusic.volume = 0.3; // Soft volume
+                    this.backgroundMusic.play();
+                    toggleButton.textContent = '🔊';
+                } else {
+                    this.backgroundMusic.pause();
+                    toggleButton.textContent = '🔇';
+                }
+            });
+        }
+    
+        setupSoundEffects() {
+            // Heart Burst Sound
+            window.addEventListener('heartBurst', (e) => {
+                this.playSoundEffect('heartBurst');
+            });
+    
+            // Card Touch Sound
+            document.querySelectorAll('.memory-card').forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    this.playSoundEffect('cardTouch');
+                });
+            });
+    
+            // Scroll Sound
+            let lastScrollTop = 0;
+            window.addEventListener('scroll', () => {
+                const st = window.pageYOffset || document.documentElement.scrollTop;
+                if (Math.abs(st - lastScrollTop) > 100) {
+                    this.playSoundEffect('scroll');
+                    lastScrollTop = st;
+                }
+            });
+        }
+    
+        playSoundEffect(effectName) {
+            const sound = this.soundEffects[effectName];
+            if (sound) {
+                sound.currentTime = 0;
+                sound.play().catch(e => console.log('Sound play error:', e));
+            }
+        }
+    }
+    
+    // Initialize on page load
+    window.addEventListener('load', () => {
+        window.audioExperience = new AudioExperience();
+    });
+    
+    
+    
+    class InteractionAnimations {
+        constructor() {
+            this.initializeTiltEffect();
+            this.initializeHeartCursor();
+        }
+    
+        initializeTiltEffect() {
+            const memoryCards = document.querySelectorAll('.memory-card');
+            
+            memoryCards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const centerX = rect.left + rect.width / 2;
+                    const centerY = rect.top + rect.height / 2;
+                    
+                    const angleX = (e.clientY - centerY) / 20;
+                    const angleY = -(e.clientX - centerX) / 20;
+                    
+                    card.style.transform = `
+                        perspective(1000px) 
+                        rotateX(${angleX}deg) 
+                        rotateY(${angleY}deg) 
+                        scale(1.05)
+                    `;
+                    card.style.transition = 'transform 0.1s';
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
+                });
+            });
+        }
+    
+        initializeHeartCursor() {
+            const cursor = document.createElement('div');
+            cursor.innerHTML = '❤️';
+            cursor.style.position = 'fixed';
+            cursor.style.pointerEvents = 'none';
+            cursor.style.zIndex = '9999';
+            cursor.style.fontSize = '20px';
+            cursor.style.opacity = '0.7';
+            document.body.appendChild(cursor);
+    
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.left = `${e.clientX + 10}px`;
+                cursor.style.top = `${e.clientY + 10}px`;
+            });
+        }
+    
+         
+    
+        createComplexHeartBurst(x, y) {
+            const burstContainer = document.createElement('div');
+            burstContainer.style.position = 'fixed';
+            burstContainer.style.left = `${x}px`;
+            burstContainer.style.top = `${y}px`;
+            burstContainer.style.zIndex = '9999';
+            document.body.appendChild(burstContainer);
+    
+            // Multiple heart burst variations
+            for (let i = 0; i < 10; i++) {
+                const heart = document.createElement('span');
+                heart.innerHTML = '❤️';
+                heart.style.position = 'absolute';
+                heart.style.fontSize = `${Math.random() * 30 + 10}px`;
+                heart.style.left = `${Math.random() * 200 - 100}px`;
+                heart.style.top = `${Math.random() * 200 - 100}px`;
+                heart.style.opacity = '0';
+                heart.style.animation = `
+                    heartBurst 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards,
+                    fadeOut 0.8s ease-out forwards
+                `;
+                burstContainer.appendChild(heart);
+            }
+    
+            // Remove container after animation
+            setTimeout(() => {
+                document.body.removeChild(burstContainer);
+            }, 1000);
+        }
+    }
+    
+    // Add global styles for heart burst
+    const style = document.createElement('style');
+    style.innerHTML = `
+    @keyframes heartBurst {
+        0% { transform: scale(0) rotate(0deg); }
+        50% { transform: scale(1.5) rotate(180deg); }
+        100% { transform: scale(3) rotate(360deg); }
+    }
+    
+    @keyframes fadeOut {
+        from { opacity: 1; }
+        to { opacity: 0; }
+    }
+    `;
+    document.head.appendChild(style);
+    
+    // Initialize on page load
+    window.addEventListener('load', () => {
+        window.interactionAnimations = new InteractionAnimations();
+    });
+    
+    
+    
+    // Initialize on page load
+    window.addEventListener('load', () => {
+        window.personalizationSystem = new PersonalizationSystem();
+    });
+        // Add Sparkle Effect to Cards
+    function addSparkleEffect() {
+        const memoryCards = document.querySelectorAll('.memory-card');
+        memoryCards.forEach(card => {
+            const sparkle = document.createElement('span');
+            sparkle.textContent = '✨';
+            sparkle.style.position = 'absolute';
+            sparkle.style.fontSize = '2rem';
+            sparkle.style.top = `${Math.random() * 100}%`;
+            sparkle.style.left = `${Math.random() * 100}%`;
+            sparkle.style.opacity = '0';
+            sparkle.style.animation = 'sparkle 2s infinite';
+            card.appendChild(sparkle);
+    
+            setTimeout(() => {
+                sparkle.remove();
+            }, 2000);
+        });
+    }
+    
+    // Add Heart Burst Effect on Click
+    function addHeartBurstEffect() {
+        const memoryCards = document.querySelectorAll('.memory-card');
+        memoryCards.forEach(card => {
+            card.addEventListener('click', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+    
+                const heart = document.createElement('span');
+                heart.textContent = '❤️';
+                heart.style.position = 'absolute';
+                heart.style.left = `${x}px`;
+                heart.style.top = `${y}px`;
+                heart.style.fontSize = '2rem';
+                heart.style.animation = 'heartBurst 1s ease-out forwards';
+                card.appendChild(heart);
+    
+                setTimeout(() => {
+                    heart.remove();
+                }, 1000);
+            });
+        });
+    }
+    
+    // Initialize Effects on Page Load
+    window.addEventListener('load', () => {
+        addSparkleEffect();
+        addHeartBurstEffect();
+    });
+    
+        // Add emoji reaction when clicking photos
+    document.querySelectorAll('.memory-card').forEach(card => {
+        card.addEventListener('click', (e) => {
+            const emoji = ['😍','💖','🌸','🎀','🍰','🦋'][Math.floor(Math.random()*6)];
+            const floatEmoji = document.createElement('div');
+            floatEmoji.style = `
+                position: absolute;
+                left: ${e.offsetX}px;
+                top: ${e.offsetY}px;
+                font-size: 2rem;
+                animation: emojiFloat 1s ease-out;
+            `;
+            floatEmoji.textContent = emoji;
+            card.appendChild(floatEmoji);
+            setTimeout(() => floatEmoji.remove(), 1000);
+        });
+    });
+    function burstConfetti() {
+        for(let i=0; i<50; i++) {
+            const confetti = document.createElement('div');
+            confetti.style = `
+                position: fixed;
+                left: ${Math.random() * 100}vw;
+                top: ${Math.random() * 100}vh;
+                font-size: 1.5rem;
+                animation: confettiFall ${Math.random()*3+2}s linear;
+            `;
+            confetti.innerHTML = ['🎉','🎊','✨','🎈','🎁','💖'][Math.floor(Math.random()*6)];
+            document.body.appendChild(confetti);
+            setTimeout(() => confetti.remove(), 3000);
+        }
+    }
+    document.addEventListener('mousemove', (e) => {
+        const trail = document.createElement('div');
+        trail.className = 'cursor-trail';
+        trail.innerHTML = '🌸';
+        trail.style.left = e.clientX + 'px';
+        trail.style.top = e.clientY + 'px';
+        document.body.appendChild(trail);
+        setTimeout(() => trail.remove(), 1000);
+    });
+    </script>
 </head>
 <body>
     <!-- Floating Hearts Animation -->
@@ -1068,142 +1651,7 @@ body {
         </div>
     </section>
     <h2 class="section-title">Our Beautiful Journey Together 💑</h2>
-<style>
-    .timeline {
-        position: relative;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 40px 0;
-    }
 
-    .timeline::after {
-        content: '';
-        position: absolute;
-        width: 6px;
-        background-color: var(--accent-color);
-        top: 0;
-        bottom: 0;
-        left: 50%;
-        margin-left: -3px;
-        border-radius: 3px;
-    }
-
-    .timeline-item {
-        padding: 10px 40px;
-        position: relative;
-        width: 50%;
-        animation: fadeIn 0.8s ease-out forwards;
-    }
-
-    .timeline-item::after {
-        content: '';
-        position: absolute;
-        width: 25px;
-        height: 25px;
-        right: -17px;
-        background-color: var(--main-color);
-        border: 4px solid var(--accent-color);
-        top: 15px;
-        border-radius: 50%;
-        z-index: 1;
-    }
-
-    .left {
-        left: 0;
-    }
-
-    .right {
-        left: 50%;
-    }
-
-    .right::after {
-        left: -16px;
-    }
-
-    .timeline-content {
-        padding: 20px;
-        background-color: white;
-        position: relative;
-        border-radius: 15px;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        transition: transform 0.3s ease;
-    }
-
-    .timeline-content:hover {
-        transform: scale(1.02);
-    }
-
-    .timeline-date {
-        font-family: 'Pacifico', cursive;
-        color: var(--main-color);
-        font-size: 1.2em;
-        margin-bottom: 10px;
-    }
-
-    .timeline-title {
-        font-weight: bold;
-        margin-bottom: 10px;
-        color: #4a2a3f;
-    }
-
-    .timeline-photos {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin-top: 15px;
-    }
-
-    .timeline-photo {
-        width: calc(50% - 5px);
-        aspect-ratio: 1;
-        object-fit: cover;
-        border-radius: 8px;
-        transition: transform 0.3s ease;
-    }
-
-    .timeline-photo:hover {
-        transform: scale(1.1);
-    }
-
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    @media screen and (max-width: 768px) {
-        .timeline::after {
-            left: 31px;
-        }
-
-        .timeline-item {
-            width: 100%;
-            padding-left: 70px;
-            padding-right: 25px;
-        }
-
-        .right {
-            left: 0;
-        }
-
-        .timeline-item::after {
-            left: 15px;
-        }
-
-        .timeline-photos {
-            flex-direction: column;
-        }
-
-        .timeline-photo {
-            width: 100%;
-        }
-    }
-</style>
 
 <div class="timeline">
     <!-- First Meeting -->
@@ -1333,451 +1781,6 @@ body {
     </section>
     </div>
 
-<script>
-function initializeAnimations() {
-    // Initialize floating hearts
-    const heartsContainer = document.getElementById('floatingHearts');
-    for (let i = 0; i < 50; i++) {
-        const heart = document.createElement('div');
-        heart.className = 'heart';
-        heart.innerHTML = '❤️';
-        heart.style.left = Math.random() * 100 + 'vw';
-        heart.style.animationDelay = Math.random() * 15 + 's';
-        heartsContainer.appendChild(heart);
-    }
 
-    // Add animation delays to memory cards
-    document.querySelectorAll('.memory-card').forEach((card, index) => {
-        card.style.setProperty('--card-index', index);
-    });
-
-    // Add animation delays to timeline items
-    document.querySelectorAll('.timeline-content').forEach((item, index) => {
-        item.style.setProperty('--timeline-index', index);
-    });
-
-    
-}
-
-function initAdvancedInteractions() {
-    const memoryCards = document.querySelectorAll('.memory-card');
-    const scrollHint = document.createElement('div');
-    
-    // Scroll Hint Setup
-    scrollHint.classList.add('scroll-hint');
-    scrollHint.innerHTML = '✨ Keep scrolling to see more! 💕';
-    document.body.appendChild(scrollHint);
-
-    // Heart Burst Effect
-    function createHeartBurst(x, y) {
-        const burstContainer = document.createElement('div');
-        burstContainer.classList.add('heart-burst');
-        burstContainer.style.left = `${x}px`;
-        burstContainer.style.top = `${y}px`;
-
-        for (let i = 0; i < 5; i++) {
-            const heart = document.createElement('span');
-            heart.innerHTML = '❤️';
-            heart.style.position = 'absolute';
-            heart.style.fontSize = `${Math.random() * 20 + 10}px`;
-            heart.style.left = `${Math.random() * 100 - 50}px`;
-            heart.style.top = `${Math.random() * 100 - 50}px`;
-            heart.style.animation = 'heartBurst 0.5s ease-out forwards';
-            burstContainer.appendChild(heart);
-        }
-
-        document.body.appendChild(burstContainer);
-        setTimeout(() => {
-            document.body.removeChild(burstContainer);
-        }, 1000);
-    }
-
-    function setupMobileCaption() {
-    memoryCards.forEach(card => {
-        let touchStartY = 0;
-        let isScrolling = false;
-
-        // Touch Start Handler
-        card.addEventListener('touchstart', (e) => {
-            touchStartY = e.touches[0].clientY;
-            isScrolling = false;
-        });
-
-        // Touch Move Handler (detect scroll)
-        card.addEventListener('touchmove', (e) => {
-            const currentY = e.touches[0].clientY;
-            if (Math.abs(currentY - touchStartY) > 5) {
-                isScrolling = true;
-            }
-        });
-
-        // Touch End Handler
-        card.addEventListener('touchend', (e) => {
-            if (!isScrolling) {
-                // Only toggle caption if not scrolling
-                e.preventDefault();
-                card.classList.toggle('caption-visible');
-                
-                // Create heart burst effect
-                const rect = card.getBoundingClientRect();
-                createHeartBurst(rect.left + rect.width/2, rect.top + rect.height/2);
-            }
-            isScrolling = false;
-        });
-
-        // Click Handler for Desktop
-        card.addEventListener('click', () => {
-            card.classList.toggle('caption-visible');
-        });
-    });
-}
-
-    
-    
-    
-
-    // Hide scroll hint
-    function hideScrollHint() {
-        scrollHint.style.display = 'none';
-    }
-
-    // Event Listeners
-    window.addEventListener('scroll', () => {
-        hideScrollHint();
-    }, { once: true });
-
-    // Random Sparkle Effect
-    function createSparkle(element) {
-        const sparkle = document.createElement('span');
-        sparkle.textContent = '✨';
-        sparkle.style.position = 'absolute';
-        sparkle.style.fontSize = '1.5rem';
-        sparkle.style.top = `${Math.random() * 100}%`;
-        sparkle.style.left = `${Math.random() * 100}%`;
-        sparkle.style.opacity = '0';
-        sparkle.style.animation = 'twinkle 1s infinite';
-        element.appendChild(sparkle);
-
-        setTimeout(() => {
-            sparkle.remove();
-        }, 2000);
-    }
-
-    // Add occasional sparkles to section titles
-    document.querySelectorAll('.section-title').forEach(title => {
-        setInterval(() => {
-            if (Math.random() > 0.5) {
-                createSparkle(title);
-            }
-        }, 3000);
-    });
-
-    // Initialize mobile interactions
-    setupMobileCaption();
-
-    // Periodic Scroll Hint
-    setTimeout(() => {
-        if (window.pageYOffset < 100) {
-            scrollHint.style.display = 'block';
-        }
-    }, 2000);
-}
-
-// Run both animation initializations on page load
-window.addEventListener('load', () => {
-    initializeAnimations();
-    initAdvancedInteractions();
-});
-
-// Audio Manager
-class AudioExperience {
-    constructor() {
-        this.backgroundMusic = new Audio('/romantic-music.mp3');
-        this.soundEffects = {
-            heartBurst: new Audio('/heart-burst.wav'),
-            cardTouch: new Audio('/card-touch.wav'),
-            sparkle: new Audio('/sparkle.wav'),
-            scroll: new Audio('/scroll.wav')
-        };
-
-        this.initializeMusicControls();
-        this.setupSoundEffects();
-    }
-
-    initializeMusicControls() {
-        // Create music control UI
-        const musicControl = document.createElement('div');
-        musicControl.innerHTML = `
-            <button id="music-toggle" style="
-                position: fixed;
-                bottom: 20px;
-                right: 20px;
-                z-index: 1000;
-                background: rgba(255,133,162,0.8);
-                border: none;
-                color: white;
-                padding: 10px;
-                border-radius: 50%;
-            ">🎵</button>
-        `;
-        document.body.appendChild(musicControl);
-
-        const toggleButton = document.getElementById('music-toggle');
-        
-        toggleButton.addEventListener('click', () => {
-            if (this.backgroundMusic.paused) {
-                this.backgroundMusic.loop = true;
-                this.backgroundMusic.volume = 0.3; // Soft volume
-                this.backgroundMusic.play();
-                toggleButton.textContent = '🔊';
-            } else {
-                this.backgroundMusic.pause();
-                toggleButton.textContent = '🔇';
-            }
-        });
-    }
-
-    setupSoundEffects() {
-        // Heart Burst Sound
-        window.addEventListener('heartBurst', (e) => {
-            this.playSoundEffect('heartBurst');
-        });
-
-        // Card Touch Sound
-        document.querySelectorAll('.memory-card').forEach(card => {
-            card.addEventListener('mouseenter', () => {
-                this.playSoundEffect('cardTouch');
-            });
-        });
-
-        // Scroll Sound
-        let lastScrollTop = 0;
-        window.addEventListener('scroll', () => {
-            const st = window.pageYOffset || document.documentElement.scrollTop;
-            if (Math.abs(st - lastScrollTop) > 100) {
-                this.playSoundEffect('scroll');
-                lastScrollTop = st;
-            }
-        });
-    }
-
-    playSoundEffect(effectName) {
-        const sound = this.soundEffects[effectName];
-        if (sound) {
-            sound.currentTime = 0;
-            sound.play().catch(e => console.log('Sound play error:', e));
-        }
-    }
-}
-
-// Initialize on page load
-window.addEventListener('load', () => {
-    window.audioExperience = new AudioExperience();
-});
-
-
-
-class InteractionAnimations {
-    constructor() {
-        this.initializeTiltEffect();
-        this.initializeHeartCursor();
-    }
-
-    initializeTiltEffect() {
-        const memoryCards = document.querySelectorAll('.memory-card');
-        
-        memoryCards.forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const centerX = rect.left + rect.width / 2;
-                const centerY = rect.top + rect.height / 2;
-                
-                const angleX = (e.clientY - centerY) / 20;
-                const angleY = -(e.clientX - centerX) / 20;
-                
-                card.style.transform = `
-                    perspective(1000px) 
-                    rotateX(${angleX}deg) 
-                    rotateY(${angleY}deg) 
-                    scale(1.05)
-                `;
-                card.style.transition = 'transform 0.1s';
-            });
-            
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
-            });
-        });
-    }
-
-    initializeHeartCursor() {
-        const cursor = document.createElement('div');
-        cursor.innerHTML = '❤️';
-        cursor.style.position = 'fixed';
-        cursor.style.pointerEvents = 'none';
-        cursor.style.zIndex = '9999';
-        cursor.style.fontSize = '20px';
-        cursor.style.opacity = '0.7';
-        document.body.appendChild(cursor);
-
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = `${e.clientX + 10}px`;
-            cursor.style.top = `${e.clientY + 10}px`;
-        });
-    }
-
-     
-
-    createComplexHeartBurst(x, y) {
-        const burstContainer = document.createElement('div');
-        burstContainer.style.position = 'fixed';
-        burstContainer.style.left = `${x}px`;
-        burstContainer.style.top = `${y}px`;
-        burstContainer.style.zIndex = '9999';
-        document.body.appendChild(burstContainer);
-
-        // Multiple heart burst variations
-        for (let i = 0; i < 10; i++) {
-            const heart = document.createElement('span');
-            heart.innerHTML = '❤️';
-            heart.style.position = 'absolute';
-            heart.style.fontSize = `${Math.random() * 30 + 10}px`;
-            heart.style.left = `${Math.random() * 200 - 100}px`;
-            heart.style.top = `${Math.random() * 200 - 100}px`;
-            heart.style.opacity = '0';
-            heart.style.animation = `
-                heartBurst 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards,
-                fadeOut 0.8s ease-out forwards
-            `;
-            burstContainer.appendChild(heart);
-        }
-
-        // Remove container after animation
-        setTimeout(() => {
-            document.body.removeChild(burstContainer);
-        }, 1000);
-    }
-}
-
-// Add global styles for heart burst
-const style = document.createElement('style');
-style.innerHTML = `
-@keyframes heartBurst {
-    0% { transform: scale(0) rotate(0deg); }
-    50% { transform: scale(1.5) rotate(180deg); }
-    100% { transform: scale(3) rotate(360deg); }
-}
-
-@keyframes fadeOut {
-    from { opacity: 1; }
-    to { opacity: 0; }
-}
-`;
-document.head.appendChild(style);
-
-// Initialize on page load
-window.addEventListener('load', () => {
-    window.interactionAnimations = new InteractionAnimations();
-});
-
-
-
-// Initialize on page load
-window.addEventListener('load', () => {
-    window.personalizationSystem = new PersonalizationSystem();
-});
-    // Add Sparkle Effect to Cards
-function addSparkleEffect() {
-    const memoryCards = document.querySelectorAll('.memory-card');
-    memoryCards.forEach(card => {
-        const sparkle = document.createElement('span');
-        sparkle.textContent = '✨';
-        sparkle.style.position = 'absolute';
-        sparkle.style.fontSize = '2rem';
-        sparkle.style.top = `${Math.random() * 100}%`;
-        sparkle.style.left = `${Math.random() * 100}%`;
-        sparkle.style.opacity = '0';
-        sparkle.style.animation = 'sparkle 2s infinite';
-        card.appendChild(sparkle);
-
-        setTimeout(() => {
-            sparkle.remove();
-        }, 2000);
-    });
-}
-
-// Add Heart Burst Effect on Click
-function addHeartBurstEffect() {
-    const memoryCards = document.querySelectorAll('.memory-card');
-    memoryCards.forEach(card => {
-        card.addEventListener('click', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-
-            const heart = document.createElement('span');
-            heart.textContent = '❤️';
-            heart.style.position = 'absolute';
-            heart.style.left = `${x}px`;
-            heart.style.top = `${y}px`;
-            heart.style.fontSize = '2rem';
-            heart.style.animation = 'heartBurst 1s ease-out forwards';
-            card.appendChild(heart);
-
-            setTimeout(() => {
-                heart.remove();
-            }, 1000);
-        });
-    });
-}
-
-// Initialize Effects on Page Load
-window.addEventListener('load', () => {
-    addSparkleEffect();
-    addHeartBurstEffect();
-});
-
-    // Add emoji reaction when clicking photos
-document.querySelectorAll('.memory-card').forEach(card => {
-    card.addEventListener('click', (e) => {
-        const emoji = ['😍','💖','🌸','🎀','🍰','🦋'][Math.floor(Math.random()*6)];
-        const floatEmoji = document.createElement('div');
-        floatEmoji.style = `
-            position: absolute;
-            left: ${e.offsetX}px;
-            top: ${e.offsetY}px;
-            font-size: 2rem;
-            animation: emojiFloat 1s ease-out;
-        `;
-        floatEmoji.textContent = emoji;
-        card.appendChild(floatEmoji);
-        setTimeout(() => floatEmoji.remove(), 1000);
-    });
-});
-function burstConfetti() {
-    for(let i=0; i<50; i++) {
-        const confetti = document.createElement('div');
-        confetti.style = `
-            position: fixed;
-            left: ${Math.random() * 100}vw;
-            top: ${Math.random() * 100}vh;
-            font-size: 1.5rem;
-            animation: confettiFall ${Math.random()*3+2}s linear;
-        `;
-        confetti.innerHTML = ['🎉','🎊','✨','🎈','🎁','💖'][Math.floor(Math.random()*6)];
-        document.body.appendChild(confetti);
-        setTimeout(() => confetti.remove(), 3000);
-    }
-}
-document.addEventListener('mousemove', (e) => {
-    const trail = document.createElement('div');
-    trail.className = 'cursor-trail';
-    trail.innerHTML = '🌸';
-    trail.style.left = e.clientX + 'px';
-    trail.style.top = e.clientY + 'px';
-    document.body.appendChild(trail);
-    setTimeout(() => trail.remove(), 1000);
-});
-</script>
 </body>
 </html>
