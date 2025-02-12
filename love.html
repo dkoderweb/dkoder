@@ -1483,18 +1483,11 @@ window.addEventListener('load', () => {
 });
 
 // Audio Manager
+// Audio Manager
 class AudioExperience {
     constructor() {
         this.backgroundMusic = new Audio('/romantic-music.mp3');
-        this.soundEffects = {
-            heartBurst: new Audio('/heart-burst.wav'),
-            cardTouch: new Audio('/card-touch.wav'),
-            sparkle: new Audio('/sparkle.wav'),
-            scroll: new Audio('/scroll.wav')
-        };
-
         this.initializeMusicControls();
-        this.setupSoundEffects();
     }
 
     initializeMusicControls() {
@@ -1529,44 +1522,13 @@ class AudioExperience {
             }
         });
     }
-
-    setupSoundEffects() {
-        // Heart Burst Sound
-        window.addEventListener('heartBurst', (e) => {
-            this.playSoundEffect('heartBurst');
-        });
-
-        // Card Touch Sound
-        document.querySelectorAll('.memory-card').forEach(card => {
-            card.addEventListener('mouseenter', () => {
-                this.playSoundEffect('cardTouch');
-            });
-        });
-
-        // Scroll Sound
-        let lastScrollTop = 0;
-        window.addEventListener('scroll', () => {
-            const st = window.pageYOffset || document.documentElement.scrollTop;
-            if (Math.abs(st - lastScrollTop) > 100) {
-                this.playSoundEffect('scroll');
-                lastScrollTop = st;
-            }
-        });
-    }
-
-    playSoundEffect(effectName) {
-        const sound = this.soundEffects[effectName];
-        if (sound) {
-            sound.currentTime = 0;
-            sound.play().catch(e => console.log('Sound play error:', e));
-        }
-    }
 }
 
 // Initialize on page load
 window.addEventListener('load', () => {
     window.audioExperience = new AudioExperience();
 });
+
 
 
 
